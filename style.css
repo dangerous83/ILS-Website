@@ -1948,6 +1948,12 @@ ul {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* When the footer has a 5th column (Solutions added), redistribute evenly */
+.footer-grid:has(.footer-col:nth-child(5)) {
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
+  gap: 48px;
+}
+
 .footer-logo {
   height: 48px;
   width: auto;
