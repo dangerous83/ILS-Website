@@ -125,6 +125,18 @@
 
     // Inject a Get-a-Quote CTA + contact row at the bottom of the drawer
     if (!menu.querySelector('.nav-mobile-cta')) {
+      // Dedicated close (X) button inside the drawer, top-right of panel
+      const closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'nav-drawer-close';
+      closeBtn.setAttribute('aria-label', 'Close menu');
+      closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+      closeBtn.addEventListener('click', () => {
+        document.body.classList.remove('is-mobile-nav-open');
+        burger.classList.remove('is-active');
+      });
+      menu.appendChild(closeBtn);
+
       const cta = document.createElement('button');
       cta.type = 'button';
       cta.className = 'nav-mobile-cta';
