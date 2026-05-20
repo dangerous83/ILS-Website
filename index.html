@@ -73,6 +73,16 @@
   </script>
   <!-- END-SEO -->
   <link rel="stylesheet" href="style.css" />
+  <script>
+    // Show the loading splash once per browser session — not on every
+    // return to the home page. Runs before the splash renders to avoid flash.
+    try {
+      if (sessionStorage.getItem('ilsSplashShown')) {
+        document.documentElement.classList.add('ils-splash-skip');
+      }
+    } catch (e) {}
+  </script>
+  <style>html.ils-splash-skip #ilsSplash{display:none !important;}</style>
 </head>
 <body>
 
@@ -122,6 +132,11 @@
     (function () {
       var splash = document.getElementById('ilsSplash');
       if (!splash) return;
+      if (document.documentElement.classList.contains('ils-splash-skip')) {
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+        return;
+      }
+      try { sessionStorage.setItem('ilsSplashShown', '1'); } catch (e) {}
       document.documentElement.classList.add('ils-splash-locked');
       window.setTimeout(function () {
         splash.classList.add('is-leaving');
