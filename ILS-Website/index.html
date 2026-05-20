@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ILS — International Logistics Services | Dubai-Based Freight Forwarder</title>
+  <link rel="icon" type="image/jpeg" href="asset/ILS-Icon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <!-- BEGIN-SEO -->
+  <meta name="description" content="ILS is a Dubai-based freight forwarder moving cargo across air, sea, and land — UAE, Afghanistan, CIS, Europe, USA, and Africa. Get a quote in hours." />
+  <meta name="keywords" content="freight forwarder Dubai, logistics UAE, air freight, ocean freight, land transport, warehousing, customs clearance, supply chain, project cargo, Afghanistan logistics, CIS logistics" />
+  <meta name="author" content="ILS International Logistics Services" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ilsmtc.com" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ILS — International Logistics Services" />
+  <meta property="og:title" content="ILS — International Logistics Services | Dubai-Based Freight Forwarder" />
+  <meta property="og:description" content="ILS is a Dubai-based freight forwarder moving cargo across air, sea, and land — UAE, Afghanistan, CIS, Europe, USA, and Africa. Get a quote in hours." />
+  <meta property="og:url" content="https://ilsmtc.com" />
+  <meta property="og:image" content="https://ilsmtc.com/asset/Service - air.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ILS — International Logistics Services | Dubai-Based Freight Forwarder" />
+  <meta name="twitter:description" content="ILS is a Dubai-based freight forwarder moving cargo across air, sea, and land — UAE, Afghanistan, CIS, Europe, USA, and Africa. Get a quote in hours." />
+  <meta name="twitter:image" content="https://ilsmtc.com/asset/Service - air.png" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ILS International Logistics Services",
+  "alternateName": "ILSMTC",
+  "url": "https://ilsmtc.com",
+  "logo": "https://ilsmtc.com/asset/ILS Logo-Blue.png",
+  "description": "Dubai-based international freight forwarder — air, sea, and land transport across the Middle East, Afghanistan, CIS, Europe, USA, and Africa.",
+  "foundingDate": "2011",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Business Central Tower, Office 2802 B, Media City",
+    "addressLocality": "Dubai",
+    "postalCode": "19195",
+    "addressCountry": "AE"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+971-4-4343800",
+    "email": "info@ilsmtc.com",
+    "contactType": "customer service",
+    "areaServed": [
+      "AE",
+      "AF",
+      "SA",
+      "KW",
+      "QA",
+      "OM",
+      "BH",
+      "Worldwide"
+    ]
+  },
+  "sameAs": [
+    "https://www.facebook.com/ilsmtc/",
+    "https://www.linkedin.com/company/94794509",
+    "https://www.instagram.com/ilsdxb/"
+  ]
+}
+  </script>
+  <!-- END-SEO -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOADING SPLASH (home page only) -->
+  <div id="ilsSplash" class="ils-splash" aria-hidden="true">
+    <div class="ils-splash-stage">
+      <div class="ils-splash-logo">
+        <img src="asset/ILS Logo-white.png" alt="ILS — International Logistics Services" />
+      </div>
+
+      <div class="ils-splash-route" aria-hidden="true">
+        <svg viewBox="0 0 420 90" preserveAspectRatio="none">
+          <!-- dotted flight route -->
+          <path id="ilsSplashPath" d="M10 70 Q 130 10 210 45 T 410 25"
+                fill="none" stroke="rgba(255,255,255,0.45)"
+                stroke-width="1.6" stroke-dasharray="2 6" stroke-linecap="round" />
+          <!-- origin dot -->
+          <circle cx="10" cy="70" r="4" fill="#ffffff" />
+          <circle cx="10" cy="70" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+          <!-- destination dot -->
+          <circle cx="410" cy="25" r="4" fill="#ffffff" />
+          <circle cx="410" cy="25" r="8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+
+          <!-- traveling plane -->
+          <g class="ils-splash-plane">
+            <path d="M-8,-2 L8,-2 L11,0 L8,2 L-8,2 L-12,5 L-9,0 L-12,-5 Z"
+                  fill="#ffffff" />
+            <animateMotion dur="2.4s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#ilsSplashPath" />
+            </animateMotion>
+          </g>
+        </svg>
+      </div>
+
+      <div class="ils-splash-caption">
+        <span class="ils-splash-eyebrow">INTERNATIONAL LOGISTICS SERVICES</span>
+        <span class="ils-splash-tag">Moving Cargo. Driving Trade.</span>
+      </div>
+
+      <div class="ils-splash-bar" aria-hidden="true">
+        <span class="ils-splash-bar-fill"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var splash = document.getElementById('ilsSplash');
+      if (!splash) return;
+      document.documentElement.classList.add('ils-splash-locked');
+      window.setTimeout(function () {
+        splash.classList.add('is-leaving');
+        document.documentElement.classList.remove('ils-splash-locked');
+        window.setTimeout(function () {
+          if (splash.parentNode) splash.parentNode.removeChild(splash);
+        }, 700);
+      }, 3000);
+    })();
+  </script>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="asset/ILS Logo-Blue.png" alt="ILS — International Logistics Services" />
+      </a>
+
+      <nav class="nav-menu">
+        <ul>
+          <li class="has-submenu"><a href="pages/services.html">Services <span class="caret">›</span></a><div class="submenu submenu-services"><div class="submenu-inner"><a class="submenu-item" href="pages/air-freight.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><span class="submenu-text"><span class="submenu-label">Air Freight</span><span class="submenu-sub">Express · Time-Critical</span></span></a><a class="submenu-item" href="pages/ocean-freight.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0"/><path d="M4 18l-2-6h20l-2 6"/><path d="M12 10V4M8 7l4-3 4 3"/></svg></span><span class="submenu-text"><span class="submenu-label">Ocean Freight</span><span class="submenu-sub">FCL · LCL · Charter</span></span></a><a class="submenu-item" href="pages/land-transport.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7h11v10M14 11h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span><span class="submenu-text"><span class="submenu-label">Land Transport</span><span class="submenu-sub">Cross-border · FTL · LTL</span></span></a><a class="submenu-item" href="pages/warehousing.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/><path d="M3 13h18"/></svg></span><span class="submenu-text"><span class="submenu-label">Warehousing</span><span class="submenu-sub">Storage · 3PL · Distribution</span></span></a></div></div></li>
+          <li class="has-submenu">
+            <a href="pages/solutions.html">Solutions <span class="caret">›</span></a>
+            <div class="submenu submenu-solutions">
+              <div class="submenu-inner">
+                <a class="submenu-item" href="pages/freight-forwarding.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="submenu-text"><span class="submenu-label">Freight Forwarding</span><span class="submenu-sub">Air · Sea · Road</span></span></a>
+                <a class="submenu-item" href="pages/project-cargo.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8h14l-1.5 7H6.5z"/><path d="M3 17c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0"/></svg></span><span class="submenu-text"><span class="submenu-label">Project Cargo</span><span class="submenu-sub">Heavy Lift · Breakbulk</span></span></a>
+                <a class="submenu-item" href="pages/customs-compliance.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="submenu-text"><span class="submenu-label">Customs &amp; Compliance</span><span class="submenu-sub">Brokerage · FTA · AEO</span></span></a>
+                <a class="submenu-item" href="pages/supply-chain.html"><span class="submenu-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8M6 8v8M18 8v8M8 18h8"/></svg></span><span class="submenu-text"><span class="submenu-label">Supply Chain Management</span><span class="submenu-sub">End-to-end SCM</span></span></a>
+              </div>
+            </div>
+          </li>
+          <li class="has-submenu">
+            <a href="pages/destinations.html">Destinations <span class="caret">›</span></a>
+            <div class="submenu submenu-destinations">
+              <div class="submenu-inner">
+                <a class="submenu-item" href="pages/destinations.html#middle-east">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">Middle East</span>
+                    <span class="submenu-sub">UAE · KSA · Qatar</span>
+                  </span>
+                </a>
+                <a class="submenu-item" href="pages/destinations.html#afghanistan">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7h11v10M14 11h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">Afghanistan</span>
+                    <span class="submenu-sub">Kabul · Herat</span>
+                  </span>
+                </a>
+                <a class="submenu-item" href="pages/destinations.html#cis">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7z"/><path d="M9 12l2 2 4-4"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">CIS</span>
+                    <span class="submenu-sub">Central Asia</span>
+                  </span>
+                </a>
+                <a class="submenu-item" href="pages/destinations.html#europe">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/><path d="M3 13h18"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">Europe</span>
+                    <span class="submenu-sub">EU · UK</span>
+                  </span>
+                </a>
+                <a class="submenu-item" href="pages/destinations.html#usa-canada">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">USA &amp; Canada</span>
+                    <span class="submenu-sub">North America</span>
+                  </span>
+                </a>
+                <a class="submenu-item" href="pages/destinations.html#africa">
+                  <span class="submenu-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0"/><path d="M4 18l-2-6h20l-2 6"/><path d="M12 10V4M8 7l4-3 4 3"/></svg>
+                  </span>
+                  <span class="submenu-text">
+                    <span class="submenu-label">Africa</span>
+                    <span class="submenu-sub">East · West · North</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="has-submenu align-right">
+            <a href="pages/about.html">Company <span class="caret">›</span></a>
+            <div class="submenu submenu-company">
+              <div class="submenu-inner">
+                <a class="submenu-item" href="pages/about.html">
+                  <span class="submenu-label">About Us</span>
+                  <span class="submenu-arrow">→</span>
+                </a>
+                <a class="submenu-item" href="pages/industries.html">
+                  <span class="submenu-label">Industries</span>
+                  <span class="submenu-arrow">→</span>
+                </a>
+                <a class="submenu-item" href="pages/resources.html">
+                  <span class="submenu-label">Resources</span>
+                  <span class="submenu-arrow">→</span>
+                </a>
+                <a class="submenu-item" href="pages/blog.html">
+                  <span class="submenu-label">Blog</span>
+                  <span class="submenu-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <a href="pages/contact.html" class="nav-cta">
+        Contact
+        <span class="arrow">→</span>
+      </a>
+
+      <button class="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Background slideshow -->
+    <div class="hero-slides">
+      <div class="hero-slide is-active" style="background-image: url('asset/Hero - CEO.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('asset/hero image.png')"></div>
+      <div class="hero-slide" style="background-image: url('asset/hero - cargo ship.png')"></div>
+      <div class="hero-slide" style="background-image: url('asset/hero - cargo plane.png')"></div>
+      <div class="hero-slide" style="background-image: url('asset/hero itruck.png')"></div>
+      <div class="hero-slide" style="background-image: url('asset/hero Empire.png')"></div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <!-- Text slides (synced with background) -->
+        <div class="hero-texts">
+          <div class="hero-text is-active">
+            <h1 class="hero-title">
+              <span class="line">Led by</span>
+              <span class="line accent">Experience</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">Decades of logistics expertise behind every shipment—built on vision, driven by trust.</p>
+          </div>
+
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="line">Smart Logistics</span>
+              <span class="line accent">Solutions</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">End-to-end logistics solutions that move your business forward—faster, smarter, better.</p>
+          </div>
+
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="line">Sea Freight</span>
+              <span class="line accent">Worldwide</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">Reliable ocean shipping connecting major ports across continents—built to move your cargo at scale.</p>
+          </div>
+
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="line">Air Cargo</span>
+              <span class="line accent">Express</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">When time matters most, our air freight network delivers urgent shipments with precision and speed.</p>
+          </div>
+
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="line">Land Transport</span>
+              <span class="line accent">Delivered</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">Door-to-door trucking and last-mile delivery you can trust, every kilometer of the journey.</p>
+          </div>
+
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="line">Our Global</span>
+              <span class="line accent">Headquarters</span>
+            </h1>
+            <span class="hero-divider"></span>
+            <p class="hero-subtitle">Operating from our flagship office at the heart of the city—where strategy meets seamless global execution.</p>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">
+            <span class="arrow">→</span>
+            Explore Solutions
+          </a>
+          <a href="#" class="btn btn-ghost">
+            <span class="play-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            Watch Our Video
+          </a>
+        </div>
+
+        <div class="hero-features">
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+              </svg>
+            </div>
+            <div class="feature-text">
+              <strong>Global Network</strong>
+              <span>200+ countries<br />and territories</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 16V7h11v9M14 10h4l3 3v3h-7" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+            </div>
+            <div class="feature-text">
+              <strong>On-Time Delivery</strong>
+              <span>Reliable. Efficient.<br />Every time.</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <div class="feature-text">
+              <strong>Secure &amp; Trusted</strong>
+              <span>Your cargo is safe<br />with us</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leadership trust badge -->
+        <div class="hero-leaders reveal">
+          <div class="hero-leaders-avatars" aria-hidden="true">
+            <span class="hero-leader-avatar" style="background-image: url('asset/Dr. Azgarkhil Mangal - Chairman.png')" title="Dr. Azgarkhil Mangal — Chairman"></span>
+            <span class="hero-leader-avatar" style="background-image: url('asset/Mr. Meyakhel Mangal - CEO.png')" title="Mr. Meyakhel Mangal — CEO"></span>
+            <span class="hero-leader-avatar" style="background-image: url('asset/Mr. Wali Jan - Managing Director.png')" title="Mr. Wali Jan — Managing Director"></span>
+          </div>
+          <div class="hero-leaders-text">
+            <strong>Led by industry veterans.</strong>
+            <span>Decades of combined logistics expertise — moving cargo with care, precision, and trust.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide indicators -->
+    <div class="hero-dots" role="tablist" aria-label="Hero slides">
+      <button class="hero-dot is-active" data-index="0" aria-label="Slide 1"></button>
+      <button class="hero-dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="hero-dot" data-index="2" aria-label="Slide 3"></button>
+      <button class="hero-dot" data-index="3" aria-label="Slide 4"></button>
+      <button class="hero-dot" data-index="4" aria-label="Slide 5"></button>
+      <button class="hero-dot" data-index="5" aria-label="Slide 6"></button>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION (white) -->
+  <section class="services-section">
+    <div class="services-container">
+      <div class="services-header">
+        <span class="services-eyebrow">Our Services</span>
+        <h2 class="services-title">Complete Logistics, <span class="accent">End-to-End</span></h2>
+        <p class="services-subtitle">From air freight to last-mile delivery, we handle every link in your supply chain so you can focus on growing your business.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
+            </svg>
+          </div>
+          <h3 class="service-name">Air Freight</h3>
+          <p class="service-desc">Express international air cargo for time-critical shipments anywhere in the world.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0" />
+              <path d="M4 18l-2-6h20l-2 6" />
+              <path d="M12 10V4" />
+              <path d="M8 7l4-3 4 3" />
+            </svg>
+          </div>
+          <h3 class="service-name">Ocean Freight</h3>
+          <p class="service-desc">FCL and LCL ocean shipping across the world's major trade lanes — built for scale.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17V7h11v10M14 11h4l3 3v3h-7" />
+              <circle cx="7" cy="17.5" r="2" />
+              <circle cx="17" cy="17.5" r="2" />
+            </svg>
+          </div>
+          <h3 class="service-name">Land Transport</h3>
+          <p class="service-desc">Cross-border trucking and inland delivery networks across every major route.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21V9l9-5 9 5v12" />
+              <path d="M9 21v-6h6v6" />
+              <path d="M3 13h18" />
+            </svg>
+          </div>
+          <h3 class="service-name">Warehousing</h3>
+          <p class="service-desc">Secure storage and smart inventory management at strategic hubs worldwide.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M9 14l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="service-name">Customs Clearance</h3>
+          <p class="service-desc">Hassle-free customs brokerage and full trade compliance, handled by experts.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              <path d="M3.27 6.96L12 12.01l8.73-5.05" />
+              <path d="M12 22.08V12" />
+            </svg>
+          </div>
+          <h3 class="service-name">Last-Mile Delivery</h3>
+          <p class="service-desc">Doorstep delivery with real-time tracking — the final mile, done right.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOOPED CUT SECTION (dark navy with globe) -->
+  <div class="cut-wrap">
+    <img src="asset/ILS Icon.png" alt="" class="cut-globe" />
+    <section class="cut-section">
+      <div class="cut-container">
+        <span class="cut-eyebrow">Why Choose ILS</span>
+        <h2 class="cut-title">Logistics, <span class="accent">Reimagined</span></h2>
+        <p class="cut-subtitle">
+          Six continents. One trusted partner. We move what matters with the speed, precision,
+          and reliability your business demands.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- BY THE NUMBERS — animated counters -->
+  <section class="home-stats">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">By the Numbers</span>
+        <h2 class="section-title">Logistics, <span class="accent">at scale</span></h2>
+        <p class="section-subtitle">Two decades of operations distilled into the numbers that matter to your supply chain.</p>
+      </div>
+
+      <div class="home-stats-grid">
+        <div class="home-stat reveal stagger-1">
+          <div class="home-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+            </svg>
+          </div>
+          <div class="home-stat-figure">
+            <span class="home-stat-num counter" data-target="200">0</span>
+            <span class="home-stat-suffix">+</span>
+          </div>
+          <div class="home-stat-label">Countries Served</div>
+        </div>
+
+        <div class="home-stat reveal stagger-2">
+          <div class="home-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/>
+            </svg>
+          </div>
+          <div class="home-stat-figure">
+            <span class="home-stat-num counter" data-target="15">0</span>
+            <span class="home-stat-suffix">+</span>
+          </div>
+          <div class="home-stat-label">Years of Expertise</div>
+        </div>
+
+        <div class="home-stat reveal stagger-3">
+          <div class="home-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/>
+            </svg>
+          </div>
+          <div class="home-stat-figure">
+            <span class="home-stat-num counter" data-target="50">0</span>
+            <span class="home-stat-suffix">K+</span>
+          </div>
+          <div class="home-stat-label">Shipments Delivered</div>
+        </div>
+
+        <div class="home-stat reveal stagger-4">
+          <div class="home-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <div class="home-stat-figure">
+            <span class="home-stat-num counter" data-target="99">0</span>
+            <span class="home-stat-suffix">%</span>
+          </div>
+          <div class="home-stat-label">On-Time Delivery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS PREVIEW -->
+  <section class="home-destinations">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Global Reach</span>
+        <h2 class="section-title">Six regions, <span class="accent">one network</span></h2>
+        <p class="section-subtitle">From the Gulf to the Americas — our regional desks move your cargo where it needs to go, with local agents on the ground.</p>
+      </div>
+
+      <div class="home-destinations-grid">
+        <a href="pages/destinations.html#middle-east" class="home-dest-card reveal stagger-1">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - Middle east.png')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 01</span>
+            <h3 class="home-dest-title">Middle East</h3>
+            <span class="home-dest-sub">UAE · KSA · Qatar · Oman · Kuwait · Bahrain</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a href="pages/destinations.html#afghanistan" class="home-dest-card reveal stagger-2">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - Afghanistan.png')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 02</span>
+            <h3 class="home-dest-title">Afghanistan</h3>
+            <span class="home-dest-sub">Kabul · Herat · Mazar-i-Sharif</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a href="pages/destinations.html#cis" class="home-dest-card reveal stagger-3">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - CIS.png')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 03</span>
+            <h3 class="home-dest-title">CIS</h3>
+            <span class="home-dest-sub">Uzbekistan · Kazakhstan · Turkmenistan</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a href="pages/destinations.html#europe" class="home-dest-card reveal stagger-4">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - Europe.png')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 04</span>
+            <h3 class="home-dest-title">Europe</h3>
+            <span class="home-dest-sub">EU · UK · Schengen</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a href="pages/destinations.html#usa-canada" class="home-dest-card reveal stagger-5">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - USA and Canada.png')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 05</span>
+            <h3 class="home-dest-title">USA &amp; Canada</h3>
+            <span class="home-dest-sub">Lower 48 · Alaska · All Canadian Provinces</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a href="pages/destinations.html#africa" class="home-dest-card reveal stagger-6">
+          <div class="home-dest-bg" style="background-image: url('asset/Destination - Africa.png?v=2')"></div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Region 06</span>
+            <h3 class="home-dest-title">Africa</h3>
+            <span class="home-dest-sub">East · West · North · Southern</span>
+            <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="home-destinations-cta reveal">
+        <a href="pages/destinations.html" class="btn btn-primary">
+          <span class="arrow">→</span>
+          View All Destinations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY / CLIENTS & AFFILIATIONS SLIDER -->
+  <section class="home-clients">
+    <div class="container">
+      <div class="home-clients-header reveal">
+        <span class="eyebrow">Trusted Partners &amp; Affiliations</span>
+        <h2 class="section-title">Accredited, audited, <span class="accent">recognised</span></h2>
+        <p class="section-subtitle">Industry-body memberships, carrier partnerships, and the certifications that let us move regulated cargo across every border we serve.</p>
+      </div>
+    </div>
+
+    <!-- full-bleed marquee -->
+    <div class="home-clients-marquee reveal" aria-label="Trusted partners and affiliations">
+      <div class="home-clients-track">
+        <!-- First copy -->
+        <div class="home-client-logo"><img src="asset/DUN Logo.png" alt="Dun &amp; Bradstreet" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/Global Value Network.png" alt="Global Value Network" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/JCTRANS - Logo.png" alt="JCTRANS" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/Latam Logo.png" alt="LATAM Forwarders Club" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/Wave Logo.png" alt="Wave" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/WCA Logo.png" alt="WCA World" loading="lazy" /></div>
+        <div class="home-client-logo"><img src="asset/X2 - Logo.png" alt="X2 Global" loading="lazy" /></div>
+
+        <!-- Second copy (seamless loop) -->
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/DUN Logo.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/Global Value Network.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/JCTRANS - Logo.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/Latam Logo.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/Wave Logo.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/WCA Logo.png" alt="" loading="lazy" /></div>
+        <div class="home-client-logo" aria-hidden="true"><img src="asset/X2 - Logo.png" alt="" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="home-testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Client Stories</span>
+        <h2 class="section-title">Trusted by businesses <span class="accent">worldwide</span></h2>
+        <p class="section-subtitle">From SMEs shipping their first container to multinational enterprises managing complex global supply chains.</p>
+      </div>
+
+      <div class="home-testimonials-grid">
+        <article class="home-testimonial reveal stagger-1">
+          <div class="home-testimonial-quote-mark">"</div>
+          <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="home-testimonial-quote">ILS turned what used to be a stressful, opaque process into something we can actually plan around. Their team in Dubai picks up the phone, knows our cargo, and clears it without drama.</p>
+          <div class="home-testimonial-author">
+            <div class="home-testimonial-avatar" aria-hidden="true">RK</div>
+            <div class="home-testimonial-meta">
+              <strong>Rajesh Kumar</strong>
+              <span>Operations Director, Polaris Electronics</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="home-testimonial reveal stagger-2">
+          <div class="home-testimonial-quote-mark">"</div>
+          <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="home-testimonial-quote">We needed a partner who could handle Afghanistan and Central Asia without flinching. ILS has been moving our humanitarian shipments for three years — every container, every milestone.</p>
+          <div class="home-testimonial-author">
+            <div class="home-testimonial-avatar" aria-hidden="true">SA</div>
+            <div class="home-testimonial-meta">
+              <strong>Sarah Aldridge</strong>
+              <span>Logistics Lead, Crescent Aid Foundation</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="home-testimonial reveal stagger-3">
+          <div class="home-testimonial-quote-mark">"</div>
+          <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+          <p class="home-testimonial-quote">Project cargo into Saudi can break a freight forwarder. ILS handled our refinery modules — permits, escorts, heavy lift — like they'd done it a hundred times. Because they had.</p>
+          <div class="home-testimonial-author">
+            <div class="home-testimonial-avatar" aria-hidden="true">MA</div>
+            <div class="home-testimonial-meta">
+              <strong>Mohammed Al Farsi</strong>
+              <span>Supply Chain Manager, Gulf Energy Partners</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section id="cta" class="cta-section">
+    <div class="cta-bg-globe">
+      <img src="asset/ILS Icon Whiite.png" alt="" />
+    </div>
+    <div class="container">
+      <div class="cta-content reveal">
+        <span class="eyebrow eyebrow-light">Ready to Move</span>
+        <h2 class="cta-title">Let's get your cargo <span class="accent-light">moving</span></h2>
+        <p class="cta-subtitle">Tell us where, when, and what. Our regional desks respond with a tailored proposal within hours — air, sea, or road, we'll design the route.</p>
+        <div class="cta-actions">
+          <a href="pages/contact.html" class="btn btn-primary"><span class="arrow">→</span> Request a Quote</a>
+          <a href="pages/contact.html" class="btn btn-ghost-light">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="asset/ILS Logo-white.png" alt="ILS" class="footer-logo" />
+          <p class="footer-tagline">International Logistics Services — moving the world's businesses forward since 2011.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/ilsmtc/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.5 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/94794509" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zm-1.5-10.3a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM19 19h-3v-4.7c0-1.1 0-2.5-1.5-2.5s-1.7 1.2-1.7 2.4V19h-3v-9h2.9v1.3a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.6 2 3.6 4.7z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/ilsdxb/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8a4 4 0 0 1 3.4 3.4z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/971545461339" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1-.4-2-1-2.7-2-.5-.9-.6-1.3-.4-1.5l.6-.7c.1-.1.2-.2.2-.4 0-.1 0-.3-.1-.4l-1-2.3c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4 0-.1-.3-.2-.5-.2zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="pages/air-freight.html">Air Freight</a></li>
+            <li><a href="pages/ocean-freight.html">Ocean Freight</a></li>
+            <li><a href="pages/land-transport.html">Land Transport</a></li>
+            <li><a href="pages/warehousing.html">Warehousing</a></li>
+            <li><a href="pages/services.html">All Services</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul>
+            <li><a href="pages/destinations.html#middle-east">Middle East</a></li>
+            <li><a href="pages/destinations.html#afghanistan">Afghanistan</a></li>
+            <li><a href="pages/destinations.html#cis">CIS</a></li>
+            <li><a href="pages/destinations.html#europe">Europe</a></li>
+            <li><a href="pages/destinations.html#usa-canada">USA &amp; Canada</a></li>
+            <li><a href="pages/destinations.html#africa">Africa</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <p class="footer-info">Business Central Tower<br />Office 2802 B, Media City<br />Dubai, UAE — P.O. Box 19195</p>
+          <p class="footer-info"><a href="mailto:info@ilsmtc.com">info@ilsmtc.com</a></p>
+          <p class="footer-info"><a href="tel:+97144343800">+971 4 4343800</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ILS International Logistics Services. All rights reserved.</span>
+        <div class="footer-bottom-links">
+          <a href="pages/privacy.html">Privacy</a>
+          <a href="pages/terms.html">Terms</a>
+          <a href="pages/cookies.html">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="animations.js"></script>
+</body>
+</html>

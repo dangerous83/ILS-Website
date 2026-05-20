@@ -1,0 +1,64 @@
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.swp
+*.swo
+*~
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ---- Claude / AI tooling ----
+.claude/
+.aider*
+.cursor/
+
+# ---- Node (just in case) ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+.yarn/
+
+# ---- Python (for _seo_inject.py) ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.Python
+
+# ---- Build / Dist ----
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+out/
+
+# ---- Env / Secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Temp ----
+*.tmp
+*.bak
+*.old
