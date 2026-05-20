@@ -342,10 +342,10 @@
         </div>
 
         <div class="hero-actions">
-          <a href="#" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" id="openQuoteBtn" aria-haspopup="dialog" aria-controls="quoteModal">
             <span class="arrow">→</span>
-            Explore Solutions
-          </a>
+            Get a Quote
+          </button>
           <a href="#" class="btn btn-ghost">
             <span class="play-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -848,6 +848,215 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== ADVANCED QUOTATION MODAL ===== -->
+  <div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" aria-hidden="true">
+    <div class="quote-modal-backdrop" data-quote-close></div>
+    <div class="quote-modal-shell" role="document">
+      <!-- animated grid + scan lines -->
+      <div class="quote-fx" aria-hidden="true">
+        <div class="quote-fx-grid"></div>
+        <div class="quote-fx-scan"></div>
+        <div class="quote-fx-orb quote-fx-orb-1"></div>
+        <div class="quote-fx-orb quote-fx-orb-2"></div>
+      </div>
+
+      <button type="button" class="quote-modal-close" data-quote-close aria-label="Close quote form">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <header class="quote-modal-head">
+        <span class="quote-eyebrow">
+          <span class="quote-eyebrow-dot"></span>
+          ILS · ADVANCED QUOTATION SYSTEM
+        </span>
+        <h2 id="quoteModalTitle" class="quote-modal-title">Request Your <span class="accent">Instant Quote</span></h2>
+        <p class="quote-modal-subtitle">Tell us about your shipment — our operations desk replies within a few hours.</p>
+
+        <ol class="quote-steps" aria-hidden="true">
+          <li class="is-active" data-step="1"><span>01</span>Contact</li>
+          <li data-step="2"><span>02</span>Shipment</li>
+          <li data-step="3"><span>03</span>Review</li>
+        </ol>
+      </header>
+
+      <form class="quote-form" id="quoteForm" novalidate>
+        <!-- STEP 1 -->
+        <section class="quote-step is-active" data-step="1">
+          <div class="quote-grid">
+            <label class="quote-field">
+              <span class="quote-label">Full Name <i>*</i></span>
+              <input type="text" name="fullName" required placeholder="John Doe" autocomplete="name" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Company</span>
+              <input type="text" name="company" placeholder="Your company" autocomplete="organization" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Email <i>*</i></span>
+              <input type="email" name="email" required placeholder="you@company.com" autocomplete="email" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Phone / WhatsApp</span>
+              <input type="tel" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field quote-field-full">
+              <span class="quote-label">Country</span>
+              <input type="text" name="country" placeholder="United Arab Emirates" autocomplete="country-name" />
+              <span class="quote-field-line"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="quote-step" data-step="2">
+          <div class="quote-service-row" role="radiogroup" aria-label="Service type">
+            <label class="quote-service">
+              <input type="radio" name="service" value="Air Freight" required />
+              <span class="quote-service-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                <b>Air Freight</b>
+              </span>
+            </label>
+            <label class="quote-service">
+              <input type="radio" name="service" value="Ocean Freight" />
+              <span class="quote-service-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0"/><path d="M4 18l-2-6h20l-2 6"/><path d="M12 10V4M8 7l4-3 4 3"/></svg>
+                <b>Ocean Freight</b>
+              </span>
+            </label>
+            <label class="quote-service">
+              <input type="radio" name="service" value="Land Transport" />
+              <span class="quote-service-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7h11v10M14 11h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>
+                <b>Land Transport</b>
+              </span>
+            </label>
+            <label class="quote-service">
+              <input type="radio" name="service" value="Warehousing" />
+              <span class="quote-service-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-5 9 5v12"/><path d="M9 21v-6h6v6"/><path d="M3 13h18"/></svg>
+                <b>Warehousing</b>
+              </span>
+            </label>
+          </div>
+
+          <div class="quote-grid">
+            <label class="quote-field">
+              <span class="quote-label">Origin (city / port) <i>*</i></span>
+              <input type="text" name="origin" required placeholder="Dubai, UAE" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Destination (city / port) <i>*</i></span>
+              <input type="text" name="destination" required placeholder="Hamburg, Germany" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Cargo Type / Description</span>
+              <input type="text" name="cargo" placeholder="20 pallets of electronics" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Total Weight (kg)</span>
+              <input type="number" name="weight" min="0" placeholder="2500" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Dimensions (L × W × H cm)</span>
+              <input type="text" name="dimensions" placeholder="120 × 100 × 90" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Ready Date</span>
+              <input type="date" name="readyDate" />
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Incoterms</span>
+              <select name="incoterms">
+                <option value="">Select Incoterm…</option>
+                <option>EXW</option><option>FCA</option><option>FOB</option>
+                <option>CFR</option><option>CIF</option><option>CPT</option>
+                <option>CIP</option><option>DAP</option><option>DPU</option>
+                <option>DDP</option><option>Not sure</option>
+              </select>
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field">
+              <span class="quote-label">Container / Load Type</span>
+              <select name="loadType">
+                <option value="">Select…</option>
+                <option>LCL (Less than Container)</option>
+                <option>20ft FCL</option>
+                <option>40ft FCL</option>
+                <option>40ft HC</option>
+                <option>Reefer</option>
+                <option>Air ULD</option>
+                <option>Truckload (FTL)</option>
+                <option>Part-load (LTL)</option>
+                <option>Project / Out-of-gauge</option>
+              </select>
+              <span class="quote-field-line"></span>
+            </label>
+            <label class="quote-field quote-field-full">
+              <span class="quote-label">Additional Details</span>
+              <textarea name="notes" rows="3" placeholder="Incoterms, special handling, deadlines, hazmat, regulatory requirements…"></textarea>
+              <span class="quote-field-line"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="quote-step" data-step="3">
+          <div class="quote-review">
+            <div class="quote-review-head">
+              <span class="quote-pulse"></span>
+              <div>
+                <strong>Final Review</strong>
+                <p>Confirm your details — we'll route this directly to our operations desk.</p>
+              </div>
+            </div>
+            <dl class="quote-review-list" id="quoteReviewList"></dl>
+
+            <label class="quote-consent">
+              <input type="checkbox" name="consent" required />
+              <span>I agree to ILS contacting me about this enquiry per the <a href="pages/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+            </label>
+          </div>
+        </section>
+
+        <div class="quote-form-actions">
+          <button type="button" class="quote-btn quote-btn-ghost" data-quote-prev disabled>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            Back
+          </button>
+          <div class="quote-form-status" id="quoteFormStatus" role="status" aria-live="polite"></div>
+          <button type="button" class="quote-btn quote-btn-primary" data-quote-next>
+            Next
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+          <button type="submit" class="quote-btn quote-btn-primary quote-btn-submit" style="display:none;">
+            Send to ILS
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="quote-success" id="quoteSuccess" aria-hidden="true">
+        <div class="quote-success-ring">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27l8 8 16-18"/></svg>
+        </div>
+        <h3>Quote Request Sent</h3>
+        <p>Your email client just opened with all details pre-filled to <strong>info@ilsmtc.com</strong>. If it didn't, mail us directly at <a href="mailto:info@ilsmtc.com">info@ilsmtc.com</a>.</p>
+        <button type="button" class="quote-btn quote-btn-primary" data-quote-close>Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
   <script src="animations.js"></script>
