@@ -492,6 +492,9 @@ ul {
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
@@ -7064,4 +7067,159 @@ html.quote-modal-locked, html.quote-modal-locked body { overflow: hidden; }
   .quote-fx-grid, .quote-fx-scan, .quote-fx-orb-1, .quote-fx-orb-2,
   .quote-eyebrow-dot, .quote-pulse, .quote-success-ring circle, .quote-success-ring path,
   .quote-modal, .quote-modal-shell, .quote-step { animation: none !important; transition: none !important; }
+}
+
+/* =====================================================================
+   CORPORATE VIDEO MODAL — professional, looping, polished
+   ===================================================================== */
+.video-modal {
+  position: fixed; inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+.video-modal.is-open { display: flex; opacity: 1; }
+html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
+
+.video-modal-backdrop {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(36,82,255,0.32), transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(0,180,255,0.26), transparent 55%),
+    rgba(2, 6, 22, 0.86);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+.video-modal-shell {
+  position: relative;
+  width: min(1080px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: hidden;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(10,18,46,0.96), rgba(6,12,32,0.96));
+  border: 1px solid rgba(120,170,255,0.22);
+  box-shadow:
+    0 30px 120px rgba(0, 20, 90, 0.6),
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 0 60px rgba(60,120,255,0.22) inset;
+  color: #e8efff;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(24px) scale(.96);
+  opacity: 0;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .35s ease;
+}
+.video-modal.is-open .video-modal-shell { transform: translateY(0) scale(1); opacity: 1; }
+
+.video-fx { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+.video-fx-orb { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.video-fx-orb-1 { width: 320px; height: 320px; background: #3463ff; top: -110px; left: -90px; animation: quoteOrb1 12s ease-in-out infinite alternate; }
+.video-fx-orb-2 { width: 280px; height: 280px; background: #00c2ff; bottom: -90px; right: -80px; animation: quoteOrb2 14s ease-in-out infinite alternate; }
+
+.video-modal-close {
+  position: absolute; top: 14px; right: 14px; z-index: 4;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.35);
+  color: #fff; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .2s, border-color .2s;
+}
+.video-modal-close:hover { background: rgba(255,255,255,0.16); transform: rotate(90deg); border-color: rgba(255,255,255,0.45); }
+
+.video-modal-head {
+  position: relative; z-index: 2;
+  padding: 26px 36px 14px;
+}
+.video-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: .22em; font-weight: 600;
+  color: #8fb1ff; text-transform: uppercase;
+}
+.video-eyebrow-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #ff4d4d;
+  box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.22);
+  animation: quotePulseDot 1.4s ease-in-out infinite;
+}
+.video-modal-title {
+  margin: 10px 0 0;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.video-modal-title .accent {
+  background: linear-gradient(90deg, #6aa6ff, #36e0a3);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.video-stage {
+  position: relative; z-index: 2;
+  padding: 8px 36px 18px;
+}
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    0 26px 60px rgba(0, 30, 90, 0.55),
+    0 0 0 1px rgba(120, 170, 255, 0.25),
+    0 0 80px rgba(60, 120, 255, 0.25) inset;
+}
+.video-el {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #000;
+}
+
+/* corner brackets — corporate hi-tech feel */
+.video-corner {
+  position: absolute; width: 22px; height: 22px;
+  border: 2px solid rgba(106, 166, 255, 0.85);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(106, 166, 255, 0.6));
+}
+.video-corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; border-top-left-radius: 6px; }
+.video-corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; border-top-right-radius: 6px; }
+.video-corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; border-bottom-left-radius: 6px; }
+.video-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; border-bottom-right-radius: 6px; }
+
+.video-modal-foot {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 14px 36px 24px;
+  border-top: 1px solid rgba(120,170,255,0.12);
+  background: rgba(4, 10, 30, 0.55);
+  flex-wrap: wrap;
+}
+.video-tagline {
+  margin: 0;
+  font-size: 13.5px;
+  color: rgba(220, 232, 255, 0.78);
+  max-width: 560px;
+  line-height: 1.55;
+}
+.video-foot-actions { display: flex; gap: 10px; }
+
+@media (max-width: 760px) {
+  .video-modal { padding: 12px; }
+  .video-modal-shell { border-radius: 18px; }
+  .video-modal-head { padding: 22px 20px 10px; }
+  .video-stage { padding: 6px 20px 14px; }
+  .video-modal-foot { padding: 14px 20px 20px; flex-direction: column; align-items: stretch; }
+  .video-foot-actions { justify-content: flex-end; }
+  .video-corner { width: 16px; height: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-fx-orb-1, .video-fx-orb-2, .video-eyebrow-dot,
+  .video-modal, .video-modal-shell { animation: none !important; transition: none !important; }
 }
