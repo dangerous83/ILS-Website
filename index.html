@@ -122,6 +122,22 @@
     (function () {
       var splash = document.getElementById('ilsSplash');
       if (!splash) return;
+
+      // Only show the splash on the first visit of a browser session
+      // (typed URL, search engine, external link, refresh of a new tab).
+      // Clicking the logo from a subpage in the same session skips it.
+      var alreadyShown = false;
+      try {
+        alreadyShown = sessionStorage.getItem('ilsSplashShown') === '1';
+      } catch (e) { /* sessionStorage unavailable — fall through and show */ }
+
+      if (alreadyShown) {
+        if (splash.parentNode) splash.parentNode.removeChild(splash);
+        return;
+      }
+
+      try { sessionStorage.setItem('ilsSplashShown', '1'); } catch (e) {}
+
       document.documentElement.classList.add('ils-splash-locked');
       window.setTimeout(function () {
         splash.classList.add('is-leaving');
