@@ -7855,3 +7855,69 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
     padding: 4px 0 !important;
   }
 }
+
+/* =====================================================================
+   Fix mobile-drawer extras leaking into desktop header
+   ===================================================================== */
+.nav-mobile-cta,
+.nav-mobile-contacts {
+  display: none !important;
+}
+@media (max-width: 980px) {
+  html body.is-mobile-nav-open .nav-mobile-cta {
+    display: inline-flex !important;
+  }
+  html body.is-mobile-nav-open .nav-mobile-contacts {
+    display: grid !important;
+  }
+}
+
+/* =====================================================================
+   Mobile drawer caret — clear DOWN chevron, rotates on expand
+   (Override conflicting earlier rules with high specificity + !important)
+   ===================================================================== */
+@media (max-width: 980px) {
+  html body.is-mobile-nav-open .nav-menu .has-submenu > a {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+  html body.is-mobile-nav-open .nav-menu .has-submenu > a > .caret {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(26, 86, 219, 0.10) !important;
+    color: #1a56db !important;
+    font-size: 0 !important;
+    flex: none;
+    transform: none !important;
+    transition: background .2s ease, color .2s ease;
+    cursor: pointer;
+  }
+  /* Down chevron drawn from two borders */
+  html body.is-mobile-nav-open .nav-menu .has-submenu > a > .caret::before {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-right: 2.4px solid currentColor;
+    border-bottom: 2.4px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .3s ease;
+  }
+  /* Expanded — flip to UP chevron, fill the pill blue */
+  html body.is-mobile-nav-open .nav-menu .has-submenu.is-expanded > a > .caret {
+    background: #1a56db !important;
+    color: #ffffff !important;
+  }
+  html body.is-mobile-nav-open .nav-menu .has-submenu.is-expanded > a > .caret::before {
+    transform: translateY(2px) rotate(-135deg);
+  }
+  html body.is-mobile-nav-open .nav-menu .has-submenu.is-expanded > a {
+    color: #1a56db !important;
+  }
+}
