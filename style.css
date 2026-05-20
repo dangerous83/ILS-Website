@@ -7772,3 +7772,33 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
     border-left: none;
   }
 }
+
+/* =====================================================================
+   MOBILE DRAWER — bulletproof overrides (highest priority)
+   Some FABs sit at z-index 9998+, so we have to climb above that.
+   ===================================================================== */
+@media (max-width: 980px) {
+  html body.is-mobile-nav-open .navbar {
+    z-index: 10000 !important;
+  }
+  html body.is-mobile-nav-open::after {
+    z-index: 9990 !important;
+  }
+  html body.is-mobile-nav-open .nav-menu {
+    z-index: 10001 !important;
+    background: #ffffff !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  /* Hard-hide every floating widget while drawer is open */
+  html body.is-mobile-nav-open .ils-floating-widgets,
+  html body.is-mobile-nav-open .ils-fab,
+  html body.is-mobile-nav-open .ils-cargo-fab {
+    display: none !important;
+  }
+  /* Make sure menu links are actually clickable (no overlay can intercept) */
+  html body.is-mobile-nav-open .nav-menu,
+  html body.is-mobile-nav-open .nav-menu * {
+    pointer-events: auto;
+  }
+}
