@@ -153,17 +153,16 @@
       menu.appendChild(contacts);
     }
 
-    // Expand submenu on tap. In the mobile drawer, the whole parent row
-    // (Services / Solutions / Destinations / Company) toggles its submenu
-    // instead of navigating — the children inside the submenu carry the
-    // real links.
-    menu.querySelectorAll('.has-submenu > a').forEach((a) => {
-      a.addEventListener('click', (e) => {
+    // Submenu expand/collapse in the mobile drawer
+    //   - tapping the title text navigates to the parent page (default <a> behaviour)
+    //   - tapping the caret pill toggles the submenu without navigating
+    menu.querySelectorAll('.has-submenu > a > .caret').forEach((caret) => {
+      caret.addEventListener('click', (e) => {
         if (!document.body.classList.contains('is-mobile-nav-open')) return;
         e.preventDefault();
-        const li = a.parentElement;
-        // Close any sibling that is already open so only one section is
-        // expanded at a time
+        e.stopPropagation();
+        const li = caret.closest('.has-submenu');
+        if (!li) return;
         const siblings = li.parentElement ? li.parentElement.children : [];
         for (const sib of siblings) {
           if (sib !== li) sib.classList.remove('is-expanded');
