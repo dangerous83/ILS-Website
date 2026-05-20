@@ -346,12 +346,12 @@
             <span class="arrow">→</span>
             Get a Quote
           </button>
-          <a href="#" class="btn btn-ghost">
+          <button type="button" class="btn btn-ghost" id="openVideoBtn" aria-haspopup="dialog" aria-controls="videoModal">
             <span class="play-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
             Watch Our Video
-          </a>
+          </button>
         </div>
 
         <div class="hero-features">
@@ -1055,6 +1055,61 @@
         <p>Your email client just opened with all details pre-filled to <strong>info@ilsmtc.com</strong>. If it didn't, mail us directly at <a href="mailto:info@ilsmtc.com">info@ilsmtc.com</a>.</p>
         <button type="button" class="quote-btn quote-btn-primary" data-quote-close>Close</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ===== CORPORATE VIDEO MODAL ===== -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle" aria-hidden="true">
+    <div class="video-modal-backdrop" data-video-close></div>
+    <div class="video-modal-shell" role="document">
+      <div class="video-fx" aria-hidden="true">
+        <div class="video-fx-orb video-fx-orb-1"></div>
+        <div class="video-fx-orb video-fx-orb-2"></div>
+      </div>
+
+      <button type="button" class="video-modal-close" data-video-close aria-label="Close video">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+
+      <header class="video-modal-head">
+        <span class="video-eyebrow">
+          <span class="video-eyebrow-dot"></span>
+          ILS · CORPORATE FILM
+        </span>
+        <h2 id="videoModalTitle" class="video-modal-title">Moving Cargo. <span class="accent">Driving Trade.</span></h2>
+      </header>
+
+      <div class="video-stage">
+        <div class="video-frame">
+          <video
+            id="ilsVideoPlayer"
+            class="video-el"
+            playsinline
+            preload="metadata"
+            loop
+            controls
+            poster=""
+            aria-label="ILS corporate video">
+            <source src="https://res.cloudinary.com/dzluzmzsf/video/upload/v1779297320/ILS_3_leader_uuleah.mp4" type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+          <div class="video-corner video-corner-tl"></div>
+          <div class="video-corner video-corner-tr"></div>
+          <div class="video-corner video-corner-bl"></div>
+          <div class="video-corner video-corner-br"></div>
+        </div>
+      </div>
+
+      <footer class="video-modal-foot">
+        <p class="video-tagline">Decades of logistics expertise behind every shipment — built on vision, driven by trust.</p>
+        <div class="video-foot-actions">
+          <button type="button" class="quote-btn quote-btn-ghost" data-video-close>Close</button>
+          <button type="button" class="quote-btn quote-btn-primary" id="videoToQuoteBtn">
+            Request a Quote
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </footer>
     </div>
   </div>
 

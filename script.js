@@ -254,7 +254,7 @@
   openBtn.addEventListener('click', openModal);
 
   modal.addEventListener('click', (e) => {
-    if (e.target.matches('[data-quote-close]')) closeModal();
+    if (e.target.closest('[data-quote-close]')) closeModal();
   });
 
   document.addEventListener('keydown', (e) => {
@@ -300,4 +300,67 @@
     successEl.classList.add('is-shown');
     successEl.setAttribute('aria-hidden', 'false');
   });
+})();
+
+/* ============================================
+   ILS — Corporate Video Modal
+   Plays the company film on loop in a polished
+   dialog. Pauses + rewinds on close.
+   ============================================ */
+
+(function () {
+  const modal = document.getElementById('videoModal');
+  const openBtn = document.getElementById('openVideoBtn');
+  if (!modal || !openBtn) return;
+
+  const player = modal.querySelector('#ilsVideoPlayer');
+  const quoteBtn = modal.querySelector('#videoToQuoteBtn');
+  let lastFocus = null;
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('video-modal-locked');
+    if (player) {
+      player.currentTime = 0;
+      const p = player.play();
+      if (p && typeof p.catch === 'function') {
+        // Autoplay may be blocked; fall back to muted autoplay
+        p.catch(() => {
+          player.muted = true;
+          player.play().catch(() => { /* user can press play */ });
+        });
+      }
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('video-modal-locked');
+    if (player) {
+      player.pause();
+      try { player.currentTime = 0; } catch (e) {}
+    }
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-video-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  if (quoteBtn) {
+    quoteBtn.addEventListener('click', () => {
+      closeModal();
+      const trigger = document.getElementById('openQuoteBtn');
+      if (trigger) setTimeout(() => trigger.click(), 250);
+    });
+  }
 })();
