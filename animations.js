@@ -153,16 +153,22 @@
       menu.appendChild(contacts);
     }
 
-    // Expand submenu on tap (mobile pattern: parent <a> opens drawer, caret expands)
+    // Expand submenu on tap. In the mobile drawer, the whole parent row
+    // (Services / Solutions / Destinations / Company) toggles its submenu
+    // instead of navigating — the children inside the submenu carry the
+    // real links.
     menu.querySelectorAll('.has-submenu > a').forEach((a) => {
       a.addEventListener('click', (e) => {
         if (!document.body.classList.contains('is-mobile-nav-open')) return;
+        e.preventDefault();
         const li = a.parentElement;
-        // Only toggle when tapping the caret area or when no destination yet
-        if (e.target.closest('.caret') || a.getAttribute('href') === '#') {
-          e.preventDefault();
-          li.classList.toggle('is-expanded');
+        // Close any sibling that is already open so only one section is
+        // expanded at a time
+        const siblings = li.parentElement ? li.parentElement.children : [];
+        for (const sib of siblings) {
+          if (sib !== li) sib.classList.remove('is-expanded');
         }
+        li.classList.toggle('is-expanded');
       });
     });
 
