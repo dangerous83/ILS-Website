@@ -123,6 +123,36 @@
     const menu   = document.querySelector('.nav-menu');
     if (!burger || !menu) return;
 
+    // Inject a Get-a-Quote CTA + contact row at the bottom of the drawer
+    if (!menu.querySelector('.nav-mobile-cta')) {
+      const cta = document.createElement('button');
+      cta.type = 'button';
+      cta.className = 'nav-mobile-cta';
+      cta.innerHTML = '<span class="arrow">→</span> Get a Quote';
+      cta.addEventListener('click', () => {
+        document.body.classList.remove('is-mobile-nav-open');
+        burger.classList.remove('is-active');
+        const trigger = document.getElementById('openQuoteBtn');
+        if (trigger) { setTimeout(() => trigger.click(), 220); }
+        else { window.location.href = (location.pathname.includes('/pages/') ? '../' : '') + 'pages/contact.html'; }
+      });
+      menu.appendChild(cta);
+
+      const contacts = document.createElement('div');
+      contacts.className = 'nav-mobile-contacts';
+      contacts.innerHTML =
+        '<a href="tel:+97144343800" aria-label="Call ILS">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>' +
+          'Call</a>' +
+        '<a href="https://wa.me/971545461339" target="_blank" rel="noopener" aria-label="WhatsApp ILS">' +
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2l-1 1.2c-.2.2-.4.2-.7.1-1-.4-2-1-2.7-2-.5-.9-.6-1.3-.4-1.5l.6-.7c.1-.1.2-.2.2-.4 0-.1 0-.3-.1-.4l-1-2.3c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.5s1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4 0-.1-.3-.2-.5-.2zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2z"/></svg>' +
+          'WhatsApp</a>' +
+        '<a href="mailto:info@ilsmtc.com" aria-label="Email ILS">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' +
+          'Email</a>';
+      menu.appendChild(contacts);
+    }
+
     // Expand submenu on tap (mobile pattern: parent <a> opens drawer, caret expands)
     menu.querySelectorAll('.has-submenu > a').forEach((a) => {
       a.addEventListener('click', (e) => {
