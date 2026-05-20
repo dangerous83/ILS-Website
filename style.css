@@ -7458,3 +7458,165 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
     border-left: none;
   }
 }
+
+/* =====================================================================
+   WATCH OUR VIDEO — outlined CTA with attention-arrow animation
+   ===================================================================== */
+.watch-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Outlined stroke button */
+.btn-watch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 26px 13px 18px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color .35s ease, border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+/* fill sweep on hover */
+.btn-watch::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, var(--color-primary), #2a6dff);
+  transform: translateX(-101%);
+  transition: transform .45s cubic-bezier(.6,.05,.2,1);
+  z-index: -1;
+}
+.btn-watch:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(26, 86, 219, 0.35); }
+.btn-watch:hover::before { transform: translateX(0); }
+.btn-watch:focus-visible { outline: 3px solid rgba(26, 86, 219, 0.35); outline-offset: 3px; }
+
+.watch-label { white-space: nowrap; }
+
+/* Play icon with ripple rings */
+.watch-play {
+  position: relative;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--color-primary);
+  transition: color .35s ease;
+}
+.btn-watch:hover .watch-play { color: #fff; }
+.watch-play svg { width: 30px; height: 30px; display: block; }
+.watch-play-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0;
+  animation: watchRing 2.2s ease-out infinite;
+}
+.watch-play-ring-2 { animation-delay: 1.1s; }
+@keyframes watchRing {
+  0%   { transform: scale(0.6); opacity: 0.55; }
+  80%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* ---- Attention arrow ("Watch this!") drawing itself + bouncing ---- */
+.watch-hint {
+  position: absolute;
+  left: -118px;
+  top: 50%;
+  transform: translateY(-90%);
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #1a56db;
+  pointer-events: none;
+  animation: watchHintBounce 1.8s ease-in-out infinite;
+}
+.watch-hint-text {
+  font-family: "Caveat", "Patrick Hand", "Bradley Hand", cursive, system-ui;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff5a36;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  transform: rotate(-6deg);
+  margin-bottom: -4px;
+  margin-right: 14px;
+}
+.watch-hint-arrow {
+  width: 110px; height: 70px;
+  color: #ff5a36;
+  filter: drop-shadow(0 2px 4px rgba(255, 90, 54, 0.25));
+}
+.watch-hint-path,
+.watch-hint-head {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: watchHintDraw 2.6s ease-in-out infinite;
+}
+.watch-hint-head { animation-delay: .35s; }
+@keyframes watchHintDraw {
+  0%   { stroke-dashoffset: 200; }
+  35%  { stroke-dashoffset: 0; }
+  78%  { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes watchHintBounce {
+  0%, 100% { transform: translate(0, -90%); }
+  50%      { transform: translate(-6px, calc(-90% - 4px)); }
+}
+
+/* Tablet — keep the hint, slightly smaller */
+@media (max-width: 980px) {
+  .watch-hint { left: -98px; width: 92px; }
+  .watch-hint-arrow { width: 92px; height: 60px; }
+  .watch-hint-text { font-size: 19px; margin-right: 10px; }
+}
+
+/* Mobile — move the hint above the button so it doesn't overlap layout */
+@media (max-width: 640px) {
+  .watch-wrap { display: flex; flex-direction: column; align-items: stretch; width: 100%; }
+  .watch-hint {
+    position: static;
+    transform: none !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-bottom: 2px;
+    animation: watchHintBounceMobile 1.8s ease-in-out infinite;
+  }
+  .watch-hint-text { margin: 0; transform: rotate(-4deg); font-size: 18px; }
+  .watch-hint-arrow {
+    transform: rotate(58deg) scaleY(-1);
+    width: 50px; height: 36px;
+  }
+  @keyframes watchHintBounceMobile {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(3px); }
+  }
+  /* Mobile button matches outlined style + full width */
+  .btn-watch {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 22px;
+    font-size: 15px;
+  }
+}
+
+/* Honour reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .watch-hint, .watch-hint-path, .watch-hint-head,
+  .watch-play-ring, .watch-play-ring-2 { animation: none !important; }
+  .watch-hint-path, .watch-hint-head { stroke-dashoffset: 0 !important; }
+}
