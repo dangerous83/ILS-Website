@@ -7223,3 +7223,238 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
   .video-fx-orb-1, .video-fx-orb-2, .video-eyebrow-dot,
   .video-modal, .video-modal-shell { animation: none !important; transition: none !important; }
 }
+
+/* =====================================================================
+   MOBILE POLISH — hero + drawer cleanup (overrides earlier rules)
+   ===================================================================== */
+
+/* --- Drawer: wider, premium, slides over navbar; backdrop covers all --- */
+@media (max-width: 980px) {
+  /* Make the burger always visible against any background, with a soft pill */
+  .navbar .nav-burger {
+    width: 44px; height: 44px;
+    padding: 0;
+    align-items: center; justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 14px rgba(10, 26, 58, 0.10);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .navbar .nav-burger span {
+    width: 22px;
+    background: #0a1a3a;
+  }
+  .navbar .nav-burger.is-active {
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(10, 26, 58, 0.16);
+    position: fixed;
+    top: calc(var(--ils-topbar-height, 0px) + 14px);
+    right: 18px;
+    z-index: 1400;
+  }
+  .navbar .nav-burger.is-active span { background: #0a1a3a; }
+
+  /* Drawer */
+  body.is-mobile-nav-open .nav-menu {
+    width: min(92vw, 400px) !important;
+    padding: 84px 22px 110px !important;
+    background:
+      radial-gradient(ellipse at top right, rgba(26, 86, 219, 0.10), transparent 55%),
+      #ffffff !important;
+    box-shadow: -22px 0 60px rgba(11, 59, 140, 0.22) !important;
+    border-left: 1px solid rgba(26, 86, 219, 0.08);
+  }
+
+  /* Drawer header — adds an "ILS · Menu" eyebrow inside the panel */
+  body.is-mobile-nav-open .nav-menu::before {
+    content: "ILS · MENU";
+    position: absolute;
+    top: 28px; left: 24px; right: 70px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    font-weight: 700;
+    color: #1a56db;
+    opacity: 0.85;
+  }
+
+  /* List items — bigger tap targets, clean lines, subtle hover */
+  body.is-mobile-nav-open .nav-menu > ul > li {
+    border-bottom: 1px solid rgba(10, 26, 58, 0.07);
+    padding: 2px 0;
+  }
+  body.is-mobile-nav-open .nav-menu > ul > li:last-child {
+    border-bottom: none;
+  }
+  body.is-mobile-nav-open .nav-menu a {
+    padding: 16px 6px !important;
+    font-size: 16px !important;
+    font-weight: 600;
+    color: #0a1a3a;
+    border-radius: 8px;
+  }
+  body.is-mobile-nav-open .nav-menu a:hover {
+    background: rgba(26, 86, 219, 0.06);
+    color: #1a56db;
+  }
+  body.is-mobile-nav-open .nav-menu .caret {
+    color: rgba(10, 26, 58, 0.4);
+    font-size: 18px;
+  }
+  body.is-mobile-nav-open .nav-menu .has-submenu.is-expanded > a {
+    color: #1a56db;
+  }
+  body.is-mobile-nav-open .nav-menu .has-submenu.is-expanded > a .caret {
+    color: #1a56db;
+  }
+
+  /* Submenu items inside drawer */
+  body.is-mobile-nav-open .nav-menu .submenu-item {
+    padding: 10px 14px !important;
+    background: rgba(238, 243, 251, 0.6);
+    margin: 2px 0;
+    border-radius: 10px;
+  }
+  body.is-mobile-nav-open .nav-menu .submenu-icon {
+    width: 26px; height: 26px;
+    color: #1a56db;
+  }
+  body.is-mobile-nav-open .nav-menu .submenu-label {
+    font-size: 13.5px !important;
+    font-weight: 600;
+  }
+  body.is-mobile-nav-open .nav-menu .submenu-sub {
+    font-size: 11px !important;
+    color: rgba(10, 26, 58, 0.55);
+  }
+
+  /* CTA button rendered inline at the bottom of the drawer */
+  body.is-mobile-nav-open .nav-menu::after {
+    content: "Need a quote? Tap the floating button to start →";
+    display: block;
+    margin-top: 22px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    color: rgba(10, 26, 58, 0.7);
+    background: rgba(26, 86, 219, 0.06);
+    border: 1px dashed rgba(26, 86, 219, 0.25);
+    border-radius: 12px;
+    line-height: 1.4;
+    height: auto;
+    text-align: center;
+  }
+
+  /* Stronger backdrop — full-screen dim */
+  body.is-mobile-nav-open::after {
+    background: rgba(6, 35, 79, 0.55) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+  }
+}
+
+/* --- Hero polish on phones (≤640px) --- */
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 120px !important;
+    padding-bottom: 140px !important;   /* room for floating chat / quote */
+    min-height: auto !important;
+  }
+  .hero-container {
+    padding: 0 20px;
+    align-items: flex-start;
+  }
+  .hero-content {
+    max-width: 100%;
+    margin-top: 8px;
+  }
+  .hero-texts { margin-bottom: 22px; }
+  .hero-title {
+    font-size: clamp(34px, 9vw, 44px) !important;
+    line-height: 1.06;
+  }
+  .hero-title .line { white-space: normal; }
+  .hero-divider { margin: 18px 0; width: 44px; height: 3px; }
+  .hero-subtitle {
+    font-size: 15px;
+    color: #2b3a5a;        /* darker — was too faded in screenshot */
+    max-width: 100%;
+  }
+
+  /* Action buttons — stack, full-width, equal weight, no oversized pill */
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .hero-actions .btn-primary {
+    padding: 14px 22px;
+    box-shadow: 0 10px 24px rgba(26, 86, 219, 0.30);
+  }
+  .hero-actions .btn-ghost {
+    padding: 12px 22px;
+    background: #ffffff;
+    border-radius: 999px;
+    color: #0a1a3a;
+    box-shadow: 0 4px 14px rgba(10, 26, 58, 0.08);
+  }
+  .hero-actions .btn-ghost .play-icon {
+    width: 30px; height: 30px;
+    background: #1a56db;
+    color: #ffffff;
+    box-shadow: none;
+  }
+
+  /* Features row — single column, compact */
+  .hero-features {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding-top: 22px !important;
+  }
+  .hero-features .feature {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-features .feature-icon {
+    width: 36px; height: 36px;
+    flex: none;
+  }
+
+  /* Leadership trust pill — pad below so floating buttons don't collide */
+  .hero-leaders {
+    margin-top: 22px;
+    margin-bottom: 12px;
+    padding: 12px 16px 12px 12px;
+    gap: 12px;
+  }
+  .hero-leaders-text strong { font-size: 14px; }
+  .hero-leaders-text span { font-size: 12.5px; line-height: 1.4; }
+  .hero-leader-avatar { width: 38px; height: 38px; }
+
+  /* Hide hero dots on phone (too tight against content) */
+  .hero-dots { display: none !important; }
+
+  /* Floating chat / quote — keep clear of the leadership pill */
+  .ils-floating-widgets {
+    right: 14px;
+    bottom: 14px;
+  }
+}
+
+/* --- Tiny phones (≤ 420px) --- */
+@media (max-width: 420px) {
+  .hero { padding-top: 110px !important; padding-bottom: 130px !important; }
+  .hero-title { font-size: 32px !important; }
+  .hero-subtitle { font-size: 14.5px; }
+  .hero-leaders { border-radius: 18px; }
+  .hero-leaders-text span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  body.is-mobile-nav-open .nav-menu {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    border-left: none;
+  }
+}

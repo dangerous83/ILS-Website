@@ -158,6 +158,15 @@
         burger.classList.remove('is-active');
       }
     });
+
+    // Backdrop click closes (tap outside the drawer)
+    document.addEventListener('click', (e) => {
+      if (!document.body.classList.contains('is-mobile-nav-open')) return;
+      if (e.target.closest('.nav-menu')) return;
+      if (e.target.closest('.nav-burger')) return;
+      document.body.classList.remove('is-mobile-nav-open');
+      burger.classList.remove('is-active');
+    });
   }
 
   function injectTopBanner() {
