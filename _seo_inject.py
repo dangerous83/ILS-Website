@@ -23,7 +23,7 @@ PAGES = {
         "title": "About Us | ILS International Logistics Services",
         "description": "Founded in Dubai and led by industry veterans, ILS has been moving cargo across continents for over a decade. Meet our leadership and learn what drives us.",
         "keywords": "about ILS, ILSMTC, freight forwarder leadership, Dubai logistics company, ILS founder, international logistics",
-        "og_image": "asset/About Hero Image.png",
+        "og_image": "asset/about us.jpg",
         "schema": "AboutPage",
     },
     "pages/services.html": {
@@ -44,7 +44,7 @@ PAGES = {
         "title": "Global Destinations | Middle East, Africa, Asia & Beyond — ILS",
         "description": "ILS moves cargo to 200+ countries. Discover our key trade lanes across the Middle East, Afghanistan, CIS, Europe, USA & Canada, and Africa.",
         "keywords": "logistics destinations, Middle East logistics, Afghanistan freight, CIS freight, Europe shipping, USA Canada logistics, Africa freight",
-        "og_image": "asset/Destination - Middle east.png",
+        "og_image": "asset/Dubai.jpg",
         "schema": "WebPage",
     },
     "pages/industries.html": {
