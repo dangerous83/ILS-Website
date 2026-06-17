@@ -9,7 +9,7 @@
       num: '01',
       region: 'Middle East',
       breadcrumb: 'Middle East',
-      heroImage: '../asset/Destination - Middle east.png?v=20260617b',
+      heroImage: '../asset/Dubai.jpg?v=20260617d',
       heroTitleHTML: 'Shipping to the <span class="accent">Middle East</span>',
       heroSubtitle: 'Our Dubai hub connects the Gulf to Iraq, Syria, and Turkey — daily air, sea, and road consolidations with on-the-ground customs expertise across the region.',
       eyebrow: 'Middle East Gateway',
@@ -37,7 +37,7 @@
       num: '02',
       region: 'Central Asia',
       breadcrumb: 'Central Asia',
-      heroImage: '../asset/Destination - CIS.png?v=20260617b',
+      heroImage: '../asset/Destination - CIS.png?v=20260617d',
       heroTitleHTML: 'Logistics across <span class="accent">Central Asia</span>',
       heroSubtitle: 'Our SILKWAY service connects global cargo to Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan, and Tajikistan — by road, rail, and air through every major gateway.',
       eyebrow: 'SILKWAY Network',
@@ -65,7 +65,7 @@
       num: '03',
       region: 'Afghanistan',
       breadcrumb: 'Afghanistan',
-      heroImage: '../asset/Destination - Afghanistan.png?v=20260617b',
+      heroImage: '../asset/afghanistan.jpg?v=20260617d',
       heroTitleHTML: 'Reliable freight into <span class="accent">Afghanistan</span>',
       heroSubtitle: "One of the most challenging destinations in the world — handled with care from our Kabul hub. We move cargo into Kabul, Herat, Mazar-i-Sharif, and Kandahar via established air and overland corridors.",
       eyebrow: 'Afghanistan Corridor',
@@ -93,7 +93,7 @@
       num: '04',
       region: 'South Asia',
       breadcrumb: 'South Asia',
-      heroImage: '../asset/Destination - South Asia.png?v=20260617b',
+      heroImage: '../asset/sout asia.jpg?v=20260617d',
       heroTitleHTML: 'Freight across <span class="accent">South Asia</span>',
       heroSubtitle: 'Anchored by our Karachi hub — ocean, air, and overland services across Pakistan and India, with deep NVOCC and consolidation expertise.',
       eyebrow: 'South Asia Gateway',
@@ -121,7 +121,7 @@
       num: '05',
       region: 'Caucasus',
       breadcrumb: 'Caucasus',
-      heroImage: '../asset/Destination - Caucasus.png?v=20260617b',
+      heroImage: '../asset/caucasus.jpg?v=20260617d',
       heroTitleHTML: 'Logistics across the <span class="accent">Caucasus</span>',
       heroSubtitle: 'Connecting the Middle East and Europe to Azerbaijan, Armenia, and Georgia — a key bridge on the Europe–Central Asia corridor.',
       eyebrow: 'Caucasus Corridor',
@@ -149,7 +149,7 @@
       num: '06',
       region: 'Europe',
       breadcrumb: 'Europe',
-      heroImage: '../asset/Destination - Europe.png?v=20260617b',
+      heroImage: '../asset/europe.jpg?v=20260617d',
       heroTitleHTML: 'Freight across <span class="accent">Europe</span>',
       heroSubtitle: 'Anchored by our Hamburg hub — sea, air, and road across the EU and UK, feeding the Europe–Central Asia–East Asia corridor.',
       eyebrow: 'European Network',
@@ -177,7 +177,7 @@
       num: '07',
       region: 'East Asia',
       breadcrumb: 'East Asia',
-      heroImage: '../asset/Destination - East Asia.png?v=20260617b',
+      heroImage: '../asset/east asia.jpg?v=20260617d',
       heroTitleHTML: 'Freight to &amp; from <span class="accent">East Asia</span>',
       heroSubtitle: 'China at the eastern end of our SILKWAY corridor — ocean, air, and block-train rail connecting the world’s manufacturing hub to Europe and beyond.',
       eyebrow: 'East Asia Gateway',
@@ -213,6 +213,7 @@
 
   /* DOM refs */
   const hero            = document.getElementById('dest-hero');
+  const heroImage       = document.getElementById('destHeroImage');
   const heroTitle       = document.getElementById('destHeroTitle');
   const heroSubtitle    = document.getElementById('destHeroSubtitle');
   const breadcrumbName  = document.getElementById('breadcrumbCountry');
@@ -221,7 +222,6 @@
 
   const detailSection   = document.getElementById('country-detail');
   const detailImage     = document.getElementById('destDetailImage');
-  const detailGraphicName = document.getElementById('destGraphicName');
   const detailNum       = document.getElementById('destDetailNum');
   const detailRegion    = document.getElementById('destDetailRegion');
   const detailEyebrow   = document.getElementById('destDetailEyebrow');
@@ -278,17 +278,21 @@
     if (!data) return;
     opts = opts || {};
 
-    /* hero + detail cross-fade */
+    /* hero image cross-fade */
+    if (heroImage) heroImage.classList.add('is-fading');
     hero.classList.add('is-swapping');
     detailSection.classList.add('is-swapping');
 
     window.setTimeout(() => {
+      if (heroImage) heroImage.style.backgroundImage = `url('${data.heroImage}')`;
       heroTitle.innerHTML = data.heroTitleHTML;
       heroSubtitle.textContent = data.heroSubtitle;
       breadcrumbName.textContent = data.breadcrumb;
 
-      if (detailImage) detailImage.setAttribute('aria-label', data.region + ' logistics');
-      if (detailGraphicName) detailGraphicName.textContent = data.region;
+      if (detailImage) {
+        detailImage.src = data.heroImage;
+        detailImage.alt = data.region + ' logistics';
+      }
       detailNum.textContent = data.num;
       detailRegion.textContent = data.region;
       detailEyebrow.textContent = data.eyebrow;
@@ -300,6 +304,7 @@
       renderModes(data.modes);
       renderLanes(data.lanes);
 
+      if (heroImage) heroImage.classList.remove('is-fading');
       hero.classList.remove('is-swapping');
       detailSection.classList.remove('is-swapping');
     }, 280);
