@@ -213,7 +213,6 @@
 
   /* DOM refs */
   const hero            = document.getElementById('dest-hero');
-  const heroImage       = document.getElementById('destHeroImage');
   const heroTitle       = document.getElementById('destHeroTitle');
   const heroSubtitle    = document.getElementById('destHeroSubtitle');
   const breadcrumbName  = document.getElementById('breadcrumbCountry');
@@ -222,6 +221,7 @@
 
   const detailSection   = document.getElementById('country-detail');
   const detailImage     = document.getElementById('destDetailImage');
+  const detailGraphicName = document.getElementById('destGraphicName');
   const detailNum       = document.getElementById('destDetailNum');
   const detailRegion    = document.getElementById('destDetailRegion');
   const detailEyebrow   = document.getElementById('destDetailEyebrow');
@@ -278,19 +278,17 @@
     if (!data) return;
     opts = opts || {};
 
-    /* hero image cross-fade */
-    heroImage.classList.add('is-fading');
+    /* hero + detail cross-fade */
     hero.classList.add('is-swapping');
     detailSection.classList.add('is-swapping');
 
     window.setTimeout(() => {
-      heroImage.style.backgroundImage = `url('${data.heroImage}')`;
       heroTitle.innerHTML = data.heroTitleHTML;
       heroSubtitle.textContent = data.heroSubtitle;
       breadcrumbName.textContent = data.breadcrumb;
 
-      detailImage.src = data.heroImage;
-      detailImage.alt = data.region + ' logistics';
+      if (detailImage) detailImage.setAttribute('aria-label', data.region + ' logistics');
+      if (detailGraphicName) detailGraphicName.textContent = data.region;
       detailNum.textContent = data.num;
       detailRegion.textContent = data.region;
       detailEyebrow.textContent = data.eyebrow;
@@ -302,7 +300,6 @@
       renderModes(data.modes);
       renderLanes(data.lanes);
 
-      heroImage.classList.remove('is-fading');
       hero.classList.remove('is-swapping');
       detailSection.classList.remove('is-swapping');
     }, 280);
