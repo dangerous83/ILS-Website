@@ -61,36 +61,8 @@
       ],
     },
 
-    'afghanistan': {
-      num: '03',
-      region: 'Afghanistan',
-      breadcrumb: 'Afghanistan',
-      heroImage: '../asset/afghanistan.jpg?v=20260617d',
-      heroTitleHTML: 'Reliable freight into <span class="accent">Afghanistan</span>',
-      heroSubtitle: "One of the most challenging destinations in the world — handled with care from our Kabul hub. We move cargo into Kabul, Herat, Mazar-i-Sharif, and Kandahar via established air and overland corridors.",
-      eyebrow: 'Afghanistan Corridor',
-      detailTitleHTML: 'Specialists for <span class="accent">complex routes</span>',
-      detailDesc: 'Two decades of operating experience into Afghanistan via Dubai, Karachi, and the Central Asian land routes. Our agents on the ground manage clearance at Kabul, Hairatan, and Torkham — keeping your cargo moving when others stall.',
-      modes: { air: true, road: true, sea: false },
-      features: [
-        'Our own hub and local agents in Kabul',
-        'Air freight via Dubai (DXB) and Istanbul (IST)',
-        'Overland trucking via Pakistan and Uzbekistan',
-        'Customs clearance at Kabul, Hairatan, Torkham',
-        'Project cargo and NGO shipment expertise',
-      ],
-      lanes: [
-        { mode: 'air',  route: 'Dubai (DXB) → Kabul (KBL)',         transit: 'Air freight transit: <strong>3 hours</strong> · 5x weekly' },
-        { mode: 'road', route: 'Karachi → Kabul (via Torkham)',     transit: 'Overland trucking: <strong>5–7 days</strong> · Weekly departures' },
-        { mode: 'road', route: 'Termez (UZ) → Mazar-i-Sharif',       transit: 'Cross-border road: <strong>2–3 days</strong> · 2x weekly' },
-        { mode: 'air',  route: 'Istanbul (IST) → Kabul (KBL)',      transit: 'Air freight transit: <strong>4 hours</strong> · 3x weekly' },
-        { mode: 'road', route: 'Bandar Abbas → Herat (via Islam Qala)', transit: 'Overland trucking: <strong>7–10 days</strong> · Weekly' },
-        { mode: 'air',  route: 'Dubai (DXB) → Herat (HEA)',         transit: 'Air freight transit: <strong>3.5 hours</strong> · 2x weekly' },
-      ],
-    },
-
     'south-asia': {
-      num: '04',
+      num: '03',
       region: 'South Asia',
       breadcrumb: 'South Asia',
       heroImage: '../asset/sout asia.jpg?v=20260617d',
@@ -118,7 +90,7 @@
     },
 
     'caucasus': {
-      num: '05',
+      num: '04',
       region: 'Caucasus',
       breadcrumb: 'Caucasus',
       heroImage: '../asset/caucasus.jpg?v=20260617d',
@@ -146,7 +118,7 @@
     },
 
     'europe': {
-      num: '06',
+      num: '05',
       region: 'Europe',
       breadcrumb: 'Europe',
       heroImage: '../asset/europe.jpg?v=20260617d',
@@ -174,7 +146,7 @@
     },
 
     'east-asia': {
-      num: '07',
+      num: '06',
       region: 'East Asia',
       breadcrumb: 'East Asia',
       heroImage: '../asset/east asia.jpg?v=20260617d',
