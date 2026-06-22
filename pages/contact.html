@@ -351,18 +351,25 @@
               </li>
             </ul>
 
-            <!-- Embedded map of ILS Head Office -->
-            <div class="contact-map">
+            <!-- Office locator map -->
+            <div class="contact-office-tabs" role="tablist" aria-label="Choose an office location">
+              <button type="button" class="office-tab is-active" data-office="uae" role="tab" aria-selected="true">UAE</button>
+              <button type="button" class="office-tab" data-office="germany" role="tab" aria-selected="false">Germany</button>
+              <button type="button" class="office-tab" data-office="pakistan" role="tab" aria-selected="false">Pakistan</button>
+              <button type="button" class="office-tab" data-office="afghanistan" role="tab" aria-selected="false">Afghanistan</button>
+            </div>
+            <div class="contact-map" id="contactMap">
               <iframe
+                id="contactMapFrame"
                 src="https://maps.google.com/maps?q=Business%20Central%20Tower%20Media%20City%20Dubai&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="240"
                 style="border:0;"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="ILS Head Office — Business Centre Tower, Media City, Dubai">
+                title="ILS — Dubai, UAE">
               </iframe>
-              <a href="https://maps.google.com/?q=Business+Central+Tower+Media+City+Dubai" target="_blank" rel="noopener" class="contact-map-link">
+              <a id="contactMapLink" href="https://maps.google.com/?q=Business+Central+Tower+Media+City+Dubai" target="_blank" rel="noopener" class="contact-map-link">
                 <span class="arrow">→</span> Open in Google Maps
               </a>
             </div>
@@ -491,6 +498,54 @@
         status.className = 'form-status is-success';
         form.reset();
       });
+    })();
+  </script>
+
+  <!-- Office locator map: switch + blink on tab click or #hash from the Contact menu -->
+  <script>
+    (function () {
+      const frame = document.getElementById('contactMapFrame');
+      const link = document.getElementById('contactMapLink');
+      const mapWrap = document.getElementById('contactMap');
+      const tabs = Array.prototype.slice.call(document.querySelectorAll('.office-tab'));
+      if (!frame || !mapWrap) return;
+
+      const OFFICES = {
+        uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE' },
+        germany:     { q: 'Hamburg, Germany',   z: 11, title: 'ILS — Hamburg, Germany' },
+        pakistan:    { q: 'Karachi, Pakistan',  z: 11, title: 'ILS — Karachi, Pakistan' },
+        afghanistan: { q: 'Kabul, Afghanistan', z: 11, title: 'ILS — Kabul, Afghanistan' }
+      };
+
+      function show(key, blink) {
+        const o = OFFICES[key];
+        if (!o) return;
+        const enc = encodeURIComponent(o.q);
+        frame.src = 'https://maps.google.com/maps?q=' + enc + '&t=&z=' + o.z + '&ie=UTF8&iwloc=&output=embed';
+        frame.title = o.title;
+        if (link) link.href = 'https://maps.google.com/?q=' + enc;
+        tabs.forEach(function (t) {
+          const on = t.getAttribute('data-office') === key;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        if (blink) {
+          mapWrap.classList.remove('is-blinking');
+          void mapWrap.offsetWidth; /* restart the animation */
+          mapWrap.classList.add('is-blinking');
+        }
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () { show(t.getAttribute('data-office'), true); });
+      });
+
+      function fromHash() {
+        const k = (location.hash || '').replace('#', '').toLowerCase();
+        if (OFFICES[k]) show(k, true);
+      }
+      fromHash();
+      window.addEventListener('hashchange', fromHash);
     })();
   </script>
 </body>

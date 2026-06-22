@@ -3564,13 +3564,67 @@ ul {
 a.contact-channel-value:hover { color: #7eb3ff; }
 
 /* embedded location map inside the contact info card */
+/* office locator tabs (UAE / Germany / Pakistan / Afghanistan) */
+.contact-office-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.office-tab {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.85);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.office-tab:hover {
+  border-color: #7eb3ff;
+  color: #ffffff;
+}
+
+.office-tab.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
 .contact-map {
-  margin: 28px 0;
+  margin: 14px 0 28px;
   border-radius: 14px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
   position: relative;
+}
+
+/* blink ring shown when the map switches to a new office */
+.contact-map::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 3px solid #7eb3ff;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.contact-map.is-blinking::after {
+  animation: contactMapBlink 0.45s ease-in-out 3;
+}
+
+@keyframes contactMapBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; box-shadow: 0 0 18px rgba(126, 179, 255, 0.7) inset; }
 }
 
 .contact-map iframe {
