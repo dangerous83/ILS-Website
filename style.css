@@ -6513,6 +6513,12 @@ html.ils-splash-locked body {
   flex-shrink: 0;
 }
 .ils-topbar-link--wa svg { color: #4ade80; }
+.ils-topbar-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.ils-topbar-social-link svg { width: 17px; height: 17px; }
 .ils-topbar-sep {
   width: 1px;
   height: 14px;
