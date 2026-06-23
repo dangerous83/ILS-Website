@@ -37,7 +37,7 @@ PAGES = {
         "title": "Logistics Solutions | Freight Forwarding, Project Cargo & SCM — ILS",
         "description": "End-to-end logistics solutions from ILS: freight forwarding, project cargo, customs & compliance, and supply chain management — tailored to your trade lanes.",
         "keywords": "logistics solutions, freight forwarding, project cargo, supply chain management, customs compliance, ILS solutions",
-        "og_image": "asset/Hero Solutions.png",
+        "og_image": "asset/Solution.jpg",
         "schema": "Service",
     },
     "pages/destinations.html": {
@@ -107,7 +107,7 @@ PAGES = {
         "title": "Freight Forwarding Solutions | Air · Sea · Road — ILS",
         "description": "End-to-end freight forwarding from ILS — air, sea, and road combined into one tailored solution. Customs, compliance, and tracking included.",
         "keywords": "freight forwarding, multimodal logistics, Dubai forwarder, air sea road freight, international shipping",
-        "og_image": "asset/Hero - Freight Forwarding.png",
+        "og_image": "asset/Freight page.jpg",
         "schema": "Service",
     },
     "pages/project-cargo.html": {
@@ -128,7 +128,7 @@ PAGES = {
         "title": "Supply Chain Management | End-to-End SCM — ILS",
         "description": "Supply chain management from ILS — sourcing, procurement, inventory optimisation, and distribution. End-to-end visibility from origin to delivery.",
         "keywords": "supply chain management Dubai, SCM services, end to end logistics, procurement, inventory management",
-        "og_image": "asset/Hero - supply chain management.png",
+        "og_image": "asset/supply chain.jpg",
         "schema": "Service",
     },
     "pages/privacy.html": {
