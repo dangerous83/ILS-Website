@@ -3973,6 +3973,13 @@ a.contact-channel-value:hover { color: #7eb3ff; }
   gap: 24px;
 }
 
+/* Management page has three values — center them as a 3-up grid */
+#management .about-values-grid {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 920px;
+  margin: 0 auto;
+}
+
 .about-value {
   position: relative;
   background: var(--surface);
