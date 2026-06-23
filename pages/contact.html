@@ -50,7 +50,7 @@
 }
   </script>
   <!-- END-SEO -->
-  <link rel="stylesheet" href="../style.css?v=20260617e" />
+  <link rel="stylesheet" href="../style.css?v=20260623a" />
 </head>
 <body class="page-contact">
 
@@ -378,14 +378,17 @@
                 referrerpolicy="no-referrer-when-downgrade"
                 title="ILS — Dubai, UAE">
               </iframe>
-              <!-- Animated location beacon: glowing pulse loop marks the active office on the map -->
-              <span class="contact-map-beacon" aria-hidden="true">
-                <span class="contact-map-beacon-ring"></span>
-                <span class="contact-map-beacon-ring contact-map-beacon-ring--2"></span>
-                <span class="contact-map-beacon-pin">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+              <!-- Animated location beacon: glowing pulse loop marks the active office;
+                   click jumps straight to Google Maps for the selected office. -->
+              <a id="contactMapPin" class="contact-map-beacon"
+                 href="https://maps.google.com/?q=Business+Central+Tower+Media+City+Dubai"
+                 target="_blank" rel="noopener" aria-label="Open this location in Google Maps">
+                <span class="contact-map-beacon-ring" aria-hidden="true"></span>
+                <span class="contact-map-beacon-ring contact-map-beacon-ring--2" aria-hidden="true"></span>
+                <span class="contact-map-beacon-pin" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
                 </span>
-              </span>
+              </a>
               <a id="contactMapLink" href="https://maps.google.com/?q=Business+Central+Tower+Media+City+Dubai" target="_blank" rel="noopener" class="contact-map-link">
                 <span class="arrow">→</span> Open in Google Maps
               </a>
@@ -523,6 +526,7 @@
     (function () {
       const frame = document.getElementById('contactMapFrame');
       const link = document.getElementById('contactMapLink');
+      const pin = document.getElementById('contactMapPin');
       const mapWrap = document.getElementById('contactMap');
       const tabs = Array.prototype.slice.call(document.querySelectorAll('.office-tab'));
       if (!frame || !mapWrap) return;
@@ -541,6 +545,7 @@
         frame.src = 'https://maps.google.com/maps?q=' + enc + '&t=&z=' + o.z + '&ie=UTF8&iwloc=&output=embed';
         frame.title = o.title;
         if (link) link.href = 'https://maps.google.com/?q=' + enc;
+        if (pin) pin.href = 'https://maps.google.com/?q=' + enc;
         tabs.forEach(function (t) {
           const on = t.getAttribute('data-office') === key;
           t.classList.toggle('is-active', on);
