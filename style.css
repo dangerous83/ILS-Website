@@ -2365,7 +2365,12 @@ ul {
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-bottom-links {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 
@@ -6531,11 +6536,18 @@ html.ils-splash-locked body {
 }
 
 @media (max-width: 960px) {
-  .ils-topbar-inner { padding: 9px 28px; gap: 16px; }
+  .ils-topbar-inner {
+    padding: 9px 20px;
+    gap: 8px 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .ils-topbar-tagline { justify-content: center; }
   .ils-topbar-tagline-sub { display: none; }
-  .ils-topbar-contact { gap: 12px; }
+  .ils-topbar-contact { gap: 14px; justify-content: center; flex-wrap: wrap; }
   .ils-topbar-link span { display: none; }
   .ils-topbar-link svg { width: 18px; height: 18px; }
+  .ils-topbar-social-link svg { width: 18px; height: 18px; }
   .ils-topbar-sep { display: none; }
 }
 
@@ -6581,6 +6593,8 @@ html.ils-splash-locked body {
     box-shadow: -16px 0 40px rgba(11, 59, 140, 0.18);
     z-index: 1200;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: 24px 24px 80px;
     animation: ilsMobileNavIn 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
