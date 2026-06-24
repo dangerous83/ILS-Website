@@ -106,6 +106,9 @@
   /* ---------- top contact banner (above navbar) ---------- */
   injectTopBanner();
 
+  /* ---------- "Book for Consultation" button + lead-form modal ---------- */
+  injectConsult();
+
   /* ---------- floating widgets: WhatsApp + Get Quote ---------- */
   injectFloatingWidgets();
 
@@ -277,6 +280,158 @@
     window.addEventListener('resize', syncHeight, { passive: true });
     if (window.ResizeObserver) {
       new ResizeObserver(syncHeight).observe(bar);
+    }
+  }
+
+  function injectConsult() {
+    // ILS WhatsApp business line (digits only, intl format)
+    const WA_NUMBER = '971545461339';
+
+    const calIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+    const waIcon = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.8-2.8-1.5-3.9-3.4-.3-.5.3-.5.8-1.5.1-.2.1-.3 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg>';
+
+    // 1) Inject the desktop navbar button (right side, after the menu)
+    const container = document.querySelector('.nav-container');
+    const burger = container ? container.querySelector('.nav-burger') : null;
+    if (container && !container.querySelector('.nav-consult-btn')) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nav-consult-btn';
+      btn.id = 'openConsultBtn';
+      btn.innerHTML = calIcon + '<span>Book for Consultation</span>';
+      if (burger) container.insertBefore(btn, burger);
+      else container.appendChild(btn);
+    }
+
+    // 2) Inject the modal once
+    if (!document.getElementById('consultModal')) {
+      const modal = document.createElement('div');
+      modal.className = 'consult-modal';
+      modal.id = 'consultModal';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-labelledby', 'consultTitle');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.innerHTML =
+        '<div class="consult-backdrop" data-consult-close></div>' +
+        '<div class="consult-dialog" role="document">' +
+          '<div class="consult-head">' +
+            '<button type="button" class="consult-close" data-consult-close aria-label="Close">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
+            '</button>' +
+            '<h2 id="consultTitle">Book a Consultation</h2>' +
+            '<p>Share your details and our team will reply on WhatsApp.</p>' +
+          '</div>' +
+          '<form class="consult-form" id="consultForm" novalidate>' +
+            '<div class="consult-field"><label for="cName">Name <span class="req">*</span></label><input type="text" id="cName" name="name" autocomplete="name" /></div>' +
+            '<div class="consult-field"><label for="cPhone">Phone Number <span class="req">*</span></label><input type="tel" id="cPhone" name="phone" autocomplete="tel" /></div>' +
+            '<div class="consult-field"><label for="cEmail">Email Address</label><input type="email" id="cEmail" name="email" autocomplete="email" /></div>' +
+            '<div class="consult-field"><label for="cLocation">Location</label><input type="text" id="cLocation" name="location" /></div>' +
+            '<div class="consult-field"><label for="cDesc">Description</label><textarea id="cDesc" name="description" rows="3"></textarea></div>' +
+            '<button type="submit" class="consult-submit">' + waIcon + 'Send to WhatsApp</button>' +
+            '<p class="consult-status" id="consultStatus" role="status"></p>' +
+          '</form>' +
+        '</div>';
+      document.body.appendChild(modal);
+    }
+
+    const modal = document.getElementById('consultModal');
+    const form = document.getElementById('consultForm');
+    const statusEl = document.getElementById('consultStatus');
+    if (!modal || !form) return;
+    let lastFocus = null;
+
+    function openModal() {
+      lastFocus = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('consult-modal-locked');
+      statusEl.textContent = '';
+      statusEl.className = 'consult-status';
+      const first = form.querySelector('input');
+      if (first) setTimeout(() => first.focus(), 60);
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('consult-modal-locked');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    const openBtn = document.getElementById('openConsultBtn');
+    if (openBtn) openBtn.addEventListener('click', openModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target.closest('[data-consult-close]')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+
+    form.addEventListener('input', (e) => {
+      const wrap = e.target.closest('.consult-field');
+      if (wrap) wrap.classList.remove('is-invalid');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const get = (n) => (form.querySelector('[name="' + n + '"]').value || '').trim();
+      const name = get('name');
+      const phone = get('phone');
+      const email = get('email');
+      const location = get('location');
+      const description = get('description');
+
+      // Validate: name + phone required; email format if provided
+      let firstBad = null;
+      const mark = (n, bad) => {
+        const wrap = form.querySelector('[name="' + n + '"]').closest('.consult-field');
+        if (wrap) wrap.classList.toggle('is-invalid', bad);
+        if (bad && !firstBad) firstBad = form.querySelector('[name="' + n + '"]');
+      };
+      mark('name', !name);
+      mark('phone', !phone);
+      const emailBad = !!email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      mark('email', emailBad);
+      if (firstBad) {
+        statusEl.textContent = emailBad && name && phone
+          ? 'Please enter a valid email address.'
+          : 'Please fill in your name and phone number.';
+        statusEl.className = 'consult-status is-error';
+        if (firstBad.focus) firstBad.focus();
+        return;
+      }
+
+      const lines = [
+        '*New Consultation Request — ILS*',
+        '',
+        'Name: ' + name,
+        'Phone: ' + phone,
+        'Email: ' + (email || '—'),
+        'Location: ' + (location || '—'),
+        'Description: ' + (description || '—')
+      ];
+      const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank', 'noopener');
+
+      statusEl.textContent = 'Opening WhatsApp…';
+      statusEl.className = 'consult-status is-ok';
+      setTimeout(closeModal, 1400);
+    });
+
+    // 3) Mobile drawer entry — opens the same modal
+    const menu = document.querySelector('.nav-menu');
+    if (menu && !menu.querySelector('.nav-mobile-consult')) {
+      const mBtn = document.createElement('button');
+      mBtn.type = 'button';
+      mBtn.className = 'nav-mobile-consult';
+      mBtn.innerHTML = calIcon + 'Book for Consultation';
+      mBtn.addEventListener('click', () => {
+        document.body.classList.remove('is-mobile-nav-open');
+        if (burger) burger.classList.remove('is-active');
+        setTimeout(openModal, 220);
+      });
+      menu.appendChild(mBtn);
     }
   }
 

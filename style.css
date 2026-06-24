@@ -102,6 +102,12 @@ ul {
   display: block;
 }
 
+.nav-menu {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
 .nav-menu ul {
   display: flex;
   align-items: center;
@@ -8059,7 +8065,8 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
    Fix mobile-drawer extras leaking into desktop header
    ===================================================================== */
 .nav-mobile-cta,
-.nav-mobile-contacts {
+.nav-mobile-contacts,
+.nav-mobile-consult {
   display: none !important;
 }
 @media (max-width: 980px) {
@@ -8068,6 +8075,9 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
   }
   html body.is-mobile-nav-open .nav-mobile-contacts {
     display: grid !important;
+  }
+  html body.is-mobile-nav-open .nav-mobile-consult {
+    display: inline-flex !important;
   }
 }
 
@@ -8582,3 +8592,200 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
 @media (max-width: 600px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
+
+/* ============================================================
+   NAVBAR — Book for Consultation button + lead-form modal
+   ============================================================ */
+.nav-consult-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 13px 24px;
+  border: none;
+  border-radius: var(--radius-pill, 999px);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(26, 86, 219, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-consult-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(26, 86, 219, 0.45);
+}
+.nav-consult-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Hide the navbar button on mobile — handled inside the drawer instead */
+@media (max-width: 980px) {
+  .nav-consult-btn { display: none; }
+}
+
+/* ---- Consultation modal ---- */
+.consult-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.consult-modal.is-open { display: flex; }
+.consult-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 35, 79, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+html.consult-modal-locked { overflow: hidden; }
+.consult-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--color-white);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(6, 35, 79, 0.35);
+  animation: consultPop 0.28s ease;
+}
+@keyframes consultPop {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.consult-head {
+  padding: 30px 30px 6px;
+  background: linear-gradient(135deg, var(--color-primary-darker) 0%, var(--color-primary-dark) 55%, var(--color-primary) 100%);
+  color: #fff;
+  border-radius: 20px 20px 0 0;
+}
+.consult-head h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+.consult-head p {
+  margin-top: 6px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+.consult-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.consult-close:hover { background: rgba(255, 255, 255, 0.32); }
+.consult-close svg { width: 18px; height: 18px; }
+.consult-form {
+  padding: 24px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.consult-field { display: flex; flex-direction: column; gap: 7px; }
+.consult-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.consult-field label .req { color: var(--color-primary); }
+.consult-field input,
+.consult-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.consult-field textarea { resize: vertical; min-height: 84px; }
+.consult-field input:focus,
+.consult-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+}
+.consult-field.is-invalid input,
+.consult-field.is-invalid textarea {
+  border-color: #e23b3b;
+  box-shadow: 0 0 0 3px rgba(226, 59, 59, 0.12);
+}
+.consult-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: var(--radius-pill, 999px);
+  background: #25d366;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.consult-submit:hover {
+  background: #1ebe5b;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.45);
+}
+.consult-submit svg { width: 20px; height: 20px; }
+.consult-status {
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 18px;
+  text-align: center;
+}
+.consult-status.is-error { color: #e23b3b; }
+.consult-status.is-ok { color: #1ebe5b; }
+
+/* Consultation entry inside the mobile drawer */
+.nav-mobile-consult {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--color-primary);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+.nav-mobile-consult svg { width: 18px; height: 18px; }
