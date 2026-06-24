@@ -1316,6 +1316,24 @@ ul {
   );
 }
 
+/* Mid-anchored variant — content vertically centered over a uniform white
+   wash so the navy title stays readable across the whole hero image
+   (used on the Organization pages: Introduction, Network, Management) */
+.page-hero--mid {
+  align-items: center;
+  padding-top: 170px;
+  padding-bottom: 120px;
+}
+.page-hero--mid .page-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.72) 45%,
+    rgba(255, 255, 255, 0.72) 60%,
+    rgba(255, 255, 255, 0.62) 100%
+  );
+}
+
 @media (max-width: 980px) {
   .page-hero--centered { padding-top: 140px; padding-bottom: 90px; min-height: 100vh; height: 100vh; }
   .page-hero--bottom { padding-top: 120px; padding-bottom: 28px; }
