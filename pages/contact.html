@@ -130,7 +130,7 @@
 
   <!-- PAGE HERO (compact for contact) -->
   <section class="page-hero contact-hero">
-    <div class="page-hero-image" style="background-image: url('../asset/ILS Ccntact hero image.png')"></div>
+    <div class="page-hero-image" id="contactHeroImage" style="background-image: url('../asset/ILS Ccntact hero image.png')"></div>
     <div class="page-hero-overlay"></div>
 
     <div class="page-hero-container">
@@ -520,11 +520,13 @@
       const tabs = Array.prototype.slice.call(document.querySelectorAll('.office-tab'));
       if (!frame || !mapWrap) return;
 
+      const heroImg = document.getElementById('contactHeroImage');
+
       const OFFICES = {
-        uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE' },
-        germany:     { q: 'Hamburg, Germany',   z: 11, title: 'ILS — Hamburg, Germany' },
-        pakistan:    { q: 'Karachi, Pakistan',  z: 11, title: 'ILS — Karachi, Pakistan' },
-        afghanistan: { q: 'Kabul, Afghanistan', z: 11, title: 'ILS — Kabul, Afghanistan' }
+        uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE',         hero: '../asset/ILS Ccntact hero image.png' },
+        germany:     { q: 'Hamburg, Germany',   z: 11, title: 'ILS — Hamburg, Germany',     hero: '../asset/ILS Contact hero image - Germany.png' },
+        pakistan:    { q: 'Karachi, Pakistan',  z: 11, title: 'ILS — Karachi, Pakistan',    hero: '../asset/ILS Contact hero image - Pakistan.png' },
+        afghanistan: { q: 'Kabul, Afghanistan', z: 11, title: 'ILS — Kabul, Afghanistan',   hero: '../asset/ILS Contact hero image - Afghanistan.png' }
       };
 
       function show(key, blink) {
@@ -533,6 +535,7 @@
         const enc = encodeURIComponent(o.q);
         frame.src = 'https://maps.google.com/maps?q=' + enc + '&t=&z=' + o.z + '&ie=UTF8&iwloc=&output=embed';
         frame.title = o.title;
+        if (heroImg && o.hero) heroImg.style.backgroundImage = "url('" + o.hero + "')";
         if (link) link.href = 'https://maps.google.com/?q=' + enc;
         if (pin) pin.href = 'https://maps.google.com/?q=' + enc;
         tabs.forEach(function (t) {
