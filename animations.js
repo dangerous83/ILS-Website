@@ -361,6 +361,11 @@
     const openBtn = document.getElementById('openConsultBtn');
     if (openBtn) openBtn.addEventListener('click', openModal);
 
+    // Any element marked data-open-consult also opens the modal (e.g. page-hero CTAs)
+    document.querySelectorAll('[data-open-consult]').forEach((el) => {
+      el.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    });
+
     modal.addEventListener('click', (e) => {
       if (e.target.closest('[data-consult-close]')) closeModal();
     });
