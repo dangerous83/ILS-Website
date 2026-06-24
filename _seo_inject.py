@@ -72,7 +72,7 @@ PAGES = {
         "title": "Contact ILS | Get a Freight Quote in Hours",
         "description": "Talk to ILS in Dubai — request a tailored freight quote, reach our regional desks, or visit our Media City office. Live response within hours.",
         "keywords": "contact ILS, freight quote Dubai, logistics inquiry, ILSMTC contact, Dubai freight forwarder phone",
-        "og_image": "asset/hero - contact.png",
+        "og_image": "asset/ILS Ccntact hero image.png",
         "schema": "ContactPage",
     },
     "pages/air-freight.html": {
