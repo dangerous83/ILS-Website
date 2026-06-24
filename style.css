@@ -6518,6 +6518,31 @@ html.ils-splash-locked body {
   height: 14px;
   background: rgba(255, 255, 255, 0.25);
 }
+.ils-topbar-social {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ils-topbar-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.ils-topbar-social-link:hover {
+  background: #ffffff;
+  color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+.ils-topbar-social-link svg {
+  width: 15px;
+  height: 15px;
+}
 
 /* Push navbar down so it sits flush below the banner (no gap) */
 .navbar {
