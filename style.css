@@ -3112,6 +3112,18 @@ ul {
   display: block;
 }
 
+/* Square "badge" marks (FIATA, IATA, NAFL) sit smaller at the shared
+   60px height cap, so give them more room to match the visual weight
+   of the wider wordmark logos. */
+.home-client-logo--badge {
+  padding: 12px 32px;
+}
+
+.home-client-logo--badge img {
+  max-height: 86px;
+  max-width: 110px;
+}
+
 .hcl-mark {
   font-size: 19px;
   font-weight: 800;
