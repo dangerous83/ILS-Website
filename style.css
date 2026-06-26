@@ -884,7 +884,8 @@ ul {
   left: 50%;
   transform: translateX(-50%);
   width: 140px;
-  height: 140px;
+  height: auto;
+  object-fit: contain;
   z-index: 3;
   pointer-events: none;
   filter: drop-shadow(0 14px 30px rgba(11, 59, 140, 0.28));
@@ -1011,7 +1012,7 @@ ul {
 
   .cut-globe {
     width: 110px;
-    height: 110px;
+    height: auto;
     top: -45px;
   }
 
@@ -1079,7 +1080,7 @@ ul {
 
   .cut-globe {
     width: 90px;
-    height: 90px;
+    height: auto;
     top: -38px;
   }
 
