@@ -8820,3 +8820,88 @@ html.consult-modal-locked { overflow: hidden; }
   cursor: pointer;
 }
 .nav-mobile-consult svg { width: 18px; height: 18px; }
+
+/* ============================================
+   WIDE SCREEN / LARGE DISPLAYS  (min-width)
+   --------------------------------------------
+   By default every layout container caps at 1280px,
+   so on large monitors the content sits in a narrow
+   centred column with big empty margins on the sides.
+   This is most noticeable on Mac displays:
+     • MacBook Pro 14"/16"  → 1512 / 1728 logical px
+     • iMac 24" / 21.5"     → 1920 / 2048 logical px
+     • Studio Display / 27" → 2560 logical px
+     • Pro Display XDR       → 3008+ logical px
+   These rules progressively widen the shared
+   containers (the inner grids use fr units, so they
+   simply grow to fill the extra space) and gently
+   scale type/padding up so the page stays balanced
+   rather than feeling small and floated in the middle.
+   ============================================ */
+
+/* common container selectors widened together */
+@media (min-width: 1440px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1380px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1500px;
+  }
+  .hero-subtitle,
+  .page-hero-subtitle,
+  .section-subtitle { font-size: 18px; }
+}
+
+/* iMac / Studio-class displays */
+@media (min-width: 1920px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1680px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  .hero-title { font-size: clamp(40px, 5vw, 88px); }
+  .page-hero-title { font-size: clamp(48px, 6vw, 96px); }
+  .section-title { font-size: clamp(34px, 4.2vw, 64px); }
+  .hero-subtitle,
+  .page-hero-subtitle { font-size: 19px; max-width: 560px; }
+  .section-subtitle { font-size: 19px; }
+}
+
+/* 5K Studio Display / Pro Display XDR */
+@media (min-width: 2560px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1920px;
+    padding-left: 96px;
+    padding-right: 96px;
+  }
+  .hero-subtitle,
+  .page-hero-subtitle,
+  .section-subtitle { font-size: 20px; }
+}
