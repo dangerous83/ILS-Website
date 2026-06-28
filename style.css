@@ -8820,3 +8820,189 @@ html.consult-modal-locked { overflow: hidden; }
   cursor: pointer;
 }
 .nav-mobile-consult svg { width: 18px; height: 18px; }
+
+/* ============================================
+   WIDE SCREEN / LARGE DISPLAYS  (min-width)
+   --------------------------------------------
+   By default every layout container caps at 1280px,
+   so on large monitors the content sits in a narrow
+   centred column with big empty margins on the sides.
+   This is most noticeable on Mac displays:
+     • MacBook Pro 14"/16"  → 1512 / 1728 logical px
+     • iMac 24" / 21.5"     → 1920 / 2048 logical px
+     • Studio Display / 27" → 2560 logical px
+     • Pro Display XDR       → 3008+ logical px
+   These rules progressively widen the shared
+   containers (the inner grids use fr units, so they
+   simply grow to fill the extra space) and gently
+   scale type/padding up so the page stays balanced
+   rather than feeling small and floated in the middle.
+   ============================================ */
+
+/* common container selectors widened together */
+@media (min-width: 1440px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1380px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1500px;
+  }
+  .hero-subtitle,
+  .page-hero-subtitle,
+  .section-subtitle { font-size: 18px; }
+}
+
+/* iMac / Studio-class displays */
+@media (min-width: 1920px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1680px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  .hero-title { font-size: clamp(40px, 5vw, 88px); }
+  .page-hero-title { font-size: clamp(48px, 6vw, 96px); }
+  .section-title { font-size: clamp(34px, 4.2vw, 64px); }
+  .hero-subtitle,
+  .page-hero-subtitle { font-size: 19px; max-width: 560px; }
+  .section-subtitle { font-size: 19px; }
+}
+
+/* 5K Studio Display / Pro Display XDR */
+@media (min-width: 2560px) {
+  .nav-container,
+  .hero-container,
+  .services-container,
+  .container,
+  .page-hero-container,
+  .dest-floating-picker,
+  .ils-topbar-inner {
+    max-width: 1920px;
+    padding-left: 96px;
+    padding-right: 96px;
+  }
+  .hero-subtitle,
+  .page-hero-subtitle,
+  .section-subtitle { font-size: 20px; }
+}
+
+/* ============================================
+   AID & RELIEF — RESPONSE ZONE CARDS
+   Image feature cards (Africa / Pakistan / Asia)
+   used on the Aid & Relief Logistics page.
+   ============================================ */
+.aid-zones {
+  padding: 120px 0;
+  background: linear-gradient(180deg, var(--color-bg-soft) 0%, var(--surface) 100%);
+}
+
+.aid-zone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.aid-zone {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+.aid-zone:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(11, 59, 140, 0.20);
+  border-color: rgba(26, 86, 219, 0.25);
+}
+
+.aid-zone-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.aid-zone-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+}
+
+.aid-zone:hover .aid-zone-media img {
+  transform: scale(1.06);
+}
+
+.aid-zone-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 35, 79, 0) 35%, rgba(6, 35, 79, 0.65) 100%);
+  pointer-events: none;
+}
+
+.aid-zone-tag {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 1;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(26, 86, 219, 0.35);
+}
+
+.aid-zone-body {
+  padding: 26px 26px 30px;
+}
+
+.aid-zone-body h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.aid-zone-body p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-text-soft);
+}
+
+@media (max-width: 980px) {
+  .aid-zones { padding: 90px 0; }
+  .aid-zone-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+
+@media (max-width: 640px) {
+  .aid-zone-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
