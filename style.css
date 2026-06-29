@@ -9006,3 +9006,15 @@ html.consult-modal-locked { overflow: hidden; }
 @media (max-width: 640px) {
   .aid-zone-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
 }
+
+/* Aid & Relief hero — content centred horizontally + vertically with a
+   soft white wash laid over the hero photo so the dark text stays legible. */
+.aid-hero { align-items: center; }
+.aid-hero .page-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.64) 100%
+  );
+}
