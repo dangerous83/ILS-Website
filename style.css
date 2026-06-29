@@ -2401,6 +2401,9 @@ ul {
 /* hero image cross-fade when destination is switched */
 .dest-hero-image {
   transition: opacity 0.5s ease;
+  /* Region photos are tall city portraits — centre them so the crop
+     stays balanced as a wide hero background on large screens. */
+  background-position: center center;
 }
 
 .dest-hero-image.is-fading {
