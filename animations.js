@@ -303,6 +303,21 @@
       else container.appendChild(btn);
     }
 
+    // 1b) Inject a "Track Shipment" navbar button beside the consult button
+    if (container && !container.querySelector('.nav-track-btn')) {
+      const trackHref = (location.pathname.includes('/pages/') ? '' : 'pages/') + 'tracking.html';
+      const trackIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
+      const track = document.createElement('a');
+      track.className = 'nav-track-btn';
+      track.href = trackHref;
+      track.setAttribute('aria-label', 'Track your shipment');
+      track.innerHTML = trackIcon + '<span>Track</span>';
+      const consultBtn = container.querySelector('.nav-consult-btn');
+      if (consultBtn) container.insertBefore(track, consultBtn);
+      else if (burger) container.insertBefore(track, burger);
+      else container.appendChild(track);
+    }
+
     // 2) Inject the modal once
     if (!document.getElementById('consultModal')) {
       const modal = document.createElement('div');
