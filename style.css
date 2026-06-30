@@ -1290,10 +1290,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 660px;
-  /* left-side glass card, edge aligned to the page content gutter */
-  margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
-  padding: 44px 48px;
+  max-width: 760px;
+  /* left-side glass card, hugging the left edge of the viewport */
+  margin: 0 auto 0 clamp(24px, 3vw, 48px);
+  padding: 44px 52px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1407,8 +1407,8 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 660px;
-  margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
+  max-width: 760px;
+  margin: 0 auto 0 clamp(24px, 3vw, 48px);
 }
 .page-hero--centered .breadcrumb { justify-content: flex-start; }
 .page-hero--centered .page-hero-title { max-width: 100%; margin: 0; }
@@ -2436,10 +2436,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   .page-hero-title { font-size: 48px; }
   .page-hero-image { background-position: center; }
   .page-hero-container {
-    max-width: 600px;
-    margin-left: 32px;
+    max-width: 660px;
+    margin-left: 24px;
     margin-right: auto;
-    padding: 34px 36px;
+    padding: 34px 38px;
   }
   .page-hero-overlay {
     background: linear-gradient(
