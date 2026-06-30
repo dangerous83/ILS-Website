@@ -2498,6 +2498,17 @@ ul {
    DESTINATIONS PAGE
    ============================================ */
 
+/* Destinations hero: no glass card — copy sits straight on the white-fade
+   image, just like the home hero. */
+.dest-hero .page-hero-container {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
 /* hero image cross-fade when destination is switched */
 .dest-hero-image {
   transition: opacity 0.5s ease;
