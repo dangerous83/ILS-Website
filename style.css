@@ -2498,6 +2498,8 @@ ul {
   border: none;
   box-shadow: none;
   padding: 0;
+  /* keep the hero copy to a comfortable, readable line length */
+  max-width: 600px;
 }
 
 /* hero image cross-fade when destination is switched */
