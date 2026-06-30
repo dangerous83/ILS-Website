@@ -974,14 +974,20 @@ ul {
     background-position: center;
   }
 
+  /* Reduce whitewash so images actually show on tablet */
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(var(--overlay-rgb), 0.97) 0%,
-      rgba(var(--overlay-rgb), 0.92) 45%,
-      rgba(var(--overlay-rgb), 0.82) 75%,
-      rgba(var(--overlay-rgb), 0.7) 100%
+      rgba(var(--overlay-rgb), 0.82) 0%,
+      rgba(var(--overlay-rgb), 0.70) 35%,
+      rgba(var(--overlay-rgb), 0.45) 65%,
+      rgba(var(--overlay-rgb), 0.22) 100%
     );
+  }
+
+  /* Show subject-matter (truck, plane, etc.) better — center-ish focal point */
+  .hero-slide {
+    background-position: center 55%;
   }
 
   .hero-dots {
@@ -1037,6 +1043,50 @@ ul {
   .nav-logo img {
     height: 42px;
   }
+
+  /* ---- Hero mobile image improvements ---- */
+
+  /* Even lighter overlay on phones — content card provides readability */
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(var(--overlay-rgb), 0.55) 0%,
+      rgba(var(--overlay-rgb), 0.38) 40%,
+      rgba(var(--overlay-rgb), 0.18) 70%,
+      rgba(var(--overlay-rgb), 0.06) 100%
+    );
+  }
+
+  /* Show lower half of images (where trucks/planes/subjects sit) */
+  .hero-slide {
+    background-position: center 65%;
+  }
+
+  /* Frosted-glass card so text stays readable over the now-visible image */
+  .hero-content {
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(26, 86, 219, 0.10);
+    border-radius: 20px;
+    padding: 24px 20px 20px;
+    max-width: 100%;
+    margin-top: 0;
+    /* Prevents inactive-slide ghost text from rendering outside this layer */
+    isolation: isolate;
+  }
+
+  /* Prevent inactive slide text ghosting inside the card */
+  .hero-texts {
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  /* Tighten spacing inside the card on mobile */
+  .hero-divider { margin: 16px 0; }
+  .hero-subtitle { max-width: 100%; }
+
+  /* ---- end hero mobile ---- */
 
   .hero-features {
     grid-template-columns: 1fr;
@@ -5239,12 +5289,14 @@ button.blog-featured-link {
   box-shadow: 0 28px 60px rgba(11, 59, 140, 0.22);
 }
 
-.sol-reach-media img {
-  display: block;
+.sol-reach-img {
   width: 100%;
   height: 100%;
   min-height: 380px;
-  object-fit: cover;
+  background-image: url('asset/container%20truck%20-A1.png');
+  background-size: cover;
+  /* On desktop: show road & truck in lower-center area */
+  background-position: center 55%;
 }
 
 .sol-reach-badge {
@@ -5315,7 +5367,25 @@ button.blog-featured-link {
 @media (max-width: 980px) {
   .sol-reach { padding: 80px 0; }
   .sol-reach-grid { grid-template-columns: 1fr; gap: 36px; }
-  .sol-reach-media img { min-height: 300px; }
+  .sol-reach-img { min-height: 300px; }
+}
+
+@media (max-width: 640px) {
+  .sol-reach { padding: 60px 0; }
+  /* On mobile use a shorter container (less than landscape image ratio = ~196px)
+     so background-position Y has overflow to work with and can target the truck */
+  .sol-reach-img {
+    min-height: 190px;
+    /* Truck is at ~55% from top; this puts it in center of the visible crop */
+    background-position: center 55%;
+  }
+  .sol-reach-actions {
+    flex-direction: column;
+  }
+  .sol-reach-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 
