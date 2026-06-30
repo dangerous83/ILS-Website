@@ -181,9 +181,10 @@
   function Tracker(canvas, ship) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.ship = ship;
-    this.m = laneMetrics(ship.lane.pts);
-    this.bbox = routeBBox(ship.lane.pts);
+    this.ship = ship || null;
+    this.m = ship ? laneMetrics(ship.lane.pts) : null;
+    this.bbox = ship ? routeBBox(ship.lane.pts)
+      : { lonMin: VIEW.lonMin, lonMax: VIEW.lonMax, latMin: VIEW.latMin, latMax: VIEW.latMax };
     this.t0 = (typeof performance !== 'undefined' ? performance.now() : Date.now());
     this.raf = null;
     this.resize();
@@ -236,7 +237,7 @@
     var ctx = this.ctx, cw = this.cw, ch = this.ch;
     var now = (typeof performance !== 'undefined' ? performance.now() : Date.now());
     var time = (now - this.t0) / 1000;
-    var ship = this.ship, pts = ship.lane.pts, m = this.m;
+    var ship = this.ship, pts = ship ? ship.lane.pts : null, m = this.m;
 
     ctx.clearRect(0, 0, cw, ch);
 
@@ -266,6 +267,29 @@
       var d = this.P(DOT_LL[i][0], DOT_LL[i][1]);
       if (d.x < -4 || d.x > cw + 4 || d.y < -4 || d.y > ch + 4) continue;
       ctx.beginPath(); ctx.arc(d.x, d.y, dotR, 0, 6.2832); ctx.fill();
+    }
+
+    /* ---- standby (no shipment yet): sweeping radar + ambient hub blips ---- */
+    if (!ship) {
+      var hubs = [PORTS.jebelali.c, PORTS.shanghai.c, PORTS.hamburg.c, PORTS.singapore.c, PORTS.karachi.c, PORTS.busan.c, PORTS.mersin.c];
+      for (var hI = 0; hI < hubs.length; hI++) {
+        var hp = this.P(hubs[hI][0], hubs[hI][1]);
+        var ph = (time * 0.7 + hI * 0.5) % 1;
+        ctx.beginPath(); ctx.arc(hp.x, hp.y, 2 + ph * 16, 0, 6.2832);
+        ctx.strokeStyle = 'rgba(56,211,248,' + (0.4 * (1 - ph)) + ')'; ctx.lineWidth = 1.4; ctx.stroke();
+        ctx.fillStyle = 'rgba(125,224,255,0.9)';
+        ctx.beginPath(); ctx.arc(hp.x, hp.y, 2.2, 0, 6.2832); ctx.fill();
+      }
+      // rotating radar sweep from the Dubai hub
+      var cR = this.P(PORTS.jebelali.c[0], PORTS.jebelali.c[1]);
+      var ang = time * 0.6, reach = Math.max(cw, ch);
+      var grad = ctx.createLinearGradient(cR.x, cR.y, cR.x + Math.cos(ang) * reach, cR.y + Math.sin(ang) * reach);
+      grad.addColorStop(0, 'rgba(56,211,248,0.18)');
+      grad.addColorStop(1, 'rgba(56,211,248,0)');
+      ctx.strokeStyle = grad; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cR.x, cR.y);
+      ctx.lineTo(cR.x + Math.cos(ang) * reach, cR.y + Math.sin(ang) * reach); ctx.stroke();
+      return;
     }
 
     /* full route (faint) */
@@ -415,13 +439,27 @@
     var verify = els.panel.querySelector('[data-lt="verify"]');
     if (verify) verify.href = 'https://www.searates.com/container/tracking/?number=' + encodeURIComponent(ship.number);
 
+    var livelabel = els.root.querySelector('[data-lt="livelabel"]');
+    if (livelabel) livelabel.textContent = 'LIVE TRACKING';
+
     els.root.hidden = false;
+    els.root.classList.remove('is-standby');
     els.root.classList.add('is-live');
 
     if (active) active.stop();
     active = new Tracker(els.canvas, ship);
   }
 
+  /* Standby: show the map immediately (no shipment yet) in an idle radar state. */
+  function standby(els) {
+    if (!els || !els.canvas) return;
+    els.root.hidden = false;
+    els.root.classList.add('is-standby');
+    els.root.classList.remove('is-live');
+    if (active) active.stop();
+    active = new Tracker(els.canvas, null);
+  }
+
   /* expose */
-  window.ILSTracker = { render: render };
+  window.ILSTracker = { render: render, standby: standby };
 })();

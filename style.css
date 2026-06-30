@@ -9640,10 +9640,28 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
   transform: translateY(14px);
   transition: opacity .55s ease, transform .55s ease;
 }
-.lt-root.is-live .lt-shell { opacity: 1; transform: none; }
+.lt-root.is-live .lt-shell,
+.lt-root.is-standby .lt-shell { opacity: 1; transform: none; }
 
 .lt-map-wrap { position: relative; min-width: 0; min-height: 340px; background: #06122a; }
 .lt-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+/* Standby (idle) state — map shown immediately, panel hidden until a number is entered */
+.lt-root.is-standby .lt-shell { grid-template-columns: 1fr; }
+.lt-root.is-standby .lt-panel { display: none; }
+.lt-root.is-standby .lt-map-wrap { aspect-ratio: 21 / 9; height: auto; }
+.lt-standby-msg { display: none; }
+.lt-root.is-standby .lt-standby-msg {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: min(90%, 420px); gap: 8px; pointer-events: none; padding: 22px;
+  background: rgba(6, 18, 42, 0.55); border: 1px solid rgba(56, 189, 248, 0.18);
+  border-radius: 16px; backdrop-filter: blur(2px);
+}
+.lt-standby-msg svg { width: 30px; height: 30px; color: #38bdf8; margin-bottom: 4px; }
+.lt-standby-msg strong { font-size: 16px; color: #eaf4ff; letter-spacing: .01em; }
+.lt-standby-msg span { font-size: 12.5px; line-height: 1.55; color: #9fb6d6; }
+.lt-standby-msg em { font-style: normal; color: #7fe0ff; font-weight: 600; }
 
 /* HUD overlay */
 .lt-hud { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
