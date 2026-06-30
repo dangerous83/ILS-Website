@@ -9595,6 +9595,7 @@ html.consult-modal-locked { overflow: hidden; }
    and persisted in localStorage.
    ============================================================ */
 .nav-theme-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -9614,7 +9615,40 @@ html.consult-modal-locked { overflow: hidden; }
   border-color: var(--color-primary);
   transform: translateY(-1px);
 }
-.nav-theme-toggle svg { width: 20px; height: 20px; display: block; }
+.nav-theme-toggle svg { position: relative; z-index: 1; width: 20px; height: 20px; display: block; }
+
+/* Looping "echo" rings — a subtle sonar pulse to draw the eye to the toggle.
+   Two staggered rings expand and fade outward on a continuous loop. */
+.nav-theme-toggle::before,
+.nav-theme-toggle::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-primary);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  animation: nav-theme-echo 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.nav-theme-toggle::after { animation-delay: 1.5s; }
+@keyframes nav-theme-echo {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  70%  { opacity: 0; }
+  100% { transform: scale(1.85); opacity: 0; }
+}
+/* pause the echo while the user is interacting */
+.nav-theme-toggle:hover::before,
+.nav-theme-toggle:hover::after,
+.nav-theme-toggle:focus-visible::before,
+.nav-theme-toggle:focus-visible::after { animation: none; opacity: 0; }
+
+html[data-theme="dark"] .nav-theme-toggle::before,
+html[data-theme="dark"] .nav-theme-toggle::after { border-color: rgba(207, 224, 255, 0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-theme-toggle::before, .nav-theme-toggle::after { animation: none; opacity: 0; }
+}
 /* show moon in light mode (click → dark), sun in dark mode (click → light) */
 .nav-theme-toggle .theme-icon-sun { display: none; }
 .nav-theme-toggle .theme-icon-moon { display: block; }
