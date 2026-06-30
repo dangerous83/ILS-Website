@@ -9578,3 +9578,6 @@ html[data-theme="dark"] .policy-hero {
 
 /* soften heavy shadows on dark */
 html[data-theme="dark"] .navbar.is-scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5); }
+
+/* services section: drop the light/white gradient fade so the section stays dark */
+html[data-theme="dark"] .services-section::before { display: none; }
