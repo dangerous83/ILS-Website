@@ -183,49 +183,6 @@ ul {
   border-radius: 2px;
 }
 
-/* ── Inner-page heroes are dark (navy scrim / glass) ──────────────────────
-   Flip the un-scrolled navbar to light with a soft top scrim so the logo and
-   links stay legible over the photo. The home page uses .hero (not
-   .page-hero) so it is untouched, and everything reverts once the navbar
-   gains .is-scrolled (solid white background). */
-body:has(.page-hero) .navbar:not(.is-scrolled)::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -40px;
-  bottom: -28px;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 16, 38, 0.55) 0%,
-    rgba(5, 16, 38, 0.30) 55%,
-    rgba(5, 16, 38, 0) 100%
-  );
-  z-index: -1;
-  pointer-events: none;
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-logo img {
-  filter: brightness(0) invert(1);
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-menu a,
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-menu .caret {
-  color: #ffffff;
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-menu a:hover {
-  color: #bcd4ff;
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-track-btn {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.5);
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-track-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: #ffffff;
-}
-body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
-  background: #ffffff;
-}
-
 /* ============================================
    NAVBAR DROPDOWNS (Destinations / Company)
    ============================================ */
@@ -491,7 +448,7 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 /* text slides — stacked in same grid cell, fade between */
 .hero-texts {
   display: grid;
-  margin-bottom: 36px;
+  margin-bottom: 56px;   /* extra gap so the CTA buttons aren't cramped under the copy */
 }
 
 .hero-text {
@@ -1274,13 +1231,15 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  /* Navy scrim — gentle tint so the hero photo stays visible; the glass
-     card carries text contrast. */
+  /* White-to-transparent fade — same style as the home hero. Light on the
+     left where the copy sits, clearing to the right so the photo shows. */
   background: linear-gradient(
-    180deg,
-    rgba(var(--hero-overlay-rgb), 0.42) 0%,
-    rgba(var(--hero-overlay-rgb), 0.36) 45%,
-    rgba(var(--hero-overlay-rgb), 0.42) 100%
+    90deg,
+    rgba(var(--overlay-rgb), 0.96) 0%,
+    rgba(var(--overlay-rgb), 0.88) 34%,
+    rgba(var(--overlay-rgb), 0.58) 50%,
+    rgba(var(--overlay-rgb), 0.18) 68%,
+    rgba(var(--overlay-rgb), 0) 82%
   );
   z-index: 1;
   pointer-events: none;
@@ -1299,16 +1258,14 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  /* See-through glass — light tint + light blur so the photo reads clearly
-     through the card (heavy blur was what made it look like a solid panel) */
-  background: rgba(8, 26, 58, 0.18);
-  backdrop-filter: blur(5px) saturate(120%);
-  -webkit-backdrop-filter: blur(5px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* Light frosted panel matching the home hero's white fade — barely-there
+     so the photo still reads through, with dark navy copy on top */
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(4px) saturate(115%);
+  -webkit-backdrop-filter: blur(4px) saturate(115%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 24px;
-  box-shadow:
-    0 30px 70px rgba(3, 14, 38, 0.40),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 56px rgba(11, 59, 140, 0.14);
   isolation: isolate;
 }
 
@@ -1321,25 +1278,25 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 28px;
-  color: rgba(221, 231, 248, 0.72);
+  color: var(--color-text-soft);
 }
 
 .breadcrumb a {
-  color: rgba(221, 231, 248, 0.72);
+  color: var(--color-text-soft);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .breadcrumb a:hover {
-  color: #ffffff;
+  color: var(--color-primary);
 }
 
 .breadcrumb-divider {
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--color-muted);
 }
 
 .breadcrumb-current {
-  color: #9fc1ff;
+  color: var(--color-primary);
 }
 
 .page-hero-title {
@@ -1347,13 +1304,13 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.025em;
-  color: #ffffff;
+  color: var(--color-primary-darker);
   max-width: 100%;
-  text-shadow: 0 2px 20px rgba(2, 10, 30, 0.45);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 0 12px rgba(255, 255, 255, 0.55);
 }
 
 .page-hero-title .accent {
-  color: #8fb4ff;
+  color: var(--color-primary-dark);
 }
 
 .page-hero-divider {
@@ -1368,11 +1325,11 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero-subtitle {
   font-size: 17px;
   line-height: 1.65;
-  color: rgba(234, 241, 255, 0.88);
+  color: #2c3a52;
   font-weight: 500;
   max-width: 100%;
   margin-bottom: 24px;
-  text-shadow: 0 1px 3px rgba(2, 10, 30, 0.4);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .page-hero-actions {
@@ -1383,17 +1340,17 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   margin-top: 20px;   /* breathing room above the buttons */
 }
 
-/* Secondary hero action — outlined light pill so it reads on the navy glass */
+/* Secondary hero action — outlined navy pill on the light glass card */
 .page-hero .btn-ghost {
-  color: #ffffff;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  color: var(--color-primary-dark);
+  border: 1.5px solid rgba(26, 86, 219, 0.35);
   border-radius: var(--radius-pill);
   padding: 13px 26px;
 }
 .page-hero .btn-ghost:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.8);
+  color: var(--color-primary);
+  background: rgba(26, 86, 219, 0.08);
+  border-color: var(--color-primary);
 }
 
 /* Centered hero variant — content centered horizontally */
@@ -1419,11 +1376,12 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--centered .page-hero-subtitle { max-width: 100%; margin: 0; }
 .page-hero--centered .page-hero-overlay {
   background: linear-gradient(
-    180deg,
-    rgba(var(--hero-overlay-rgb), 0.42) 0%,
-    rgba(var(--hero-overlay-rgb), 0.36) 35%,
-    rgba(var(--hero-overlay-rgb), 0.36) 65%,
-    rgba(var(--hero-overlay-rgb), 0.44) 100%
+    90deg,
+    rgba(var(--overlay-rgb), 0.96) 0%,
+    rgba(var(--overlay-rgb), 0.88) 34%,
+    rgba(var(--overlay-rgb), 0.58) 50%,
+    rgba(var(--overlay-rgb), 0.18) 68%,
+    rgba(var(--overlay-rgb), 0) 82%
   );
 }
 
@@ -1436,11 +1394,12 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 }
 .page-hero--bottom .page-hero-overlay {
   background: linear-gradient(
-    180deg,
-    rgba(var(--hero-overlay-rgb), 0.18) 0%,
-    rgba(var(--hero-overlay-rgb), 0.18) 40%,
-    rgba(var(--hero-overlay-rgb), 0.38) 70%,
-    rgba(var(--hero-overlay-rgb), 0.50) 100%
+    90deg,
+    rgba(var(--overlay-rgb), 0.96) 0%,
+    rgba(var(--overlay-rgb), 0.88) 34%,
+    rgba(var(--overlay-rgb), 0.58) 50%,
+    rgba(var(--overlay-rgb), 0.18) 68%,
+    rgba(var(--overlay-rgb), 0) 82%
   );
 }
 
@@ -1454,11 +1413,12 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 }
 .page-hero--mid .page-hero-overlay {
   background: linear-gradient(
-    180deg,
-    rgba(var(--hero-overlay-rgb), 0.42) 0%,
-    rgba(var(--hero-overlay-rgb), 0.36) 45%,
-    rgba(var(--hero-overlay-rgb), 0.36) 60%,
-    rgba(var(--hero-overlay-rgb), 0.42) 100%
+    90deg,
+    rgba(var(--overlay-rgb), 0.96) 0%,
+    rgba(var(--overlay-rgb), 0.88) 34%,
+    rgba(var(--overlay-rgb), 0.58) 50%,
+    rgba(var(--overlay-rgb), 0.18) 68%,
+    rgba(var(--overlay-rgb), 0) 82%
   );
 }
 
@@ -2447,10 +2407,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   .page-hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(var(--hero-overlay-rgb), 0.44) 0%,
-      rgba(var(--hero-overlay-rgb), 0.38) 45%,
-      rgba(var(--hero-overlay-rgb), 0.38) 75%,
-      rgba(var(--hero-overlay-rgb), 0.46) 100%
+      rgba(var(--overlay-rgb), 0.92) 0%,
+      rgba(var(--overlay-rgb), 0.82) 50%,
+      rgba(var(--overlay-rgb), 0.72) 80%,
+      rgba(var(--overlay-rgb), 0.78) 100%
     );
   }
   .page-hero-stats {
@@ -6466,11 +6426,11 @@ button.blog-featured-link {
 .policy-hero {
   min-height: auto;
   padding: 200px 0 90px;
-  /* No hero photo on policy pages — give it a navy backdrop so the glass
-     card and white copy match the rest of the site's heroes. */
+  /* No hero photo on policy pages — soft light backdrop to match the
+     white-fade heroes (navy copy on top). */
   background:
-    radial-gradient(1200px 600px at 12% -10%, rgba(26, 86, 219, 0.35), transparent 60%),
-    linear-gradient(135deg, #06234f 0%, #0b3b8c 100%);
+    radial-gradient(1200px 600px at 12% -10%, rgba(26, 86, 219, 0.10), transparent 60%),
+    linear-gradient(180deg, #eef3fb 0%, #dde8f7 100%);
 }
 .policy-hero .page-hero-title { max-width: 100%; }
 .policy-hero .page-hero-subtitle { max-width: 100%; }
@@ -6481,7 +6441,7 @@ button.blog-featured-link {
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(221, 231, 248, 0.7);
+  color: var(--color-muted);
   margin-top: 16px;
 }
 
@@ -9283,10 +9243,12 @@ html.consult-modal-locked { overflow: hidden; }
 .aid-hero { align-items: center; }
 .aid-hero .page-hero-overlay {
   background: linear-gradient(
-    180deg,
-    rgba(var(--hero-overlay-rgb), 0.42) 0%,
-    rgba(var(--hero-overlay-rgb), 0.36) 50%,
-    rgba(var(--hero-overlay-rgb), 0.44) 100%
+    90deg,
+    rgba(var(--overlay-rgb), 0.96) 0%,
+    rgba(var(--overlay-rgb), 0.88) 34%,
+    rgba(var(--overlay-rgb), 0.58) 50%,
+    rgba(var(--overlay-rgb), 0.18) 68%,
+    rgba(var(--overlay-rgb), 0) 82%
   );
 }
 
