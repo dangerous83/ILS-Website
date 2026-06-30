@@ -1274,24 +1274,14 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  /* Dark navy scrim — keeps the photo crisp and in focus while giving the
-     glass text card a cohesive backdrop. Heavier on the left where the copy
-     sits, fading out to the right so the image subject stays visible. */
-  background:
-    linear-gradient(
-      90deg,
-      rgba(var(--hero-overlay-rgb), 0.82) 0%,
-      rgba(var(--hero-overlay-rgb), 0.58) 34%,
-      rgba(var(--hero-overlay-rgb), 0.30) 58%,
-      rgba(var(--hero-overlay-rgb), 0.12) 80%,
-      rgba(var(--hero-overlay-rgb), 0.06) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(var(--hero-overlay-rgb), 0.20) 0%,
-      rgba(var(--hero-overlay-rgb), 0) 35%,
-      rgba(var(--hero-overlay-rgb), 0.28) 100%
-    );
+  /* Light navy scrim — only a gentle ~30% tint so the hero photo stays
+     clearly visible; the glass card carries text contrast. */
+  background: linear-gradient(
+    180deg,
+    rgba(var(--hero-overlay-rgb), 0.30) 0%,
+    rgba(var(--hero-overlay-rgb), 0.24) 45%,
+    rgba(var(--hero-overlay-rgb), 0.30) 100%
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -1307,8 +1297,8 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* See-through frosted glass — image stays clearly visible behind the copy */
-  background: rgba(8, 26, 58, 0.12);
+  /* See-through frosted glass — ~30% tint, image stays visible behind the copy */
+  background: rgba(8, 26, 58, 0.30);
   backdrop-filter: blur(20px) saturate(130%);
   -webkit-backdrop-filter: blur(20px) saturate(130%);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -1427,10 +1417,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--centered .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.62) 0%,
-    rgba(var(--hero-overlay-rgb), 0.42) 35%,
-    rgba(var(--hero-overlay-rgb), 0.40) 65%,
-    rgba(var(--hero-overlay-rgb), 0.58) 100%
+    rgba(var(--hero-overlay-rgb), 0.32) 0%,
+    rgba(var(--hero-overlay-rgb), 0.26) 35%,
+    rgba(var(--hero-overlay-rgb), 0.26) 65%,
+    rgba(var(--hero-overlay-rgb), 0.34) 100%
   );
 }
 
@@ -1444,11 +1434,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--bottom .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.15) 0%,
+    rgba(var(--hero-overlay-rgb), 0.10) 0%,
     rgba(var(--hero-overlay-rgb), 0.10) 40%,
-    rgba(var(--hero-overlay-rgb), 0.45) 65%,
-    rgba(var(--hero-overlay-rgb), 0.7) 85%,
-    rgba(var(--hero-overlay-rgb), 0.78) 100%
+    rgba(var(--hero-overlay-rgb), 0.28) 70%,
+    rgba(var(--hero-overlay-rgb), 0.40) 100%
   );
 }
 
@@ -1463,10 +1452,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--mid .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.55) 0%,
-    rgba(var(--hero-overlay-rgb), 0.45) 45%,
-    rgba(var(--hero-overlay-rgb), 0.45) 60%,
-    rgba(var(--hero-overlay-rgb), 0.55) 100%
+    rgba(var(--hero-overlay-rgb), 0.32) 0%,
+    rgba(var(--hero-overlay-rgb), 0.26) 45%,
+    rgba(var(--hero-overlay-rgb), 0.26) 60%,
+    rgba(var(--hero-overlay-rgb), 0.32) 100%
   );
 }
 
@@ -2455,10 +2444,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   .page-hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(var(--hero-overlay-rgb), 0.64) 0%,
-      rgba(var(--hero-overlay-rgb), 0.46) 45%,
-      rgba(var(--hero-overlay-rgb), 0.44) 75%,
-      rgba(var(--hero-overlay-rgb), 0.56) 100%
+      rgba(var(--hero-overlay-rgb), 0.34) 0%,
+      rgba(var(--hero-overlay-rgb), 0.28) 45%,
+      rgba(var(--hero-overlay-rgb), 0.28) 75%,
+      rgba(var(--hero-overlay-rgb), 0.36) 100%
     );
   }
   .page-hero-stats {
@@ -9288,9 +9277,9 @@ html.consult-modal-locked { overflow: hidden; }
 .aid-hero .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.58) 0%,
-    rgba(var(--hero-overlay-rgb), 0.42) 50%,
-    rgba(var(--hero-overlay-rgb), 0.55) 100%
+    rgba(var(--hero-overlay-rgb), 0.32) 0%,
+    rgba(var(--hero-overlay-rgb), 0.26) 50%,
+    rgba(var(--hero-overlay-rgb), 0.34) 100%
   );
 }
 
