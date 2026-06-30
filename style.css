@@ -5218,6 +5218,108 @@ button.blog-featured-link {
 
 
 /* ============================================
+   Reach / Difficult-terrain band (Solutions)
+   ============================================ */
+.sol-reach {
+  padding: 120px 0;
+  background: var(--color-bg-soft);
+}
+
+.sol-reach-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.sol-reach-media {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 28px 60px rgba(11, 59, 140, 0.22);
+}
+
+.sol-reach-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+}
+
+.sol-reach-badge {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(6, 35, 79, 0.78);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px rgba(6, 35, 79, 0.3);
+}
+
+.sol-reach-badge svg { width: 16px; height: 16px; color: #6ea8ff; }
+
+.sol-reach-content .eyebrow { margin-bottom: 14px; }
+.sol-reach-content .section-title { text-align: left; }
+
+.sol-reach-lead {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-text-soft);
+  margin: 18px 0 26px;
+}
+
+.sol-reach-points {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.sol-reach-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+}
+
+.sol-reach-points li strong { color: var(--color-text); font-weight: 700; }
+
+.sol-reach-points svg {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  padding: 3px;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: rgba(26, 86, 219, 0.1);
+}
+
+.sol-reach-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 980px) {
+  .sol-reach { padding: 80px 0; }
+  .sol-reach-grid { grid-template-columns: 1fr; gap: 36px; }
+  .sol-reach-media img { min-height: 300px; }
+}
+
+
+/* ============================================
    Floating Widgets — WhatsApp + Get Quote
    ============================================ */
 
