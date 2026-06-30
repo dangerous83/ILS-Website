@@ -190,6 +190,10 @@
             <a href="https://www.cma-cgm.com/ebusiness/tracking/search" target="_blank" rel="noopener">CMA CGM</a>
             <a href="https://www.hapag-lloyd.com/en/online-business/track/track-by-booking-solution.html" target="_blank" rel="noopener">Hapag-Lloyd</a>
             <a href="https://ecomm.one-line.com/one-ecom/manage-shipment/cargo-tracking" target="_blank" rel="noopener">ONE</a>
+            <button type="button" class="lt-reveal-btn" id="revealMapBtn" aria-controls="liveTracker" aria-expanded="false">
+              <span class="lt-reveal-radar" aria-hidden="true"></span>
+              <span>Live Radar Map</span>
+            </button>
           </div>
         </div>
       </div>
@@ -395,10 +399,20 @@
         return { root: root, panel: root.querySelector('.lt-panel'), canvas: document.getElementById('ltCanvas') };
       })();
 
-      // Show the map immediately in an idle "standby" radar state.
-      function startStandby() { if (trackerEls && window.ILSTracker) window.ILSTracker.standby(trackerEls); }
-      if (window.ILSTracker) startStandby();
-      else window.addEventListener('load', startStandby);
+      // "Live Radar Map" button reveals the map in idle standby (radar) state.
+      var revealBtn = document.getElementById('revealMapBtn');
+      if (revealBtn) {
+        revealBtn.addEventListener('click', function () {
+          if (window.ILSTracker && trackerEls.root.hidden) {
+            window.ILSTracker.standby(trackerEls);
+          }
+          revealBtn.setAttribute('aria-expanded', 'true');
+          revealBtn.classList.add('is-open');
+          requestAnimationFrame(function () {
+            trackerEls.root.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        });
+      }
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
