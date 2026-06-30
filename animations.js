@@ -293,18 +293,26 @@
     // 1) Inject the desktop navbar button (right side, after the menu)
     const container = document.querySelector('.nav-container');
     const burger = container ? container.querySelector('.nav-burger') : null;
-    if (container && !container.querySelector('.nav-consult-btn')) {
+    // Group the actions (Track, theme toggle, consult CTA) in one wrapper so
+    // they sit tightly together (5px gap) independent of nav-container spacing.
+    let actions = container ? container.querySelector('.nav-actions') : null;
+    if (container && !actions) {
+      actions = document.createElement('div');
+      actions.className = 'nav-actions';
+      if (burger) container.insertBefore(actions, burger);
+      else container.appendChild(actions);
+    }
+    if (actions && !actions.querySelector('.nav-consult-btn')) {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'nav-consult-btn';
       btn.id = 'openConsultBtn';
-      btn.innerHTML = calIcon + '<span>Book for Consultation</span>';
-      if (burger) container.insertBefore(btn, burger);
-      else container.appendChild(btn);
+      btn.innerHTML = calIcon + '<span>Get a Quote</span>';
+      actions.appendChild(btn);
     }
 
     // 1b) Inject a "Track Shipment" navbar button beside the consult button
-    if (container && !container.querySelector('.nav-track-btn')) {
+    if (actions && !actions.querySelector('.nav-track-btn')) {
       const trackHref = (location.pathname.includes('/pages/') ? '' : 'pages/') + 'tracking.html';
       const trackIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
       const track = document.createElement('a');
@@ -312,14 +320,13 @@
       track.href = trackHref;
       track.setAttribute('aria-label', 'Track your shipment');
       track.innerHTML = trackIcon + '<span>Track</span>';
-      const consultBtn = container.querySelector('.nav-consult-btn');
-      if (consultBtn) container.insertBefore(track, consultBtn);
-      else if (burger) container.insertBefore(track, burger);
-      else container.appendChild(track);
+      const consultBtn = actions.querySelector('.nav-consult-btn');
+      if (consultBtn) actions.insertBefore(track, consultBtn);
+      else actions.appendChild(track);
     }
 
     // 1c) Inject the dark/light theme toggle BETWEEN Track and the consult button
-    if (container && !container.querySelector('.nav-theme-toggle')) {
+    if (actions && !actions.querySelector('.nav-theme-toggle')) {
       var moonIcon = '<svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
       var sunIcon = '<svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>';
       var themeBtn = document.createElement('button');
@@ -340,10 +347,9 @@
         syncPressed();
       });
       syncPressed();
-      var consultRef = container.querySelector('.nav-consult-btn');
-      if (consultRef) container.insertBefore(themeBtn, consultRef);
-      else if (burger) container.insertBefore(themeBtn, burger);
-      else container.appendChild(themeBtn);
+      var consultRef = actions.querySelector('.nav-consult-btn');
+      if (consultRef) actions.insertBefore(themeBtn, consultRef);
+      else actions.appendChild(themeBtn);
     }
 
     // 2) Inject the modal once
@@ -473,7 +479,7 @@
       const mBtn = document.createElement('button');
       mBtn.type = 'button';
       mBtn.className = 'nav-mobile-consult';
-      mBtn.innerHTML = calIcon + 'Book for Consultation';
+      mBtn.innerHTML = calIcon + 'Get a Quote';
       mBtn.addEventListener('click', () => {
         document.body.classList.remove('is-mobile-nav-open');
         if (burger) burger.classList.remove('is-active');

@@ -8859,6 +8859,14 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
 /* ============================================================
    NAVBAR — Book for Consultation button + lead-form modal
    ============================================================ */
+/* Navbar action cluster — Track, theme toggle, and the CTA sit tightly together */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
 .nav-consult-btn {
   display: inline-flex;
   align-items: center;
