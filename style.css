@@ -9601,3 +9601,8 @@ html[data-theme="dark"] .home-client-logo:hover {
   border-color: rgba(126, 166, 255, 0.5);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
 }
+
+/* inner page heroes (destinations, services, about, etc.): the subtitle is the
+   same hardcoded dark navy (#2c3a52) as the home hero and disappears over the
+   dark overlay — lift it to a light tone across every page that uses .page-hero */
+html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
