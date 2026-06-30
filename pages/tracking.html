@@ -193,6 +193,65 @@
           </div>
         </div>
       </div>
+
+      <!-- LIVE TRACKER (high-tech command-center map) -->
+      <div id="liveTracker" class="lt-root" hidden aria-live="polite">
+        <div class="lt-shell">
+          <div class="lt-map-wrap">
+            <canvas id="ltCanvas" class="lt-canvas"></canvas>
+            <div class="lt-hud" aria-hidden="true">
+              <span class="lt-corner lt-corner--tl"></span>
+              <span class="lt-corner lt-corner--tr"></span>
+              <span class="lt-corner lt-corner--bl"></span>
+              <span class="lt-corner lt-corner--br"></span>
+              <span class="lt-scan"></span>
+              <div class="lt-live"><span class="lt-live-dot"></span> LIVE TRACKING</div>
+              <div class="lt-hud-tag">ILS GLOBAL OPS · SAT-LINK</div>
+            </div>
+          </div>
+
+          <aside class="lt-panel">
+            <div class="lt-panel-head">
+              <span class="lt-status lt-status--cyan" data-lt="status">In Transit</span>
+              <span class="lt-id"><em data-lt="type">Container No.</em><strong data-lt="num">—</strong></span>
+            </div>
+
+            <div class="lt-route">
+              <div class="lt-route-end">
+                <span class="lt-route-label">Origin</span>
+                <span class="lt-route-port" data-lt="from">—</span>
+              </div>
+              <div class="lt-route-line" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18c1.5 1 3 1 4.5 0s3-1 4.5 0 3 1 4.5 0 3-1 4.5 0"/><path d="M4 18l-2-6h20l-2 6"/><path d="M12 12V4M8 7l4-3 4 3"/></svg></div>
+              <div class="lt-route-end lt-route-end--dest">
+                <span class="lt-route-label">Destination</span>
+                <span class="lt-route-port" data-lt="to">—</span>
+              </div>
+            </div>
+
+            <div class="lt-progress">
+              <div class="lt-progress-top"><span>Voyage progress</span><span data-lt="pct">0%</span></div>
+              <div class="lt-progress-track"><span class="lt-progress-bar" data-lt="bar" style="width:0%"></span></div>
+            </div>
+
+            <div class="lt-grid">
+              <div class="lt-cell"><span class="lt-cell-k">Vessel</span><span class="lt-cell-v" data-lt="vessel">—</span></div>
+              <div class="lt-cell"><span class="lt-cell-k">Voyage</span><span class="lt-cell-v" data-lt="voyage">—</span></div>
+              <div class="lt-cell"><span class="lt-cell-k">Departed</span><span class="lt-cell-v" data-lt="dep">—</span></div>
+              <div class="lt-cell"><span class="lt-cell-k">ETA</span><span class="lt-cell-v" data-lt="eta">—</span></div>
+              <div class="lt-cell"><span class="lt-cell-k">Speed</span><span class="lt-cell-v" data-lt="speed">—</span></div>
+              <div class="lt-cell"><span class="lt-cell-k">Mode</span><span class="lt-cell-v">Ocean · FCL</span></div>
+            </div>
+
+            <ul class="lt-timeline" data-lt="timeline"></ul>
+
+            <a class="lt-verify" data-lt="verify" href="#" target="_blank" rel="noopener">
+              Verify with carrier of record
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+            <p class="lt-note">Position is an indicative visualisation generated from your reference. For carrier-of-record milestones, verify with the line above.</p>
+          </aside>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -325,13 +384,29 @@
         }, 4500);
       }
 
+      var trackerEls = (function () {
+        var root = document.getElementById('liveTracker');
+        if (!root) return null;
+        return { root: root, panel: root.querySelector('.lt-panel'), canvas: document.getElementById('ltCanvas') };
+      })();
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var num = (input.value || '').trim();
         if (!num) { input.focus(); return; }
+
+        if (trackerEls && window.ILSTracker) {
+          window.ILSTracker.render(num, type, trackerEls);
+          toast('Shipment located — live position plotted on the map.');
+          requestAnimationFrame(function () {
+            trackerEls.root.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+          return;
+        }
+
+        // Fallback if the tracker module failed to load.
         try { if (navigator.clipboard) { navigator.clipboard.writeText(num); } } catch (err) {}
-        var url = 'https://www.searates.com/container/tracking/?number=' + encodeURIComponent(num);
-        window.open(url, '_blank', 'noopener');
+        window.open('https://www.searates.com/container/tracking/?number=' + encodeURIComponent(num), '_blank', 'noopener');
         toast('Your number is copied — paste it into the tracker if it doesn\'t load automatically.');
       });
     })();
@@ -390,6 +465,7 @@
     </div>
   </footer>
 
+  <script src="../tracker-map.js?v=20260630a"></script>
   <script src="../animations.js?v=20260629e"></script>
 </body>
 </html>
