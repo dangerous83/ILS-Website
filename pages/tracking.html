@@ -195,7 +195,7 @@
       </div>
 
       <!-- LIVE TRACKER (high-tech command-center map) -->
-      <div id="liveTracker" class="lt-root" hidden aria-live="polite">
+      <div id="liveTracker" class="lt-root lt-standby" hidden aria-live="polite">
         <div class="lt-shell">
           <div class="lt-map-wrap">
             <canvas id="ltCanvas" class="lt-canvas"></canvas>
@@ -205,8 +205,13 @@
               <span class="lt-corner lt-corner--bl"></span>
               <span class="lt-corner lt-corner--br"></span>
               <span class="lt-scan"></span>
-              <div class="lt-live"><span class="lt-live-dot"></span> LIVE TRACKING</div>
+              <div class="lt-live"><span class="lt-live-dot"></span> <span data-lt="livelabel">STANDBY</span></div>
               <div class="lt-hud-tag">ILS GLOBAL OPS · SAT-LINK</div>
+            </div>
+            <div class="lt-standby-msg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <strong>Awaiting tracking reference</strong>
+              <span>Enter your container or B/L number above and press <em>Track Shipment</em> to locate your cargo on the live map.</span>
             </div>
           </div>
 
@@ -390,6 +395,11 @@
         return { root: root, panel: root.querySelector('.lt-panel'), canvas: document.getElementById('ltCanvas') };
       })();
 
+      // Show the map immediately in an idle "standby" radar state.
+      function startStandby() { if (trackerEls && window.ILSTracker) window.ILSTracker.standby(trackerEls); }
+      if (window.ILSTracker) startStandby();
+      else window.addEventListener('load', startStandby);
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var num = (input.value || '').trim();
@@ -465,7 +475,7 @@
     </div>
   </footer>
 
-  <script src="../tracker-map.js?v=20260630a"></script>
+  <script src="../tracker-map.js?v=20260630b"></script>
   <script src="../animations.js?v=20260629e"></script>
 </body>
 </html>
