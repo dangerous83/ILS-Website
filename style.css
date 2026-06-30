@@ -1291,12 +1291,13 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   z-index: 2;
   width: 100%;
   max-width: 1000px;
-  margin: 0 auto;            /* centered glass card on every page */
-  padding: 48px 64px;
+  /* left-aligned glass card, edge aligned to the page content gutter */
+  margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
+  padding: 48px 56px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   /* See-through frosted glass — ~30% tint, image stays visible behind the copy */
   background: rgba(8, 26, 58, 0.30);
   backdrop-filter: blur(20px) saturate(130%);
@@ -1404,16 +1405,15 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--centered .page-hero-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
 }
-.page-hero--centered .breadcrumb { justify-content: center; }
-.page-hero--centered .page-hero-title { max-width: 880px; margin: 0 auto; }
-.page-hero--centered .page-hero-divider { margin: 28px auto; }
-.page-hero--centered .page-hero-subtitle { max-width: 680px; margin: 0 auto; }
+.page-hero--centered .breadcrumb { justify-content: flex-start; }
+.page-hero--centered .page-hero-title { max-width: 100%; margin: 0; }
+.page-hero--centered .page-hero-divider { margin: 28px 0; }
+.page-hero--centered .page-hero-subtitle { max-width: 100%; margin: 0; }
 .page-hero--centered .page-hero-overlay {
   background: linear-gradient(
     180deg,
@@ -2437,7 +2437,7 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   .page-hero-image { background-position: center; }
   .page-hero-container {
     max-width: 800px;
-    margin-left: auto;
+    margin-left: 32px;
     margin-right: auto;
     padding: 36px 40px;
   }
