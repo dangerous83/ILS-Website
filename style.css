@@ -485,14 +485,14 @@ body:is(:has(.hero), :has(.page-hero)) .navbar:not(.is-scrolled) .nav-burger spa
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 760px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 44px 48px;
+  padding: 48px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgba(8, 26, 58, 0.30);
+  background: rgba(8, 26, 58, 0.22);
   backdrop-filter: blur(22px) saturate(135%);
   -webkit-backdrop-filter: blur(22px) saturate(135%);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -630,14 +630,22 @@ body:is(:has(.hero), :has(.page-hero)) .navbar:not(.is-scrolled) .nav-burger spa
 .hero-features {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  gap: 36px;
-  align-items: flex-start;
+  gap: 28px 48px;
+  align-items: start;
   justify-content: center;
   margin-top: 32px;
   padding-top: 32px;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
-  text-align: left;
+  text-align: center;
 }
+/* Center each feature (icon above text) so it matches the centered hero copy */
+.hero .feature {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.hero .feature-text { align-items: center; }
 
 /* ---------- Leadership trust badge (hero) ---------- */
 .hero-leaders {
@@ -1329,15 +1337,15 @@ body:is(:has(.hero), :has(.page-hero)) .navbar:not(.is-scrolled) .nav-burger spa
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 740px;
+  max-width: 1000px;
   margin: 0 auto;            /* centered glass card on every page */
-  padding: 44px 48px;
+  padding: 48px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   /* See-through frosted glass — image stays clearly visible behind the copy */
-  background: rgba(8, 26, 58, 0.30);
+  background: rgba(8, 26, 58, 0.22);
   backdrop-filter: blur(22px) saturate(135%);
   -webkit-backdrop-filter: blur(22px) saturate(135%);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -1445,7 +1453,7 @@ body:is(:has(.hero), :has(.page-hero)) .navbar:not(.is-scrolled) .nav-burger spa
   flex-direction: column;
   align-items: center;
   text-align: center;
-  max-width: 760px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2476,10 +2484,10 @@ body:is(:has(.hero), :has(.page-hero)) .navbar:not(.is-scrolled) .nav-burger spa
   .page-hero-title { font-size: 48px; }
   .page-hero-image { background-position: center; }
   .page-hero-container {
-    max-width: 640px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    padding: 34px 32px;
+    padding: 36px 40px;
   }
   .page-hero-overlay {
     background: linear-gradient(
@@ -6511,7 +6519,7 @@ button.blog-featured-link {
 }
 .policy-hero .page-hero-title { max-width: 100%; }
 .policy-hero .page-hero-subtitle { max-width: 100%; }
-.policy-hero .page-hero-container { max-width: 760px; }
+.policy-hero .page-hero-container { max-width: 900px; }
 
 .policy-updated {
   font-size: 13px;
@@ -7961,7 +7969,11 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
     padding-top: 22px !important;
   }
   .hero-features .feature {
-    display: flex; align-items: center; gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
   }
   .hero-features .feature-icon {
     width: 36px; height: 36px;
