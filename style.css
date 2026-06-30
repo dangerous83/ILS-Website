@@ -1363,6 +1363,10 @@ ul {
   max-width: 880px;
   /* margin inherited from .page-hero-container so it tracks the logo gutter */
 }
+/* Narrow variant — Organization pages (Introduction, Network, Team): keep the
+   hero copy to a comfortable, readable line length */
+.page-hero--narrow .page-hero-container { max-width: 600px; }
+
 .page-hero--centered .breadcrumb { justify-content: flex-start; }
 .page-hero--centered .page-hero-title { max-width: 100%; margin: 0; }
 .page-hero--centered .page-hero-divider { margin: 28px 0; }
