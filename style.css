@@ -9581,3 +9581,23 @@ html[data-theme="dark"] .navbar.is-scrolled { box-shadow: 0 6px 24px rgba(0, 0, 
 
 /* services section: drop the light/white gradient fade so the section stays dark */
 html[data-theme="dark"] .services-section::before { display: none; }
+
+/* hero subtitle: hardcoded dark navy (#2c3a52) is unreadable over the dark
+   overlay — lift it to a light tone so the strapline stays legible */
+html[data-theme="dark"] .hero-subtitle { color: #c4d2ea; }
+
+/* "Why Choose ILS" cut section is dark-navy with white text by design, but it
+   inherits color: var(--color-white) which flips dark in dark mode, hiding the
+   non-accent part of the title ("Logistics,"). Pin the text light. */
+html[data-theme="dark"] .cut-section { color: #eef4fd; }
+
+/* partner / affiliation logo cards: the logos are built for light backgrounds,
+   so keep the cards white in dark mode instead of using the dark --surface */
+html[data-theme="dark"] .home-client-logo {
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+html[data-theme="dark"] .home-client-logo:hover {
+  border-color: rgba(126, 166, 255, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+}
