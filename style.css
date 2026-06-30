@@ -1064,7 +1064,7 @@ ul {
 
   /* Frosted-glass card so text stays readable over the now-visible image */
   .hero-content {
-    background: rgba(255, 255, 255, 0.90);
+    background: rgba(255, 255, 255, 0.60);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(26, 86, 219, 0.10);
