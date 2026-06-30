@@ -7,6 +7,7 @@
   --color-primary: #1a56db;          /* main blue (accent) */
   --color-primary-dark: #0b3b8c;     /* deep brand blue */
   --color-primary-darker: #06234f;
+  --heading: #06234f;                /* heading text — flips light in dark mode */
   --color-text: #0a1a3a;
   --color-text-soft: #4b5a72;
   --color-muted: #8a96ab;
@@ -471,7 +472,7 @@ ul {
   line-height: 1.02;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 0 12px rgba(255, 255, 255, 0.55);
 }
 
@@ -631,7 +632,7 @@ ul {
 .hero-leaders-text strong {
   font-size: 14px;
   font-weight: 800;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   letter-spacing: 0.01em;
   line-height: 1.2;
 }
@@ -800,7 +801,7 @@ ul {
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin-bottom: 18px;
 }
 
@@ -1186,7 +1187,7 @@ ul {
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin-bottom: 20px;
 }
 
@@ -1296,7 +1297,7 @@ ul {
   font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.025em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   max-width: 100%;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85), 0 0 12px rgba(255, 255, 255, 0.55);
 }
@@ -1460,7 +1461,7 @@ ul {
 .hero-stat-num {
   font-size: clamp(40px, 4vw, 56px);
   font-weight: 800;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   line-height: 1;
   letter-spacing: -0.02em;
   display: inline-block;
@@ -1694,7 +1695,7 @@ ul {
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin-bottom: 22px;
 }
 
@@ -1879,7 +1880,7 @@ ul {
 .process-title {
   font-size: 20px;
   font-weight: 800;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin-bottom: 12px;
   letter-spacing: -0.01em;
   transition: color 0.3s ease;
@@ -2875,7 +2876,7 @@ ul {
 }
 
 .dest-lane-transit strong {
-  color: var(--color-primary-darker);
+  color: var(--heading);
   font-weight: 700;
 }
 
@@ -2984,7 +2985,7 @@ ul {
 .home-stat-num {
   font-size: clamp(48px, 5vw, 72px);
   font-weight: 800;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   letter-spacing: -0.03em;
   line-height: 1;
   transition: color 0.4s ease;
@@ -3232,7 +3233,7 @@ ul {
   font-size: 19px;
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   line-height: 1.1;
 }
 
@@ -3349,7 +3350,7 @@ ul {
 .home-testimonial-meta strong {
   font-size: 14.5px;
   font-weight: 700;
-  color: var(--color-primary-darker);
+  color: var(--heading);
 }
 
 .home-testimonial-meta span {
@@ -3446,7 +3447,7 @@ ul {
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin: 14px 0 14px;
 }
 
@@ -3909,7 +3910,7 @@ a.contact-channel-value:hover { color: #7eb3ff; }
 
 .contact-social-icons a:hover {
   background: #7eb3ff;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   transform: translateY(-3px);
 }
 
@@ -4750,7 +4751,7 @@ a.contact-channel-value:hover { color: #7eb3ff; }
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin-bottom: 18px;
 }
 
@@ -4789,7 +4790,7 @@ a.contact-channel-value:hover { color: #7eb3ff; }
 .blog-author-meta strong {
   font-size: 14.5px;
   font-weight: 700;
-  color: var(--color-primary-darker);
+  color: var(--heading);
 }
 
 .blog-author-meta span {
@@ -4993,7 +4994,7 @@ button.blog-featured-link {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.92);
   border: none;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   font-size: 26px;
   line-height: 1;
   cursor: pointer;
@@ -5034,7 +5035,7 @@ button.blog-featured-link {
   font-size: 26px;
   font-weight: 800;
   line-height: 1.25;
-  color: var(--color-primary-darker);
+  color: var(--heading);
   margin: 0 0 16px;
   letter-spacing: -0.01em;
 }
@@ -9492,3 +9493,88 @@ html.consult-modal-locked { overflow: hidden; }
   .track-field { flex-direction: column; }
   .track-submit { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   NAVBAR THEME TOGGLE (sun / moon) + DARK MODE
+   Toggle is injected by animations.js between Track and the
+   Book-for-Consultation button. Theme is set on <html data-theme>
+   and persisted in localStorage.
+   ============================================================ */
+.nav-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid rgba(26, 86, 219, 0.35);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.nav-theme-toggle:hover {
+  background: rgba(26, 86, 219, 0.08);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+.nav-theme-toggle svg { width: 20px; height: 20px; display: block; }
+/* show moon in light mode (click → dark), sun in dark mode (click → light) */
+.nav-theme-toggle .theme-icon-sun { display: none; }
+.nav-theme-toggle .theme-icon-moon { display: block; }
+html[data-theme="dark"] .nav-theme-toggle .theme-icon-sun { display: block; }
+html[data-theme="dark"] .nav-theme-toggle .theme-icon-moon { display: none; }
+
+/* ---- Dark palette: flip the neutral variables (brand blues stay) ---- */
+html[data-theme="dark"] {
+  --color-text: #e4ecf8;
+  --color-text-soft: #a4b4cd;
+  --color-muted: #6f7f97;
+  --color-bg: #0b1322;
+  --color-bg-soft: #0f1a2e;
+  --color-white: #14213a;
+  --color-border: #25364f;
+  --surface: #14213a;
+  --surface-2: #0e1a2e;
+  --page-bg: linear-gradient(180deg, #0a1220 0%, #0c1830 55%, #0a1a38 100%);
+  --overlay-rgb: 8, 15, 30;
+  --navbar-scrolled-bg: rgba(11, 19, 34, 0.94);
+  --heading: #eef4fd;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* logo reads light on the dark navbar/hero */
+html[data-theme="dark"] .nav-logo img { filter: brightness(0) invert(1); }
+html[data-theme="dark"] .nav-theme-toggle { color: #cfe0ff; border-color: rgba(207, 224, 255, 0.35); }
+html[data-theme="dark"] .nav-theme-toggle:hover { background: rgba(207, 224, 255, 0.12); border-color: #cfe0ff; }
+
+/* hero text: drop the white glow, brighten accents */
+html[data-theme="dark"] .page-hero-title,
+html[data-theme="dark"] .hero-title,
+html[data-theme="dark"] .page-hero-subtitle,
+html[data-theme="dark"] .hero-subtitle { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
+html[data-theme="dark"] .page-hero-title .accent,
+html[data-theme="dark"] .hero-title .line.accent { color: #7ea6ff; }
+
+/* secondary hero button reads light on the dark fade */
+html[data-theme="dark"] .page-hero .btn-ghost {
+  color: #cfe0ff;
+  border-color: rgba(207, 224, 255, 0.4);
+}
+html[data-theme="dark"] .page-hero .btn-ghost:hover {
+  color: #ffffff;
+  background: rgba(207, 224, 255, 0.12);
+  border-color: #cfe0ff;
+}
+
+/* policy hero backdrop stays dark in dark mode */
+html[data-theme="dark"] .policy-hero {
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(77, 130, 243, 0.14), transparent 60%),
+    linear-gradient(180deg, #0a1220 0%, #0c1830 100%);
+}
+
+/* soften heavy shadows on dark */
+html[data-theme="dark"] .navbar.is-scrolled { box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5); }
