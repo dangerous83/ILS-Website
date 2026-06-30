@@ -9467,7 +9467,7 @@ html.consult-modal-locked { overflow: hidden; }
   color: var(--color-muted);
   margin-bottom: 12px;
 }
-.track-carriers-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.track-carriers-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .track-carriers-links a {
   font-size: 13.5px;
   font-weight: 600;
@@ -9479,6 +9479,86 @@ html.consult-modal-locked { overflow: hidden; }
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 .track-carriers-links a:hover { background: rgba(26, 86, 219, 0.08); border-color: var(--color-primary); }
+
+/* Animated "Live Radar Map" reveal button — sits at the right of the carrier row */
+.lt-reveal-btn {
+  position: relative;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #eaf6ff;
+  cursor: pointer;
+  padding: 9px 18px;
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  border-radius: 999px;
+  background: linear-gradient(120deg, #0b3b8c, #1a56db 55%, #22d3ee);
+  background-size: 180% 100%;
+  box-shadow: 0 6px 20px rgba(26, 86, 219, 0.35), 0 0 0 0 rgba(34, 211, 238, 0.5);
+  animation: lt-reveal-glow 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.6s ease;
+}
+.lt-reveal-btn:hover { transform: translateY(-1px); background-position: 100% 0; box-shadow: 0 12px 28px rgba(26, 86, 219, 0.45); }
+.lt-reveal-btn:focus-visible { outline: 3px solid rgba(34, 211, 238, 0.4); outline-offset: 3px; }
+
+/* attention-grabbing radar ping ring around the button */
+.lt-reveal-btn::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 2px solid rgba(34, 211, 238, 0.6);
+  animation: lt-reveal-ping 2.2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes lt-reveal-glow {
+  0%, 100% { box-shadow: 0 6px 20px rgba(26, 86, 219, 0.35), 0 0 0 0 rgba(34, 211, 238, 0.0); }
+  50% { box-shadow: 0 6px 26px rgba(26, 86, 219, 0.5), 0 0 14px 1px rgba(34, 211, 238, 0.35); }
+}
+@keyframes lt-reveal-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  70%, 100% { transform: scale(1.18); opacity: 0; }
+}
+
+/* spinning radar sweep inside the button */
+.lt-reveal-radar {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(234, 246, 255, 0.7);
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+.lt-reveal-radar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from 0deg, rgba(234, 246, 255, 0.85), rgba(234, 246, 255, 0) 90deg);
+  animation: lt-radar-sweep 1.8s linear infinite;
+}
+.lt-reveal-radar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #eaf6ff;
+  transform: translate(-50%, -50%);
+}
+@keyframes lt-radar-sweep { to { transform: rotate(360deg); } }
+.lt-reveal-btn.is-open { animation: none; }
+.lt-reveal-btn.is-open::after { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-reveal-btn, .lt-reveal-btn::after, .lt-reveal-radar::before { animation: none; }
+}
 
 .track-toast {
   position: fixed;
