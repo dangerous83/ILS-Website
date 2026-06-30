@@ -1291,8 +1291,9 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   z-index: 2;
   width: 100%;
   max-width: 760px;
-  /* left-side glass card, hugging the left edge of the viewport */
-  margin: 0 auto 0 clamp(24px, 3vw, 48px);
+  /* left edge aligned to the logo / page content gutter (1280 base;
+     widened to match the navbar at large breakpoints below) */
+  margin: 0 auto 0 max(60px, calc((100% - 1280px) / 2 + 60px));
   padding: 44px 52px;
   display: flex;
   flex-direction: column;
@@ -1408,7 +1409,7 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   align-items: flex-start;
   text-align: left;
   max-width: 760px;
-  margin: 0 auto 0 clamp(24px, 3vw, 48px);
+  /* margin inherited from .page-hero-container so it tracks the logo gutter */
 }
 .page-hero--centered .breadcrumb { justify-content: flex-start; }
 .page-hero--centered .page-hero-title { max-width: 100%; margin: 0; }
@@ -9117,6 +9118,7 @@ html.consult-modal-locked { overflow: hidden; }
   .ils-topbar-inner {
     max-width: 1380px;
   }
+  .page-hero-container { margin-left: calc((100% - 1380px) / 2 + 60px); }
 }
 
 @media (min-width: 1600px) {
@@ -9128,6 +9130,7 @@ html.consult-modal-locked { overflow: hidden; }
   .ils-topbar-inner {
     max-width: 1500px;
   }
+  .page-hero-container { margin-left: calc((100% - 1500px) / 2 + 60px); }
   .hero-subtitle,
   .page-hero-subtitle,
   .section-subtitle { font-size: 18px; }
@@ -9145,6 +9148,7 @@ html.consult-modal-locked { overflow: hidden; }
     padding-left: 80px;
     padding-right: 80px;
   }
+  .page-hero-container { margin-left: calc((100% - 1680px) / 2 + 80px); }
   .hero-title { font-size: clamp(40px, 5vw, 88px); }
   .page-hero-title { font-size: clamp(48px, 6vw, 96px); }
   .section-title { font-size: clamp(34px, 4.2vw, 64px); }
@@ -9165,6 +9169,7 @@ html.consult-modal-locked { overflow: hidden; }
     padding-left: 96px;
     padding-right: 96px;
   }
+  .page-hero-container { margin-left: calc((100% - 1920px) / 2 + 96px); }
   .hero-subtitle,
   .page-hero-subtitle,
   .section-subtitle { font-size: 20px; }
