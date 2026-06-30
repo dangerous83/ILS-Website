@@ -1274,13 +1274,13 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  /* Light navy scrim — only a gentle ~30% tint so the hero photo stays
-     clearly visible; the glass card carries text contrast. */
+  /* Navy scrim — gentle tint so the hero photo stays visible; the glass
+     card carries text contrast. */
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.30) 0%,
-    rgba(var(--hero-overlay-rgb), 0.24) 45%,
-    rgba(var(--hero-overlay-rgb), 0.30) 100%
+    rgba(var(--hero-overlay-rgb), 0.42) 0%,
+    rgba(var(--hero-overlay-rgb), 0.36) 45%,
+    rgba(var(--hero-overlay-rgb), 0.42) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -1290,10 +1290,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1000px;
-  /* left-aligned glass card, edge aligned to the page content gutter */
+  max-width: 660px;
+  /* left-side glass card, edge aligned to the page content gutter */
   margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
-  padding: 48px 56px;
+  padding: 44px 48px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1407,7 +1407,7 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 1000px;
+  max-width: 660px;
   margin: 0 auto 0 max(40px, calc((100% - 1280px) / 2 + 60px));
 }
 .page-hero--centered .breadcrumb { justify-content: flex-start; }
@@ -1417,10 +1417,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--centered .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.32) 0%,
-    rgba(var(--hero-overlay-rgb), 0.26) 35%,
-    rgba(var(--hero-overlay-rgb), 0.26) 65%,
-    rgba(var(--hero-overlay-rgb), 0.34) 100%
+    rgba(var(--hero-overlay-rgb), 0.42) 0%,
+    rgba(var(--hero-overlay-rgb), 0.36) 35%,
+    rgba(var(--hero-overlay-rgb), 0.36) 65%,
+    rgba(var(--hero-overlay-rgb), 0.44) 100%
   );
 }
 
@@ -1434,10 +1434,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--bottom .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.10) 0%,
-    rgba(var(--hero-overlay-rgb), 0.10) 40%,
-    rgba(var(--hero-overlay-rgb), 0.28) 70%,
-    rgba(var(--hero-overlay-rgb), 0.40) 100%
+    rgba(var(--hero-overlay-rgb), 0.18) 0%,
+    rgba(var(--hero-overlay-rgb), 0.18) 40%,
+    rgba(var(--hero-overlay-rgb), 0.38) 70%,
+    rgba(var(--hero-overlay-rgb), 0.50) 100%
   );
 }
 
@@ -1452,10 +1452,10 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
 .page-hero--mid .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.32) 0%,
-    rgba(var(--hero-overlay-rgb), 0.26) 45%,
-    rgba(var(--hero-overlay-rgb), 0.26) 60%,
-    rgba(var(--hero-overlay-rgb), 0.32) 100%
+    rgba(var(--hero-overlay-rgb), 0.42) 0%,
+    rgba(var(--hero-overlay-rgb), 0.36) 45%,
+    rgba(var(--hero-overlay-rgb), 0.36) 60%,
+    rgba(var(--hero-overlay-rgb), 0.42) 100%
   );
 }
 
@@ -2436,18 +2436,18 @@ body:has(.page-hero) .navbar:not(.is-scrolled) .nav-burger span {
   .page-hero-title { font-size: 48px; }
   .page-hero-image { background-position: center; }
   .page-hero-container {
-    max-width: 800px;
+    max-width: 600px;
     margin-left: 32px;
     margin-right: auto;
-    padding: 36px 40px;
+    padding: 34px 36px;
   }
   .page-hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(var(--hero-overlay-rgb), 0.34) 0%,
-      rgba(var(--hero-overlay-rgb), 0.28) 45%,
-      rgba(var(--hero-overlay-rgb), 0.28) 75%,
-      rgba(var(--hero-overlay-rgb), 0.36) 100%
+      rgba(var(--hero-overlay-rgb), 0.44) 0%,
+      rgba(var(--hero-overlay-rgb), 0.38) 45%,
+      rgba(var(--hero-overlay-rgb), 0.38) 75%,
+      rgba(var(--hero-overlay-rgb), 0.46) 100%
     );
   }
   .page-hero-stats {
@@ -9277,9 +9277,9 @@ html.consult-modal-locked { overflow: hidden; }
 .aid-hero .page-hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(var(--hero-overlay-rgb), 0.32) 0%,
-    rgba(var(--hero-overlay-rgb), 0.26) 50%,
-    rgba(var(--hero-overlay-rgb), 0.34) 100%
+    rgba(var(--hero-overlay-rgb), 0.42) 0%,
+    rgba(var(--hero-overlay-rgb), 0.36) 50%,
+    rgba(var(--hero-overlay-rgb), 0.44) 100%
   );
 }
 
