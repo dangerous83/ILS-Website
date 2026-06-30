@@ -318,6 +318,34 @@
       else container.appendChild(track);
     }
 
+    // 1c) Inject the dark/light theme toggle BETWEEN Track and the consult button
+    if (container && !container.querySelector('.nav-theme-toggle')) {
+      var moonIcon = '<svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+      var sunIcon = '<svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>';
+      var themeBtn = document.createElement('button');
+      themeBtn.type = 'button';
+      themeBtn.className = 'nav-theme-toggle';
+      themeBtn.setAttribute('aria-label', 'Toggle dark mode');
+      themeBtn.setAttribute('title', 'Toggle dark / light mode');
+      themeBtn.innerHTML = moonIcon + sunIcon;
+      var syncPressed = function () {
+        themeBtn.setAttribute('aria-pressed', document.documentElement.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+      };
+      themeBtn.addEventListener('click', function () {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var next = isDark ? 'light' : 'dark';
+        if (next === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        else document.documentElement.removeAttribute('data-theme');
+        try { localStorage.setItem('ils-theme', next); } catch (e) {}
+        syncPressed();
+      });
+      syncPressed();
+      var consultRef = container.querySelector('.nav-consult-btn');
+      if (consultRef) container.insertBefore(themeBtn, consultRef);
+      else if (burger) container.insertBefore(themeBtn, burger);
+      else container.appendChild(themeBtn);
+    }
+
     // 2) Inject the modal once
     if (!document.getElementById('consultModal')) {
       const modal = document.createElement('div');
