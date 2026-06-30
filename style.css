@@ -9480,49 +9480,51 @@ html.consult-modal-locked { overflow: hidden; }
 }
 .track-carriers-links a:hover { background: rgba(26, 86, 219, 0.08); border-color: var(--color-primary); }
 
-/* Animated "Live Radar Map" reveal button — sits at the right of the carrier row */
+/* "Live Radar Map" reveal button — styled to match the site's primary buttons,
+   sitting at the right of the carrier row, with a looping echo pulse. */
 .lt-reveal-btn {
   position: relative;
   margin-left: auto;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  color: #eaf6ff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
   cursor: pointer;
-  padding: 9px 18px;
-  border: 1px solid rgba(34, 211, 238, 0.55);
+  padding: 12px 24px;
+  border: none;
   border-radius: 999px;
-  background: linear-gradient(120deg, #0b3b8c, #1a56db 55%, #22d3ee);
-  background-size: 180% 100%;
-  box-shadow: 0 6px 20px rgba(26, 86, 219, 0.35), 0 0 0 0 rgba(34, 211, 238, 0.5);
-  animation: lt-reveal-glow 2.4s ease-in-out infinite;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.6s ease;
+  white-space: nowrap;
+  background: var(--color-primary);
+  box-shadow: 0 6px 18px rgba(26, 86, 219, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.lt-reveal-btn:hover { transform: translateY(-1px); background-position: 100% 0; box-shadow: 0 12px 28px rgba(26, 86, 219, 0.45); }
-.lt-reveal-btn:focus-visible { outline: 3px solid rgba(34, 211, 238, 0.4); outline-offset: 3px; }
+.lt-reveal-btn:hover { background: var(--color-primary-dark); transform: translateY(-1px); box-shadow: 0 12px 28px rgba(26, 86, 219, 0.45); }
+.lt-reveal-btn:focus-visible { outline: 3px solid rgba(26, 86, 219, 0.4); outline-offset: 3px; }
 
-/* attention-grabbing radar ping ring around the button */
+/* looping echo — two staggered rings expand and fade (matches the theme toggle) */
+.lt-reveal-btn::before,
 .lt-reveal-btn::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
-  border: 2px solid rgba(34, 211, 238, 0.6);
-  animation: lt-reveal-ping 2.2s ease-out infinite;
+  border: 2px solid var(--color-primary);
+  opacity: 0;
   pointer-events: none;
+  animation: lt-reveal-echo 2.8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
 }
-@keyframes lt-reveal-glow {
-  0%, 100% { box-shadow: 0 6px 20px rgba(26, 86, 219, 0.35), 0 0 0 0 rgba(34, 211, 238, 0.0); }
-  50% { box-shadow: 0 6px 26px rgba(26, 86, 219, 0.5), 0 0 14px 1px rgba(34, 211, 238, 0.35); }
+.lt-reveal-btn::after { animation-delay: 1.4s; }
+@keyframes lt-reveal-echo {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  70%  { opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
 }
-@keyframes lt-reveal-ping {
-  0% { transform: scale(1); opacity: 0.7; }
-  70%, 100% { transform: scale(1.18); opacity: 0; }
-}
+/* once opened, calm the animation down */
+.lt-reveal-btn.is-open::before,
+.lt-reveal-btn.is-open::after { animation: none; opacity: 0; }
 
 /* spinning radar sweep inside the button */
 .lt-reveal-radar {
@@ -9553,11 +9555,9 @@ html.consult-modal-locked { overflow: hidden; }
   transform: translate(-50%, -50%);
 }
 @keyframes lt-radar-sweep { to { transform: rotate(360deg); } }
-.lt-reveal-btn.is-open { animation: none; }
-.lt-reveal-btn.is-open::after { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .lt-reveal-btn, .lt-reveal-btn::after, .lt-reveal-radar::before { animation: none; }
+  .lt-reveal-btn::before, .lt-reveal-btn::after, .lt-reveal-radar::before { animation: none; opacity: 0; }
 }
 
 .track-toast {
