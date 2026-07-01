@@ -1024,11 +1024,6 @@
     const widgets = document.createElement('div');
     widgets.className = 'ils-floating-widgets';
     widgets.innerHTML = `
-      <div class="ils-accreditations" aria-label="Accreditations &amp; memberships">
-        <span class="ils-accred"><img src="${ROOT}asset/IATA Logo.png" alt="IATA — International Air Transport Association" loading="lazy" /></span>
-        <span class="ils-accred"><img src="${ROOT}asset/FIATA Logo.png" alt="FIATA — International Federation of Freight Forwarders Associations" loading="lazy" /></span>
-        <span class="ils-accred"><img src="${ROOT}asset/NAFL Logo.png" alt="NAFL — National Association of Freight &amp; Logistics" loading="lazy" /></span>
-      </div>
       <a class="ils-fab ils-fab--whatsapp" href="https://wa.me/${WHATSAPP_NUMBER}?text=${WA_PREFILL}"
          target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
         <span class="ils-fab-icon" aria-hidden="true">
