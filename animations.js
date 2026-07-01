@@ -232,7 +232,7 @@
           <span class="ils-topbar-pulse" aria-hidden="true"></span>
           <span class="ils-topbar-tagline-text">
             <strong>Moving Cargo. Driving Trade.</strong>
-            <span class="ils-topbar-tagline-sub">Your trusted freight forwarder — Dubai to the world.</span>
+            <span class="ils-topbar-tagline-sub">Your Trusted Logistics Provider from Dubai to the World</span>
           </span>
         </div>
         <div class="ils-topbar-contact">
