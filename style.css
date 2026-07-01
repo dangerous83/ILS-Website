@@ -1448,6 +1448,14 @@ ul {
 }
 .page-hero-stats--3 .hero-stat:nth-child(3) { border-right: none; }
 
+/* The stats card is centred with `transform: translate(-50%, 50%)`. It also
+   carries the `.reveal` scroll-in class, whose generic rules (translateY(36px)
+   → none) would otherwise clobber that transform and shove the card off the
+   right edge. Re-assert the centring transform for both reveal states so the
+   card stays put while it animates in. Higher specificity wins over .reveal. */
+.page-hero-stats.reveal { transform: translate(-50%, calc(50% + 36px)); }
+.page-hero-stats.reveal.is-visible { transform: translate(-50%, 50%); }
+
 .hero-stat {
   text-align: center;
   padding: 0 24px;
@@ -2400,13 +2408,21 @@ ul {
     margin-right: auto;
     padding: 0;
   }
-  .page-hero-overlay {
+  /* On phones the hero copy sits full-width over the photo, so switch every
+     hero variant to a strong top-to-bottom white wash. Without this the
+     --centered / --mid / --bottom variants keep their desktop 90° (left→right)
+     gradient — which clears on the right — and the subtitle washes out over
+     busy images (e.g. Introduction, Network). */
+  .page-hero-overlay,
+  .page-hero--centered .page-hero-overlay,
+  .page-hero--mid .page-hero-overlay,
+  .page-hero--bottom .page-hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(var(--overlay-rgb), 0.92) 0%,
-      rgba(var(--overlay-rgb), 0.82) 50%,
-      rgba(var(--overlay-rgb), 0.72) 80%,
-      rgba(var(--overlay-rgb), 0.78) 100%
+      rgba(var(--overlay-rgb), 0.96) 0%,
+      rgba(var(--overlay-rgb), 0.9) 45%,
+      rgba(var(--overlay-rgb), 0.8) 72%,
+      rgba(var(--overlay-rgb), 0.84) 100%
     );
   }
   .page-hero-stats {
@@ -6828,15 +6844,23 @@ html.ils-splash-locked body {
 @media (max-width: 960px) {
   .ils-topbar-inner { padding: 9px 28px; gap: 16px; }
   .ils-topbar-tagline-sub { display: none; }
-  .ils-topbar-contact { gap: 12px; }
+  .ils-topbar-contact { gap: 14px; }
   .ils-topbar-link span { display: none; }
   .ils-topbar-link svg { width: 18px; height: 18px; }
   .ils-topbar-sep { display: none; }
+  /* Socials live in the navbar/footer too — drop them from the utility bar so
+     the tagline and the three quick-contact icons never crowd each other. */
+  .ils-topbar-social { display: none; }
+  /* Let the tagline take the space that's left and truncate with an ellipsis
+     instead of overrunning the contact icons on narrow screens. */
+  .ils-topbar-tagline { flex: 1 1 auto; overflow: hidden; }
+  .ils-topbar-tagline-text { overflow: hidden; }
+  .ils-topbar-tagline-text strong { overflow: hidden; text-overflow: ellipsis; }
 }
 
 @media (max-width: 560px) {
   .ils-topbar { font-size: 12.5px; }
-  .ils-topbar-inner { padding: 8px 18px; }
+  .ils-topbar-inner { padding: 8px 16px; gap: 12px; }
   .ils-topbar-tagline-text strong { font-size: 12.5px; }
   .ils-topbar-pulse { width: 8px; height: 8px; }
 }
@@ -8405,22 +8429,33 @@ html.video-modal-locked, html.video-modal-locked body { overflow: hidden; }
    never covers the hero copy / CTAs
    ===================================================================== */
 @media (max-width: 760px) {
+  /* .page-hero is a row flexbox, so a static stats card would sit BESIDE the
+     hero copy and overflow. Let the hero wrap and force the card onto its own
+     full-width line so it drops cleanly below the copy / CTAs. */
+  .page-hero { flex-wrap: wrap; }
   .page-hero-stats {
     position: static !important;
     transform: none !important;
+    flex: 0 0 100% !important;
+    order: 2 !important;
     width: calc(100% - 32px) !important;
-    margin: 24px auto -40px !important;
+    margin: 28px auto -40px !important;
     padding: 22px 14px !important;
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px !important;
     border-radius: 18px !important;
     box-shadow: 0 12px 32px rgba(11, 59, 140, 0.12) !important;
   }
+  /* 3-stat card reads best as an even three-across strip rather than a
+     2-column grid that leaves an orphan cell. */
+  .page-hero-stats--3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
   .page-hero-stats .hero-stat {
     padding: 8px 10px;
     border: none !important;
   }
-  .page-hero-stats .hero-stat-num { font-size: clamp(26px, 8vw, 36px) !important; }
+  .page-hero-stats .hero-stat-num { font-size: clamp(24px, 7vw, 34px) !important; }
   .page-hero-stats .hero-stat-label { font-size: 11px !important; }
 }
 
