@@ -1208,7 +1208,10 @@ ul {
   position: relative;
   min-height: 88vh;
   padding: 180px 0 220px;
-  overflow: hidden;
+  /* overflow stays visible so the floating .page-hero-stats card, which
+     hangs ~half its height below the hero, is not clipped. The zooming
+     background image is clipped by .page-hero-image itself instead. */
+  overflow: visible;
   background-color: #eef3fb;
   display: flex;
   align-items: center;
@@ -1221,6 +1224,24 @@ ul {
   background-position: center right;
   background-repeat: no-repeat;
   z-index: 0;
+  /* Clip the zooming pseudo-element to the hero box. The hero itself is
+     now overflow:visible (so the stats card shows), so the Ken-Burns zoom
+     is contained here instead of on the hero. */
+  overflow: hidden;
+}
+
+/* The zoom lives on a ::before layer that inherits this element's inline
+   background-image. Scaling the layer overflows into .page-hero-image's
+   overflow:hidden and is clipped there — nothing spills onto the navbar
+   or the section below. */
+.page-hero-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
   animation: heroZoom 18s ease-in-out infinite alternate;
 }
 
