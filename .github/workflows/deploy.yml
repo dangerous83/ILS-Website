@@ -1,0 +1,59 @@
+name: Deploy site to GitHub Pages
+
+# Modern GitHub Actions-based Pages deploy. Replaces the legacy
+# "Deploy from a branch" builder, whose deployment queue repeatedly
+# wedged (runs stuck in "Queued" / transient "syncing_files" failures).
+# Requires: Settings -> Pages -> Source = "GitHub Actions".
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: {}
+
+# Least-privilege permissions required to deploy to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; let a running deploy finish rather
+# than cancelling it mid-publish.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # The site is static files served from the repo root.
+          path: "."
+
+      # First deploy attempt. Don't fail the job yet — GitHub Pages
+      # occasionally returns a transient "try again later" during the
+      # syncing_files step, so we retry once before giving up.
+      - name: Deploy to GitHub Pages
+        id: deployment
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Wait before retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy to GitHub Pages (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
