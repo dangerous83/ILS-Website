@@ -79,7 +79,7 @@
 }
   </script>
   <!-- END-SEO -->
-  <link rel="stylesheet" href="style.css?v=20260707b" />
+  <link rel="stylesheet" href="style.css?v=20260707c" />
 </head>
 <body>
 
@@ -699,6 +699,34 @@
             <span class="home-dest-arrow">Get in touch <span class="arrow">→</span></span>
           </div>
         </a>
+
+        <!-- 6th tile: network map of the five hubs — rounds the grid out to
+             a balanced 3×2, matching the Global Network page. -->
+        <div class="home-dest-card home-dest-card--map reveal stagger-6" aria-label="Network map showing the five owned offices">
+          <div class="hub-map" aria-hidden="true">
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+              <!-- faint reference grid -->
+              <g class="hub-map-grid">
+                <path d="M0 100 H400 M0 200 H400 M0 300 H400 M0 400 H400" />
+                <path d="M100 0 V500 M200 0 V500 M300 0 V500" />
+              </g>
+              <!-- west→east corridor route -->
+              <path class="hub-map-route" d="M78 168 L150 300 L282 322 L306 232 L250 176" />
+              <!-- hub pins: Hamburg · Dubai · Karachi · Kabul · Central Asia -->
+              <g class="hub-map-pin"><circle cx="78"  cy="168" r="6" style="animation-delay:0s"/></g>
+              <g class="hub-map-pin"><circle cx="150" cy="300" r="6" style="animation-delay:.4s"/></g>
+              <g class="hub-map-pin"><circle cx="282" cy="322" r="6" style="animation-delay:.8s"/></g>
+              <g class="hub-map-pin"><circle cx="306" cy="232" r="6" style="animation-delay:1.2s"/></g>
+              <g class="hub-map-pin"><circle cx="250" cy="176" r="6" style="animation-delay:1.6s"/></g>
+            </svg>
+          </div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Network Map</span>
+            <h3 class="home-dest-title">Five Offices, One Map</h3>
+            <span class="home-dest-sub">Dubai · Hamburg · Central Asia · Kabul · Karachi</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1338,7 +1366,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=20260707b"></script>
+  <script src="script.js?v=20260707c"></script>
   <script src="animations.js?v=20260701a"></script>
 </body>
 </html>
