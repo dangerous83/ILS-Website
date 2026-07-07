@@ -47,7 +47,7 @@
       features: [
         'Block-train rail into Tashkent and Almaty',
         'TIR-Carnet trucking across all Central Asian borders',
-        'Road transit via Iran, Turkey, and the Caucasus',
+        'Road transit via Iran, Turkey, and the CIS',
         'Air consolidations from Dubai and Istanbul',
         'Customs brokerage in Russian-speaking markets',
       ],
@@ -91,20 +91,20 @@
 
     'caucasus': {
       num: '04',
-      region: 'Caucasus',
-      breadcrumb: 'Caucasus',
-      heroImage: '../asset/caucasus - 22.webp?v=20260701',
-      heroTitleHTML: 'Logistics across the <span class="accent">Caucasus</span>',
+      region: 'CIS',
+      breadcrumb: 'CIS',
+      heroImage: '../asset/CIS - 55.png?v=20260707b',
+      heroTitleHTML: 'Logistics across the <span class="accent">CIS</span>',
       heroSubtitle: 'Connecting the Middle East and Europe to Azerbaijan, Armenia, and Georgia — a key bridge on the Europe–Central Asia corridor.',
-      eyebrow: 'Caucasus Corridor',
+      eyebrow: 'CIS Corridor',
       detailTitleHTML: 'A bridge between <span class="accent">continents</span>',
-      detailDesc: 'The Caucasus is the bridge between Europe, the Middle East, and Central Asia. Through the Black Sea ports of Poti and Batumi and the Baku–Tbilisi corridor, we move road, rail, and sea cargo across Azerbaijan, Armenia, and Georgia.',
+      detailDesc: 'The CIS is the bridge between Europe, the Middle East, and Central Asia. Through the Black Sea ports of Poti and Batumi and the Baku–Tbilisi corridor, we move road, rail, and sea cargo across Azerbaijan, Armenia, and Georgia.',
       modes: { air: true, road: true, sea: true },
       features: [
         'Black Sea ports of Poti and Batumi (Georgia)',
         'Caspian crossing via Baku, Azerbaijan',
         'TIR road transit through Turkey and Georgia',
-        'Customs clearance across the South Caucasus',
+        'Customs clearance across the CIS',
         'Trans-Caspian links onward to Central Asia',
       ],
       lanes: [
