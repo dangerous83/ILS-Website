@@ -3238,6 +3238,72 @@ ul {
 }
 
 /* ============================================
+   PLACEHOLDER NETWORK-MAP TILE (network page hubs grid)
+   A dummy map tile so the hubs row rounds out to six.
+   Swap the inline SVG for a real map when ready.
+   ============================================ */
+.home-dest-card--map {
+  background: radial-gradient(125% 125% at 28% 18%, #164bb5 0%, #0b2a66 46%, #06183f 100%);
+  cursor: default;
+}
+
+.hub-map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hub-map svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hub-map-grid path {
+  stroke: rgba(126, 179, 255, 0.14);
+  stroke-width: 1;
+  fill: none;
+}
+
+/* animated dashed corridor line linking the hubs */
+.hub-map-route {
+  fill: none;
+  stroke: rgba(158, 197, 255, 0.75);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 6 9;
+  animation: hubMapRoute 5.5s linear infinite;
+}
+
+@keyframes hubMapRoute {
+  to { stroke-dashoffset: -150; }
+}
+
+/* pulsing hub pins */
+.hub-map-pin circle {
+  fill: #9ec5ff;
+  stroke: #ffffff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px rgba(158, 197, 255, 0.9));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hubMapPin 2.4s ease-in-out infinite;
+}
+
+@keyframes hubMapPin {
+  0%, 100% { transform: scale(1);   opacity: 0.85; }
+  50%      { transform: scale(1.5); opacity: 1; }
+}
+
+/* the map tile isn't a link, so give it a gentle idle float for attention */
+.home-dest-card--map:hover { transform: translateY(-10px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-map-route,
+  .hub-map-pin circle { animation: none; }
+}
+
+/* ============================================
    HOME PAGE — TRUSTED PARTNERS / CLIENTS MARQUEE
    ============================================ */
 .home-clients {

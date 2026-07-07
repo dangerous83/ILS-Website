@@ -223,6 +223,33 @@
             <span class="home-dest-arrow">Get in touch <span class="arrow">→</span></span>
           </div>
         </a>
+
+        <!-- 6th tile: placeholder network map of the five hubs (dummy — swap for a real map later) -->
+        <div class="home-dest-card home-dest-card--map reveal stagger-6" aria-label="Placeholder network map showing the five owned hubs">
+          <div class="hub-map" aria-hidden="true">
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+              <!-- faint reference grid -->
+              <g class="hub-map-grid">
+                <path d="M0 100 H400 M0 200 H400 M0 300 H400 M0 400 H400" />
+                <path d="M100 0 V500 M200 0 V500 M300 0 V500" />
+              </g>
+              <!-- west→east corridor route -->
+              <path class="hub-map-route" d="M78 168 L150 300 L282 322 L306 232 L250 176" />
+              <!-- hub pins: Hamburg · Dubai · Karachi · Kabul · Central Asia -->
+              <g class="hub-map-pin"><circle cx="78"  cy="168" r="6" style="animation-delay:0s"/></g>
+              <g class="hub-map-pin"><circle cx="150" cy="300" r="6" style="animation-delay:.4s"/></g>
+              <g class="hub-map-pin"><circle cx="282" cy="322" r="6" style="animation-delay:.8s"/></g>
+              <g class="hub-map-pin"><circle cx="306" cy="232" r="6" style="animation-delay:1.2s"/></g>
+              <g class="hub-map-pin"><circle cx="250" cy="176" r="6" style="animation-delay:1.6s"/></g>
+            </svg>
+          </div>
+          <div class="home-dest-overlay"></div>
+          <div class="home-dest-content">
+            <span class="home-dest-tag">Network Map</span>
+            <h3 class="home-dest-title">Five Hubs, One Map</h3>
+            <span class="home-dest-sub">Placeholder — Dubai · Hamburg · Central Asia · Kabul · Karachi</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -238,7 +265,7 @@
 
       <div class="home-destinations-grid">
         <a href="destinations#middle-east" class="home-dest-card reveal stagger-1">
-          <div class="home-dest-bg" style="background-image: url('../asset/Dubai.png?v=20260629d')"></div>
+          <div class="home-dest-bg" style="background-image: url('../asset/Middle East -55.png?v=20260707b')"></div>
           <div class="home-dest-overlay"></div>
           <div class="home-dest-content">
             <span class="home-dest-tag">Region 01</span>
@@ -271,18 +298,18 @@
         </a>
 
         <a href="destinations#caucasus" class="home-dest-card reveal stagger-4">
-          <div class="home-dest-bg" style="background-image: url('../asset/caucasus.jpg?v=20260617d')"></div>
+          <div class="home-dest-bg" style="background-image: url('../asset/CIS - 55.png?v=20260707b')"></div>
           <div class="home-dest-overlay"></div>
           <div class="home-dest-content">
             <span class="home-dest-tag">Region 04</span>
-            <h3 class="home-dest-title">Caucasus</h3>
+            <h3 class="home-dest-title">CIS</h3>
             <span class="home-dest-sub">Azerbaijan · Armenia · Georgia</span>
             <span class="home-dest-arrow">Explore routes <span class="arrow">→</span></span>
           </div>
         </a>
 
         <a href="destinations#europe" class="home-dest-card reveal stagger-5">
-          <div class="home-dest-bg" style="background-image: url('../asset/Hamburg.png?v=20260629d')"></div>
+          <div class="home-dest-bg" style="background-image: url('../asset/Europe - 55.png?v=20260707b')"></div>
           <div class="home-dest-overlay"></div>
           <div class="home-dest-content">
             <span class="home-dest-tag">Region 05</span>
