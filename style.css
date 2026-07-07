@@ -497,7 +497,7 @@ ul {
 .hero-subtitle {
   font-size: 17px;
   line-height: 1.55;
-  color: #2c3a52;
+  color: #000000;
   font-weight: 500;
   max-width: 480px;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
@@ -1339,7 +1339,7 @@ ul {
 .page-hero-subtitle {
   font-size: 17px;
   line-height: 1.65;
-  color: #2c3a52;
+  color: #000000;
   font-weight: 500;
   max-width: 100%;
   margin-bottom: 24px;
