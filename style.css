@@ -10046,3 +10046,457 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
     padding: 0 !important;
   }
 }
+
+
+/* ============================================
+   HERO INTERACTIVE GLOBE  (right side of hero)
+   Orbiting region nodes + "Explore our 6 regions"
+   ============================================ */
+.hero-globe {
+  position: relative;
+  z-index: 3;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  flex: 0 0 auto;
+  padding-left: 24px;
+}
+
+.globe-scene {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  color: var(--color-primary);
+}
+
+/* soft glow halo so the sphere reads over any hero photo */
+.globe-glow {
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(26, 86, 219, 0.30) 0%,
+    rgba(26, 86, 219, 0.12) 38%,
+    rgba(26, 86, 219, 0) 70%);
+  filter: blur(4px);
+  z-index: 0;
+}
+
+/* decorative tilted orbit rings */
+.globe-ring {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 86, 219, 0.22);
+  z-index: 1;
+}
+.globe-ring--1 { transform: rotateX(74deg); animation: ilsRingSpin 26s linear infinite; }
+.globe-ring--2 { inset: 20%; transform: rotateX(74deg) rotateZ(60deg); border-color: rgba(26, 86, 219, 0.14); animation: ilsRingSpin 34s linear infinite reverse; }
+@keyframes ilsRingSpin { to { transform: rotateX(74deg) rotateZ(360deg); } }
+
+/* ---- Earth sphere ---- */
+.globe-sphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 226px;
+  height: 226px;
+  margin: -113px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 34% 28%,
+      #4f86f7 0%,
+      #1a56db 42%,
+      #0b3b8c 74%,
+      #06234f 100%);
+  box-shadow:
+    inset -18px -22px 48px rgba(4, 14, 38, 0.65),
+    inset 12px 14px 30px rgba(120, 170, 255, 0.35),
+    0 26px 60px rgba(11, 59, 140, 0.38);
+}
+
+/* scrolling dotted "surface" = the earth rotating */
+.globe-surface {
+  position: absolute;
+  inset: -20% -50%;
+  background-image: radial-gradient(rgba(180, 214, 255, 0.55) 1.4px, transparent 1.6px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  animation: ilsSurface 22s linear infinite;
+}
+@keyframes ilsSurface { to { transform: translateX(25%); } }
+
+/* longitude / latitude wireframe */
+.globe-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(200, 224, 255, 0.9);
+}
+
+/* spherical top-left highlight */
+.globe-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+
+/* ---- Orbit (lines + nodes rotate together as one loop) ---- */
+.globe-orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  animation: ilsOrbitSpin 46s linear infinite;
+}
+@keyframes ilsOrbitSpin { to { transform: rotate(360deg); } }
+
+.globe-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: rgba(26, 86, 219, 0.55);
+  stroke-dasharray: 5 9;
+  animation: ilsDash 1.6s linear infinite;
+}
+@keyframes ilsDash { to { stroke-dashoffset: -28; } }
+
+/* each node sits on the orbit circle, kept upright inside the ring */
+.globe-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62px;
+  height: 62px;
+  margin: -31px;
+  transform: rotate(var(--a)) translate(165px) rotate(calc(var(--a) * -1));
+}
+
+/* counter-spin keeps icons upright while the ring turns */
+.node-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(26, 86, 219, 0.18);
+  box-shadow: 0 10px 26px rgba(11, 59, 140, 0.24);
+  color: var(--color-primary);
+  animation: ilsOrbitCounter 46s linear infinite;
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+@keyframes ilsOrbitCounter { to { transform: rotate(-360deg); } }
+.node-chip svg { width: 28px; height: 28px; }
+
+/* pulsing ping ring behind each chip */
+.node-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(26, 86, 219, 0.5);
+  animation: ilsPing 2.6s ease-out infinite;
+}
+@keyframes ilsPing {
+  0%   { transform: scale(1);    opacity: .7; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* hover label */
+.node-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: #fff;
+  background: var(--color-primary-darker);
+  padding: 5px 10px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.globe-node:hover .node-chip,
+.globe-node:focus-visible .node-chip {
+  transform: rotate(-360deg) scale(1.12);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(11, 59, 140, 0.38);
+}
+.globe-node:hover .node-tip,
+.globe-node:focus-visible .node-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* pause the whole loop on interaction */
+.globe-scene:hover .globe-orbit,
+.globe-scene:hover .node-chip { animation-play-state: paused; }
+
+/* ---- center hub ---- */
+.globe-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 58px;
+  height: 58px;
+  margin: -29px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #1a56db, #0b3b8c);
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 6px rgba(26, 86, 219, 0.16), 0 14px 30px rgba(11, 59, 140, 0.4);
+}
+.globe-hub svg { width: 30px; height: 30px; }
+
+/* ---- explore button ---- */
+.globe-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(26, 86, 219, 0.28);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-primary-dark);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(11, 59, 140, 0.16);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.globe-explore:hover {
+  transform: translateY(-2px);
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(11, 59, 140, 0.24);
+}
+.globe-explore-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.22);
+  animation: ilsDotPulse 2s ease-in-out infinite;
+}
+@keyframes ilsDotPulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+
+/* ---- dark mode tuning ---- */
+:root[data-theme="dark"] .globe-explore {
+  background: rgba(14, 26, 48, 0.72);
+  color: #cfe0ff;
+  border-color: rgba(120, 170, 255, 0.3);
+}
+:root[data-theme="dark"] .node-chip {
+  background: rgba(16, 30, 56, 0.94);
+  border-color: rgba(120, 170, 255, 0.28);
+  color: #8fb6ff;
+}
+
+/* scale the scene down on smaller desktops */
+@media (max-width: 1200px) {
+  .globe-scene { width: 340px; height: 340px; }
+  .globe-node { transform: rotate(var(--a)) translate(140px) rotate(calc(var(--a) * -1)); }
+  .globe-node:hover .node-chip, .globe-node:focus-visible .node-chip { transform: rotate(-360deg) scale(1.12); }
+  .globe-sphere { width: 190px; height: 190px; margin: -95px; }
+}
+
+/* hide the decorative globe where the hero stacks (tablet / mobile) */
+@media (max-width: 1024px) {
+  .hero-globe { display: none; }
+}
+
+/* respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .globe-orbit, .node-chip, .globe-surface, .globe-ring,
+  .globe-links, .node-pulse, .globe-explore-dot { animation: none !important; }
+}
+
+
+/* ============================================
+   REGIONS PANEL  (hero globe "Explore" popup)
+   ============================================ */
+.regions-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.regions-modal.is-open { opacity: 1; visibility: visible; }
+
+.regions-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 20, 46, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.regions-shell {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-radius: 24px;
+  padding: 34px 30px 30px;
+  text-align: center;
+  background:
+    radial-gradient(140% 90% at 50% 0%, rgba(26, 86, 219, 0.12), transparent 60%),
+    var(--surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 40px 90px rgba(6, 20, 46, 0.45);
+  transform: translateY(14px) scale(.98);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.regions-modal.is-open .regions-shell { transform: translateY(0) scale(1); }
+
+.regions-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--surface-2);
+  color: var(--color-text-soft);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.regions-close:hover { background: var(--color-primary); color: #fff; }
+
+.regions-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+}
+.regions-eyebrow-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.18);
+}
+.regions-title { font-size: 28px; color: var(--heading); margin-top: 10px; }
+.regions-subtitle { color: var(--color-text-soft); font-size: 15px; margin: 8px auto 0; max-width: 380px; }
+
+/* circular arrangement of the 6 regions around a core */
+.regions-orbit {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  max-width: 100%;
+  margin: 26px auto 6px;
+}
+.regions-orbit-ring {
+  position: absolute;
+  inset: 46px;
+  border-radius: 50%;
+  border: 1px dashed rgba(26, 86, 219, 0.28);
+}
+.regions-core {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 74px; height: 74px;
+  margin: -37px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #1a56db, #0b3b8c);
+  box-shadow: 0 0 0 8px rgba(26, 86, 219, 0.14), 0 16px 34px rgba(11, 59, 140, 0.4);
+  animation: ilsCorePulse 2.6s ease-in-out infinite;
+}
+@keyframes ilsCorePulse { 0%,100% { box-shadow: 0 0 0 8px rgba(26,86,219,.14), 0 16px 34px rgba(11,59,140,.4); } 50% { box-shadow: 0 0 0 14px rgba(26,86,219,.06), 0 16px 34px rgba(11,59,140,.4); } }
+.regions-core svg { width: 36px; height: 36px; }
+
+.region-item {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 116px;
+  margin: -52px -58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  /* place around the circle: 6 slots, 60deg apart, radius 150px */
+  transform: rotate(calc(var(--p) * 60deg)) translate(150px) rotate(calc(var(--p) * -60deg));
+  color: var(--color-text);
+  transition: transform .25s ease;
+}
+.region-item b { font-size: 13.5px; color: var(--heading); margin-top: 4px; }
+.region-item span { font-size: 11px; color: var(--color-muted); line-height: 1.3; }
+.region-ico {
+  width: 58px; height: 58px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  color: var(--color-primary);
+  background: var(--surface-2);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, background .25s ease, color .25s ease, box-shadow .25s ease;
+}
+.region-ico svg { width: 26px; height: 26px; }
+.region-item:hover .region-ico {
+  transform: translateY(-3px) scale(1.06);
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(11, 59, 140, 0.34);
+}
+
+.regions-cta { margin-top: 14px; }
+
+/* stack the regions into a simple grid on small screens */
+@media (max-width: 560px) {
+  .regions-shell { padding: 30px 18px 22px; }
+  .regions-orbit {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 12px;
+    margin: 22px auto 10px;
+  }
+  .regions-orbit-ring, .regions-core { display: none; }
+  .region-item {
+    position: static;
+    width: auto;
+    margin: 0;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regions-core { animation: none !important; }
+}

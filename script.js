@@ -364,3 +364,42 @@
     });
   }
 })();
+
+
+/* ============================================
+   REGIONS PANEL — opened from the hero globe
+   "Explore our 6 regions" button
+   ============================================ */
+(function () {
+  const panel = document.getElementById('regionsPanel');
+  const openBtn = document.getElementById('openRegionsBtn');
+  if (!panel || !openBtn) return;
+
+  let lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    panel.classList.add('is-open');
+    panel.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('quote-modal-locked');
+    const closeBtn = panel.querySelector('.regions-close');
+    if (closeBtn) setTimeout(() => closeBtn.focus(), 300);
+  }
+
+  function close() {
+    panel.classList.remove('is-open');
+    panel.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('quote-modal-locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  openBtn.addEventListener('click', open);
+
+  panel.querySelectorAll('[data-regions-close]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) close();
+  });
+})();
