@@ -10065,6 +10065,7 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
   flex: 0 0 auto;
   padding-left: 24px;
   align-self: center;
+  margin-top: -72px;          /* lift the sphere higher in the hero */
 }
 
 .globe-scene {
@@ -10110,6 +10111,13 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
   will-change: transform, opacity;
 }
 
+/* animatable angle for the "saber" light that traces the chip border */
+@property --saber {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .node-chip {
   position: relative;
   display: flex;
@@ -10126,19 +10134,54 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   color: #9cc4ff;
-  transition: box-shadow .3s ease, border-color .3s ease, color .3s ease, background .3s ease;
+  transition: box-shadow .3s ease, border-color .3s ease, color .3s ease,
+              background .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
 }
-.node-chip svg { width: 24px; height: 24px; }
+.node-chip svg { width: 24px; height: 24px; transition: transform .3s ease; }
+
+/* the light-saber stroke: a bright point sweeping around the border ring */
+.node-chip::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;                 /* stroke thickness */
+  background: conic-gradient(from var(--saber),
+    transparent 0deg,
+    transparent 200deg,
+    rgba(150, 210, 255, 0.65) 288deg,
+    #ffffff 324deg,
+    rgba(150, 210, 255, 0.65) 350deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity .3s ease;
+  animation: ilsSaber 1.5s linear infinite paused;
+  pointer-events: none;
+}
+@keyframes ilsSaber { to { --saber: 360deg; } }
 
 .globe-node:hover .node-chip,
 .globe-node:focus-visible .node-chip {
   color: #ffffff;
   border-color: rgba(170, 208, 255, 0.95);
   background: rgba(20, 46, 96, 0.9);
+  transform: scale(1.14);
   box-shadow:
     0 0 30px rgba(90, 156, 255, 0.75),
     0 0 60px rgba(64, 130, 255, 0.35),
     inset 0 0 16px rgba(120, 176, 255, 0.35);
+}
+.globe-node:hover .node-chip svg,
+.globe-node:focus-visible .node-chip svg { transform: scale(1.08); }
+
+.globe-node:hover .node-chip::before,
+.globe-node:focus-visible .node-chip::before {
+  opacity: 1;
+  animation-play-state: running;
 }
 
 /* hover label */
@@ -10219,7 +10262,8 @@ html[data-theme="dark"] .page-hero-subtitle { color: #c4d2ea; }
 
 /* respect reduced-motion (canvas renders a static frame via JS) */
 @media (prefers-reduced-motion: reduce) {
-  .globe-explore-dot { animation: none !important; }
+  .globe-explore-dot,
+  .node-chip::before { animation: none !important; }
 }
 
 
