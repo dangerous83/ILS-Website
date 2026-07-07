@@ -436,6 +436,9 @@
   let dragging = false, lastX = 0, lastT = 0, dragVel = 0;
   let paused = false;            // chip hover pauses the spin
   let raf = null;
+  // cursor position (canvas px) for the proximity "torch" glow
+  let mx = -9999, my = -9999, mInside = false;
+  const TORCH = 108;             // glow radius around the cursor
 
   function resize() {
     DPR = Math.min(window.devicePixelRatio || 1, 2);
@@ -444,8 +447,16 @@
     canvas.width = W * DPR;
     canvas.height = H * DPR;
     CX = W / 2; CY = H / 2;
-    R = W * 0.40;
+    R = W * 0.41;
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+
+  // 0..1 closeness of a screen point to the cursor (for the torch glow)
+  function torch(x, y) {
+    if (!mInside) return 0;
+    const dx = x - mx, dy = y - my;
+    const d = Math.sqrt(dx * dx + dy * dy);
+    return d < TORCH ? 1 - d / TORCH : 0;
   }
 
   const cosP = () => Math.cos(pitch), sinP = () => Math.sin(pitch);
@@ -470,14 +481,19 @@
     const proj = pts.map((p) => project(p, cy, sy));
     const g = glow;
 
-    // wireframe links — front lines brighter, glow boosts everything
+    // wireframe links — subtle by default; depth + hover + the cursor
+    // "torch" brighten them. Lines the cursor passes over light up.
     for (let k = 0; k < links.length; k++) {
       const a = proj[links[k][0]], b = proj[links[k][1]];
       const depth = (a.z + b.z) / 2;               // -1 back … +1 front
       const t = (depth + 1) / 2;
-      const alpha = (0.05 + t * 0.30) * (1 + g * 1.3);
-      ctx.strokeStyle = 'rgba(112, 168, 255,' + Math.min(alpha, 0.85) + ')';
-      ctx.lineWidth = 1 + g * 0.6;
+      const near = torch((a.sx + b.sx) / 2, (a.sy + b.sy) / 2);
+      const alpha = (0.03 + t * 0.20) * (1 + g * 1.1) + near * 0.75;
+      // near the cursor the line shifts brighter / whiter-blue
+      const col = near > 0.02 ? (150 + near * 70) + ', ' + (190 + near * 45) + ', 255'
+                              : '112, 168, 255';
+      ctx.strokeStyle = 'rgba(' + col + ',' + Math.min(alpha, 0.95) + ')';
+      ctx.lineWidth = 0.9 + g * 0.5 + near * 1.4;
       ctx.beginPath();
       ctx.moveTo(a.sx, a.sy);
       ctx.lineTo(b.sx, b.sy);
@@ -488,9 +504,12 @@
     for (let i = 0; i < proj.length; i++) {
       const p = proj[i];
       const t = (p.z + 1) / 2;
-      const alpha = (0.25 + t * 0.6) * (1 + g * 0.6);
-      const size = (0.9 + t * 1.3) * p.s;
-      ctx.fillStyle = 'rgba(168, 204, 255,' + Math.min(alpha, 1) + ')';
+      const near = torch(p.sx, p.sy);
+      const alpha = (0.16 + t * 0.42) * (1 + g * 0.6) + near * 0.7;
+      const size = (0.85 + t * 1.2) * p.s + near * 1.6;
+      const col = near > 0.02 ? (170 + near * 60) + ', ' + (205 + near * 30) + ', 255'
+                              : '168, 204, 255';
+      ctx.fillStyle = 'rgba(' + col + ',' + Math.min(alpha, 1) + ')';
       ctx.beginPath();
       ctx.arc(p.sx, p.sy, size, 0, Math.PI * 2);
       ctx.fill();
@@ -501,12 +520,13 @@
       const p = proj[cubes[c]];
       if (p.z < -0.2) continue;                    // hide far-back cubes
       const t = (p.z + 1) / 2;
+      const near = torch(p.sx, p.sy);
       const s = (3 + t * 3) * p.s;
       ctx.save();
       ctx.translate(p.sx, p.sy);
       ctx.rotate(yaw + c);
-      ctx.globalAlpha = 0.35 + t * 0.55;
-      ctx.strokeStyle = 'rgba(190, 218, 255,' + (0.5 + g * 0.4) + ')';
+      ctx.globalAlpha = Math.min(0.22 + t * 0.4 + near * 0.5, 1);
+      ctx.strokeStyle = 'rgba(190, 218, 255,' + (0.45 + g * 0.35 + near * 0.4) + ')';
       ctx.lineWidth = 1.1;
       ctx.strokeRect(-s / 2, -s / 2, s, s);
       ctx.restore();
@@ -516,10 +536,21 @@
     // outer glow halo (stronger on hover)
     const halo = ctx.createRadialGradient(CX, CY, R * 0.55, CX, CY, R * 1.25);
     halo.addColorStop(0, 'rgba(64, 130, 255, 0)');
-    halo.addColorStop(0.8, 'rgba(64, 130, 255,' + (0.05 + g * 0.10) + ')');
+    halo.addColorStop(0.8, 'rgba(64, 130, 255,' + (0.04 + g * 0.09) + ')');
     halo.addColorStop(1, 'rgba(64, 130, 255, 0)');
     ctx.fillStyle = halo;
     ctx.fillRect(0, 0, W, H);
+
+    // soft spotlight that follows the cursor across the mesh
+    if (mInside) {
+      const spot = ctx.createRadialGradient(mx, my, 0, mx, my, TORCH);
+      spot.addColorStop(0, 'rgba(120, 180, 255, 0.16)');
+      spot.addColorStop(1, 'rgba(120, 180, 255, 0)');
+      ctx.fillStyle = spot;
+      ctx.beginPath();
+      ctx.arc(mx, my, TORCH, 0, Math.PI * 2);
+      ctx.fill();
+    }
 
     // position the 6 region chips on the sphere
     for (let i = 0; i < chips.length; i++) {
@@ -546,8 +577,11 @@
   }
 
   /* ---------- interaction ---------- */
-  scene.addEventListener('mouseenter', () => { glowTarget = 1; });
-  scene.addEventListener('mouseleave', () => { glowTarget = 0; dragging = false; scene.classList.remove('is-dragging'); });
+  scene.addEventListener('mouseenter', () => { glowTarget = 1; mInside = true; });
+  scene.addEventListener('mouseleave', () => {
+    glowTarget = 0; mInside = false; mx = my = -9999;
+    dragging = false; scene.classList.remove('is-dragging');
+  });
 
   chips.forEach((el) => {
     el.addEventListener('mouseenter', () => { paused = true; });
@@ -565,6 +599,11 @@
     scene.setPointerCapture && scene.setPointerCapture(e.pointerId);
   });
   scene.addEventListener('pointermove', (e) => {
+    // track the cursor over the canvas for the torch glow (hover or drag)
+    const r = canvas.getBoundingClientRect();
+    mx = e.clientX - r.left;
+    my = e.clientY - r.top;
+    mInside = true;
     if (!dragging) return;
     const now = performance.now();
     const dx = e.clientX - lastX;
