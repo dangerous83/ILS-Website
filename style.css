@@ -2166,9 +2166,59 @@ ul {
 }
 
 .footer-info {
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.7;
   margin-bottom: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+/* ============================================================
+   GET IN TOUCH — high-contrast, attention-drawing contact column
+   The address/email/phone were faint grey (0.7 white) and hard to
+   read. Lift the contrast and wrap the column in a glowing accent
+   card that pulses so it's impossible to miss.
+   ============================================================ */
+.footer-grid > .footer-col:last-child {
+  position: relative;
+  padding: 24px 24px 22px 26px;
+  border-radius: 14px;
+  background: rgba(126, 179, 255, 0.07);
+  border: 1px solid rgba(126, 179, 255, 0.30);
+  animation: footerContactGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes footerContactGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(126, 179, 255, 0);
+    border-color: rgba(126, 179, 255, 0.30);
+  }
+  50% {
+    box-shadow: 0 0 26px 3px rgba(126, 179, 255, 0.40);
+    border-color: rgba(126, 179, 255, 0.70);
+  }
+}
+
+/* the email + phone links: bright accent, bold, clearly clickable */
+.footer-grid > .footer-col:last-child .footer-info a {
+  color: #9ec5ff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-grid > .footer-col:last-child .footer-info a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* respect reduced-motion: keep the highlight, drop the pulsing */
+@media (prefers-reduced-motion: reduce) {
+  .footer-grid > .footer-col:last-child {
+    animation: none;
+    box-shadow: 0 0 20px 2px rgba(126, 179, 255, 0.30);
+    border-color: rgba(126, 179, 255, 0.55);
+  }
 }
 
 .footer-bottom {
@@ -3737,16 +3787,16 @@ ul {
 }
 
 .contact-channel-label {
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #9ec5ff;          /* was faint grey (0.55 white) — now bright accent for strong contrast */
 }
 
 .contact-channel-value {
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: 15.5px;
+  font-weight: 700;
   color: #ffffff;
   text-decoration: none;
   transition: color 0.2s ease;
