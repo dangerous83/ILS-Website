@@ -3245,7 +3245,17 @@ ul {
    ============================================ */
 .home-dest-card--map {
   background: radial-gradient(125% 125% at 28% 18%, #164bb5 0%, #0b2a66 46%, #06183f 100%);
-  cursor: default;
+  /* it's now a <button> that opens the regions panel — reset native styling */
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: #ffffff;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
 }
 
 /* The globe fills the tile behind the label overlay. The two-class
