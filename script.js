@@ -371,43 +371,5 @@
 /* HERO 3D WIREFRAME GLOBE — moved to globe.js (shared with subpages). */
 
 
-/* ============================================
-   REGIONS PANEL — opened from the hero globe
-   "Explore our 6 regions" button. The panel
-   morphs open (circular clip reveal) and the
-   six regions fly out of the core — all
-   choreographed in CSS; JS just toggles state.
-   ============================================ */
-(function () {
-  const panel = document.getElementById('regionsPanel');
-  const openBtn = document.getElementById('openRegionsBtn');
-  if (!panel || !openBtn) return;
-
-  let lastFocus = null;
-
-  function open() {
-    lastFocus = document.activeElement;
-    panel.classList.add('is-open');
-    panel.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('quote-modal-locked');
-    const closeBtn = panel.querySelector('.regions-close');
-    if (closeBtn) setTimeout(() => closeBtn.focus(), 650);
-  }
-
-  function close() {
-    panel.classList.remove('is-open');
-    panel.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('quote-modal-locked');
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  openBtn.addEventListener('click', open);
-
-  panel.querySelectorAll('[data-regions-close]').forEach((el) => {
-    el.addEventListener('click', close);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && panel.classList.contains('is-open')) close();
-  });
-})();
+/* REGIONS PANEL ("Find Your Trade Lane") — moved to globe.js so it can be
+   opened from the hero globe button AND the network-globe tiles on subpages. */

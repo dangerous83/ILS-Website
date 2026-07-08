@@ -708,20 +708,22 @@
           </div>
         </a>
 
-        <!-- 6th tile: rotating wireframe network globe (decorative, auto-spins) —
-             rounds the grid out to a balanced 3×2, matching the Global Network page. -->
-        <div class="home-dest-card home-dest-card--map reveal stagger-6" aria-label="Network globe representing the five owned offices">
-          <div class="globe-scene globe-scene--card" aria-hidden="true">
+        <!-- 6th tile: rotating wireframe network globe — click to open the
+             "Find Your Trade Lane" regions panel (same morph as the hero globe).
+             Rounds the grid out to a balanced 3×2, matching the Global Network page. -->
+        <button type="button" class="home-dest-card home-dest-card--map reveal stagger-6" data-regions-open aria-haspopup="dialog" aria-controls="regionsPanel" aria-label="Explore our six regions">
+          <span class="globe-scene globe-scene--card" aria-hidden="true">
             <span class="globe-backing"></span>
             <canvas aria-hidden="true"></canvas>
-          </div>
-          <div class="home-dest-overlay"></div>
-          <div class="home-dest-content">
+          </span>
+          <span class="home-dest-overlay"></span>
+          <span class="home-dest-content">
             <span class="home-dest-tag">Network Map</span>
-            <h3 class="home-dest-title">Five Offices, One Map</h3>
+            <span class="home-dest-title">Five Offices, One Map</span>
             <span class="home-dest-sub">Dubai · Hamburg · Central Asia · Kabul · Karachi</span>
-          </div>
-        </div>
+            <span class="home-dest-arrow">Explore regions <span class="arrow">→</span></span>
+          </span>
+        </button>
       </div>
     </div>
   </section>
@@ -1360,7 +1362,7 @@
   </div>
 
   <script src="script.js?v=20260707d"></script>
-  <script src="globe.js?v=20260708a"></script>
+  <script src="globe.js?v=20260708b"></script>
   <script src="animations.js?v=20260701a"></script>
 </body>
 </html>
