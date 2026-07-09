@@ -37,7 +37,7 @@
       num: '02',
       region: 'Central Asia',
       breadcrumb: 'Central Asia',
-      heroImage: '../asset/Central Asia - 2.png?v=20260630h',
+      heroImage: '../asset/CIS - 55.png?v=20260709',
       heroTitleHTML: 'Logistics across <span class="accent">Central Asia</span>',
       heroSubtitle: 'Our SILKWAY service connects global cargo to Kazakhstan, Uzbekistan, Turkmenistan, Kyrgyzstan, and Tajikistan — by road, rail, and air through every major gateway.',
       eyebrow: 'SILKWAY Network',
