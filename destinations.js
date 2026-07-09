@@ -93,7 +93,7 @@
       num: '04',
       region: 'CIS',
       breadcrumb: 'CIS',
-      heroImage: '../asset/CIS - 55.png?v=20260707b',
+      heroImage: '../asset/CIS - 77.webp?v=20260709',
       heroTitleHTML: 'Logistics across the <span class="accent">CIS</span>',
       heroSubtitle: 'Connecting the Middle East and Europe to Azerbaijan, Armenia, and Georgia — a key bridge on the Europe–Central Asia corridor.',
       eyebrow: 'CIS Corridor',
