@@ -9441,6 +9441,7 @@ html.consult-modal-locked { overflow: hidden; }
     rgba(var(--overlay-rgb), 0) 82%
   );
 }
+.aid-hero .page-hero-subtitle { max-width: 560px; }
 
 /* ============================================
    PAGE HERO — benefit points (check pills)
