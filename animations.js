@@ -243,7 +243,7 @@
           <span class="ils-topbar-sep" aria-hidden="true"></span>
           <a class="ils-topbar-link" href="tel:+97144343800" aria-label="Call our landline">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8 9.8a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.9 2.3z"/></svg>
-            <span>+971 4 4343800</span>
+            <span>+971 4 4343 800</span>
           </a>
           <span class="ils-topbar-sep" aria-hidden="true"></span>
           <a class="ils-topbar-link ils-topbar-link--wa" href="https://wa.me/971545461339" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
