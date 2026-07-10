@@ -126,6 +126,7 @@
                 <a class="submenu-item" href="contact#germany"><span class="submenu-label">Germany</span><span class="submenu-arrow">→</span></a>
                 <a class="submenu-item" href="contact#pakistan"><span class="submenu-label">Pakistan</span><span class="submenu-arrow">→</span></a>
                 <a class="submenu-item" href="contact#afghanistan"><span class="submenu-label">Afghanistan</span><span class="submenu-arrow">→</span></a>
+                <a class="submenu-item" href="contact#cis"><span class="submenu-label">CIS</span><span class="submenu-arrow">→</span></a>
               </div>
             </div>
           </li>
@@ -365,7 +366,17 @@
               <button type="button" class="office-tab" data-office="germany" role="tab" aria-selected="false">Germany</button>
               <button type="button" class="office-tab" data-office="pakistan" role="tab" aria-selected="false">Pakistan</button>
               <button type="button" class="office-tab" data-office="afghanistan" role="tab" aria-selected="false">Afghanistan</button>
+              <button type="button" class="office-tab" data-office="cis" role="tab" aria-selected="false">CIS</button>
             </div>
+
+            <!-- Regional desk email: updates to match the office selected above -->
+            <p class="contact-office-email">
+              <span class="contact-office-email-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <span class="contact-office-email-label">Regional desk</span>
+              <a id="contactOfficeEmail" href="mailto:dubai@ilsmtc.com" class="contact-office-email-value">dubai@ilsmtc.com</a>
+            </p>
             <div class="contact-map" id="contactMap">
               <iframe
                 id="contactMapFrame"
@@ -529,12 +540,14 @@
       if (!frame || !mapWrap) return;
 
       const heroImg = document.getElementById('contactHeroImage');
+      const officeEmail = document.getElementById('contactOfficeEmail');
 
       const OFFICES = {
-        uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE',         hero: '../asset/ILS Contact hero image - UAE.webp' },
-        germany:     { q: 'Hamburg, Germany',   z: 11, title: 'ILS — Hamburg, Germany',     hero: '../asset/ILS Contact hero image - German.webp' },
-        pakistan:    { q: 'Karachi, Pakistan',  z: 11, title: 'ILS — Karachi, Pakistan',    hero: '../asset/ILS Contact hero image - Pakistan.webp' },
-        afghanistan: { q: 'Kabul, Afghanistan', z: 11, title: 'ILS — Kabul, Afghanistan',   hero: '../asset/ILS Contact hero image - Afghanistan.webp' }
+        uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE',         hero: '../asset/ILS Contact hero image - UAE.webp',         email: 'dubai@ilsmtc.com' },
+        germany:     { q: 'Hamburg, Germany',   z: 11, title: 'ILS — Hamburg, Germany',     hero: '../asset/ILS Contact hero image - German.webp',     email: 'hamburg@ilsmtc.com' },
+        pakistan:    { q: 'Karachi, Pakistan',  z: 11, title: 'ILS — Karachi, Pakistan',    hero: '../asset/ILS Contact hero image - Pakistan.webp',   email: 'karachi@ilsmtc.com' },
+        afghanistan: { q: 'Kabul, Afghanistan', z: 11, title: 'ILS — Kabul, Afghanistan',   hero: '../asset/ILS Contact hero image - Afghanistan.webp', email: 'kabul@ilsmtc.com' },
+        cis:         { q: 'Almaty, Kazakhstan', z: 5,  title: 'ILS — CIS Regional Desk',    hero: '../asset/CIS - 77.webp',                             email: 'cis@ilsmtc.com' }
       };
 
       function show(key, blink) {
@@ -544,6 +557,10 @@
         frame.src = 'https://maps.google.com/maps?q=' + enc + '&t=&z=' + o.z + '&ie=UTF8&iwloc=&output=embed';
         frame.title = o.title;
         if (heroImg && o.hero) heroImg.style.backgroundImage = "url('" + o.hero + "')";
+        if (officeEmail && o.email) {
+          officeEmail.textContent = o.email;
+          officeEmail.href = 'mailto:' + o.email;
+        }
         if (link) link.href = 'https://maps.google.com/?q=' + enc;
         if (pin) pin.href = 'https://maps.google.com/?q=' + enc;
         tabs.forEach(function (t) {
