@@ -168,7 +168,7 @@ ORG_SCHEMA = {
     "foundingDate": "2011",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Business Central Tower, Office 2802 B, Media City",
+        "streetAddress": "Business Central Towers, Office 2802 B, Media City",
         "addressLocality": "Dubai",
         "postalCode": "19195",
         "addressCountry": "AE"
