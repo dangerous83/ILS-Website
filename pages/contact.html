@@ -342,7 +342,7 @@
                 </span>
                 <div>
                   <span class="contact-channel-label">Email</span>
-                  <a href="mailto:info@ilsmtc.com" class="contact-channel-value">info@ilsmtc.com</a>
+                  <a id="contactPrimaryEmail" href="mailto:dubai@ilsmtc.com" class="contact-channel-value">dubai@ilsmtc.com</a>
                 </div>
               </li>
 
@@ -368,15 +368,6 @@
               <button type="button" class="office-tab" data-office="afghanistan" role="tab" aria-selected="false">Afghanistan</button>
               <button type="button" class="office-tab" data-office="cis" role="tab" aria-selected="false">CIS</button>
             </div>
-
-            <!-- Regional desk email: updates to match the office selected above -->
-            <p class="contact-office-email">
-              <span class="contact-office-email-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </span>
-              <span class="contact-office-email-label">Regional desk</span>
-              <a id="contactOfficeEmail" href="mailto:dubai@ilsmtc.com" class="contact-office-email-value">dubai@ilsmtc.com</a>
-            </p>
             <div class="contact-map" id="contactMap">
               <iframe
                 id="contactMapFrame"
@@ -540,7 +531,7 @@
       if (!frame || !mapWrap) return;
 
       const heroImg = document.getElementById('contactHeroImage');
-      const officeEmail = document.getElementById('contactOfficeEmail');
+      const officeEmail = document.getElementById('contactPrimaryEmail');
 
       const OFFICES = {
         uae:         { q: 'Business Central Tower Media City Dubai', z: 15, title: 'ILS — Dubai, UAE',         hero: '../asset/ILS Contact hero image - UAE.webp',         email: 'dubai@ilsmtc.com' },
@@ -579,12 +570,12 @@
         t.addEventListener('click', function () { show(t.getAttribute('data-office'), true); });
       });
 
-      function fromHash() {
+      function fromHash(blink) {
         const k = (location.hash || '').replace('#', '').toLowerCase();
-        if (OFFICES[k]) show(k, true);
+        show(OFFICES[k] ? k : 'uae', blink);
       }
-      fromHash();
-      window.addEventListener('hashchange', fromHash);
+      fromHash(false);
+      window.addEventListener('hashchange', function () { fromHash(true); });
     })();
   </script>
 </body>
