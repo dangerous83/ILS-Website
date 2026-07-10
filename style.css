@@ -3137,7 +3137,7 @@ ul {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: right bottom;
+  background-position: center center;
   transition: transform 1s cubic-bezier(.2,.8,.2,1);
   z-index: 0;
 }
