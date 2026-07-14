@@ -1775,6 +1775,19 @@ ul {
   margin-top: 2px;
 }
 
+.feature-list .feature-group-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-top: 12px;
+}
+
+.feature-list .feature-group-heading:first-child {
+  margin-top: 0;
+}
+
 /* ============================================
    PROCESS SECTION — STEP-ANIMATION STYLE
    Connected stepper with gradient-filled numbered

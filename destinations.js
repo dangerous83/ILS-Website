@@ -67,17 +67,41 @@
       breadcrumb: 'South Asia',
       heroImage: '../asset/South Asia -2.png?v=20260630h',
       heroTitleHTML: 'Freight across <span class="accent">South Asia</span>',
-      heroSubtitle: 'Anchored by our Karachi hub — ocean, air, and overland services across Pakistan and India, with deep NVOCC and consolidation expertise.',
+      heroSubtitle: 'Anchored by our Karachi hub — Pakistan-based logistics access across South Asia and into Central Asia.',
       eyebrow: 'South Asia Gateway',
-      detailTitleHTML: 'Your gateway to <span class="accent">Pakistan &amp; India</span>',
-      detailDesc: 'Our Karachi hub anchors a dense network across the subcontinent. From Karachi and Port Qasim to Nhava Sheva and Mundra, we run FCL, LCL, and NVOCC services with onward trucking and customs clearance across Pakistan and India.',
+      detailTitleHTML: 'Powered by our <span class="accent">Karachi hub</span>',
+      detailDesc: [
+        'Our Karachi hub is the operational centre of our South Asia network. Through Karachi Port, Port Qasim, and Karachi International Airport, we provide integrated sea, air, and road freight solutions across Pakistan, supported by customs clearance, cargo consolidation, warehousing, and nationwide inland transportation.',
+        'Pakistan also serves as a strategic transit gateway for cargo moving towards Afghanistan and the landlocked markets of Central Asia. From Karachi, we coordinate multimodal and overland transport solutions to key regional destinations.',
+        'Beyond Pakistan, we manage dedicated logistics operations across India, Bangladesh, Sri Lanka, Nepal, Bhutan, and the Maldives through established local agents and specialised regional partners. Each market is handled independently according to its local customs, infrastructure, and transport requirements.',
+      ],
       modes: { air: true, road: true, sea: true },
-      features: [
-        'Karachi &amp; Port Qasim ocean gateway (FCL, LCL, NVOCC)',
-        'Air freight via Karachi (KHI) and Dubai (DXB)',
-        'Customs clearance across Pakistan and India',
-        'Onward trucking to upcountry Pakistan',
-        'Consolidation and cargo handling for all sizes',
+      featureGroups: [
+        {
+          heading: 'Pakistan Hub',
+          items: [
+            'Karachi Port and Port Qasim ocean freight gateway',
+            'FCL, LCL, and NVOCC services',
+            'Air freight via Karachi International Airport',
+            'Customs clearance across Pakistan',
+            'Nationwide trucking and upcountry delivery',
+            'Warehousing, consolidation, and cargo handling',
+            'Transit cargo solutions to Afghanistan and Central Asia',
+            'Multimodal transport for containerised, project, and general cargo',
+          ],
+        },
+        {
+          heading: 'Regional South Asia Coverage',
+          items: [
+            'India via Nhava Sheva, Mundra, and other major gateways',
+            'Bangladesh via Chattogram and Dhaka',
+            'Sri Lanka via Colombo',
+            'Nepal through dedicated inland and cross-border connections',
+            'Bhutan through specialised regional transport partners',
+            'Maldives through dedicated sea and air freight solutions',
+            'Local customs clearance and destination support in each market',
+          ],
+        },
       ],
       lanes: [
         { mode: 'sea',  route: 'Jebel Ali → Karachi (KHI)',     transit: 'FCL ocean transit: <strong>2–3 days</strong> · Multiple sailings/week' },
@@ -218,11 +242,16 @@
     }).join('');
   }
 
-  /* Build feature list */
-  function renderFeatures(features) {
-    detailFeatures.innerHTML = features
-      .map((f) => `<li><span class="check">✓</span> ${f}</li>`)
-      .join('');
+  /* Build feature list — flat list, or groups with subheadings via featureGroups */
+  function renderFeatures(data) {
+    const groups = data.featureGroups || [{ items: data.features }];
+    detailFeatures.innerHTML = groups.map((group) => {
+      const heading = group.heading ? `<li class="feature-group-heading">${group.heading}</li>` : '';
+      const items = group.items
+        .map((f) => `<li><span class="check">✓</span> ${f}</li>`)
+        .join('');
+      return heading + items;
+    }).join('');
   }
 
   /* Build trade lanes grid */
@@ -269,10 +298,14 @@
       detailRegion.textContent = data.region;
       detailEyebrow.textContent = data.eyebrow;
       detailTitle.innerHTML = data.detailTitleHTML;
-      detailDesc.textContent = data.detailDesc;
+      if (Array.isArray(data.detailDesc)) {
+        detailDesc.innerHTML = data.detailDesc.join('<br /><br />');
+      } else {
+        detailDesc.textContent = data.detailDesc;
+      }
       if (ctaName) ctaName.textContent = data.region;
 
-      renderFeatures(data.features);
+      renderFeatures(data);
       renderModes(data.modes);
       renderLanes(data.lanes);
 
