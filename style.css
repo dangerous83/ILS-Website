@@ -1775,17 +1775,9 @@ ul {
   margin-top: 2px;
 }
 
-.feature-list .feature-group-heading {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  margin-top: 12px;
-}
-
-.feature-list .feature-group-heading:first-child {
-  margin-top: 0;
+.feature-list:empty {
+  display: none;
+  margin: 0;
 }
 
 /* ============================================
@@ -2851,13 +2843,80 @@ ul {
 
 /* country detail section — fade swap when destination changes */
 .dest-detail .service-detail-content > *,
+.dest-detail .dest-feature-groups,
 .dest-detail .service-detail-media img {
   transition: opacity 0.3s ease;
 }
 
 .dest-detail.is-swapping .service-detail-content > *,
+.dest-detail.is-swapping .dest-feature-groups,
 .dest-detail.is-swapping .service-detail-media img {
   opacity: 0;
+}
+
+/* grouped capability cards below the country-detail grid */
+.dest-feature-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 64px;
+}
+
+.dest-feature-groups:empty {
+  display: none;
+  margin: 0;
+}
+
+.dest-feature-card {
+  background: var(--surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 32px 30px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.dest-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(11, 59, 140, 0.14);
+  border-color: transparent;
+}
+
+.dest-feature-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dest-feature-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(26, 86, 219, 0.1);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.dest-feature-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.dest-feature-card-title {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  margin: 0;
+}
+
+.dest-feature-card .feature-list {
+  margin: 0;
 }
 
 .dest-detail-subhead {

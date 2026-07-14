@@ -79,6 +79,7 @@
       featureGroups: [
         {
           heading: 'Pakistan Hub',
+          icon: 'anchor',
           items: [
             'Karachi Port and Port Qasim ocean freight gateway',
             'FCL, LCL, and NVOCC services',
@@ -92,6 +93,7 @@
         },
         {
           heading: 'Regional South Asia Coverage',
+          icon: 'globe',
           items: [
             'India via Nhava Sheva, Mundra, and other major gateways',
             'Bangladesh via Chattogram and Dhaka',
@@ -207,6 +209,12 @@
 
   const MODE_LABELS = { air: 'Air', road: 'Road', sea: 'Sea' };
 
+  /* Icons for grouped capability cards */
+  const GROUP_ICONS = {
+    anchor: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v13M5 12H2a10 10 0 0 0 20 0h-3"/></svg>',
+    globe:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  };
+
   /* DOM refs */
   const hero            = document.getElementById('dest-hero');
   const heroImage       = document.getElementById('destHeroImage');
@@ -224,6 +232,7 @@
   const detailTitle     = document.getElementById('destDetailTitle');
   const detailDesc      = document.getElementById('destDetailDesc');
   const detailFeatures  = document.getElementById('destFeatures');
+  const detailGroups    = document.getElementById('destFeatureGroups');
   const detailModes     = document.getElementById('destModes');
   const ctaName         = document.getElementById('destCtaName');
 
@@ -242,16 +251,28 @@
     }).join('');
   }
 
-  /* Build feature list — flat list, or groups with subheadings via featureGroups */
+  /* Build feature list — flat list in the content column, or grouped
+     capability cards below the detail grid via featureGroups */
   function renderFeatures(data) {
-    const groups = data.featureGroups || [{ items: data.features }];
-    detailFeatures.innerHTML = groups.map((group) => {
-      const heading = group.heading ? `<li class="feature-group-heading">${group.heading}</li>` : '';
-      const items = group.items
-        .map((f) => `<li><span class="check">✓</span> ${f}</li>`)
-        .join('');
-      return heading + items;
-    }).join('');
+    const checklist = (items) => items
+      .map((f) => `<li><span class="check">✓</span> ${f}</li>`)
+      .join('');
+
+    if (data.featureGroups && detailGroups) {
+      detailFeatures.innerHTML = '';
+      detailGroups.innerHTML = data.featureGroups.map((group) => `
+        <article class="dest-feature-card">
+          <div class="dest-feature-card-head">
+            <span class="dest-feature-card-icon" aria-hidden="true">${GROUP_ICONS[group.icon] || ''}</span>
+            <h3 class="dest-feature-card-title">${group.heading}</h3>
+          </div>
+          <ul class="feature-list">${checklist(group.items)}</ul>
+        </article>
+      `).join('');
+    } else {
+      detailFeatures.innerHTML = checklist(data.features);
+      if (detailGroups) detailGroups.innerHTML = '';
+    }
   }
 
   /* Build trade lanes grid */
